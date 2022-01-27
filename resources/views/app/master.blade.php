@@ -38,7 +38,7 @@
                     <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo1.png') }}" alt=""></span>
                     <span class="brand-title">
                         <img src="{{ asset('gambar/sistem/logo1.png')}}" alt="" style="height: 30px"> 
-                        <span class="text-white ml-2">LARA<b>DUIT</b></span>
+                        <span class="text-white ml-2">Finan<b>Z</b></span>
                     </span>
                 </a>
             </div>
