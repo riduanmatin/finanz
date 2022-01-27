@@ -42,7 +42,7 @@
                     <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo1.png') }}" alt=""></span>
                     <span class="brand-title">
                         <img src="{{ asset('gambar/sistem/logo1.png') }}" alt="" style="height: 30px">
-                        <span class="text-white ml-2">Finann<b>Z</b></span>
+                        <span class="text-white ml-2">Finan<b>Z</b></span>
                     </span>
                 </a>
             </div>
@@ -68,7 +68,8 @@
                                 @if (Auth::user()->foto == '')
                                     <img src="{{ asset('gambar/sistem/user.png') }}" height="40" width="40" alt="">
                                 @else
-                                    <img src="{{ asset('gambar/user/' . Auth::user()->foto) }}" height="40" width="40">
+                                    <img src="{{ asset('gambar/user/' . Auth::user()->foto) }}" height="40"
+                                        width="40">
                                 @endif
                             </div>
                         </li>
