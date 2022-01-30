@@ -42,7 +42,7 @@
                     <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo1.png') }}" alt=""></span>
                     <span class="brand-title">
                         <img src="{{ asset('gambar/sistem/logo1.png') }}" alt="" style="height: 30px">
-                        <span class="text-white ml-2">Finssan<b>Z</b></span>
+                        <span class="text-white ml-2">Finssasn<b>Z</b></span>
                     </span>
                 </a>
             </div>
