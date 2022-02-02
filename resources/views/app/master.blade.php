@@ -41,7 +41,7 @@
                     <b class="logo-abbr"><img src="{{ asset('gambar/sistem/logo1.png') }}" alt=""> </b>
                     <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo1.png') }}" alt=""></span>
                     <span class="brand-title">
-                        <img src="{{ asset('gambar/sistem/logo1.png') }}" alt="" style="height: 30px">
+                        <img src="{{ asset('gambar/sistem/logo_finanz1.png') }}" alt="" style="height: 30px">
                         <span class="text-white ml-2">Finan<b>Z</b></span>
                     </span>
                 </a>
