@@ -62,7 +62,7 @@
                             <div class="text-center mb-5">
                                 <img src="{{ asset('gambar/sistem/logo_finanz1.png')}}" alt="" style="height: 100px">
                                 <h3 class=" mt-2">Finan<b>Z</b></h3>
-                                <h4 class="mt-4">Sistem Informasi Keuangan <br> Laravel</h4>
+                                <h4 class="mt-4">Sistem Informasi Keuangannn<br> Laravel</h4>
                             </div>
 
                             <h4>Login</h4>
