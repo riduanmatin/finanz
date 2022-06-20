@@ -17,6 +17,8 @@ use File;
 use App\Exports\LaporanExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use App\Rencana_anggaran;
+use DateTime;
 
 class HomeController extends Controller
 {
@@ -172,6 +174,54 @@ class HomeController extends Controller
 
         return redirect()->back()->with("success","Password telah diganti!");
 
+    }
+
+    public function rencana_anggaran()
+    {
+        $kategori = Kategori::orderBy('kategori', 'asc')->get();
+        $rencana_anggaran = Rencana_anggaran::orderBy('id', 'desc')->get();
+        return view('app.anggaran', ['kategori' => $kategori, 'rencana_anggaran' => $rencana_anggaran]);
+    }
+
+    public function rencana_anggaran_aksi(Request $req){
+        $bulan = $req->input('bulan');
+        $temp = new DateTime($bulan.'-01');
+        $bulanFormat = $temp->format('Y/m/01');
+        $kategori = $req->input('kategori');
+        $nominal_per_pcs = $req->input('nominal_per_pcs');
+        $jumlah_barang = $req->input('jumlah_barang');
+        $keterangan = $req->input('keterangan');
+        $nominal_total = $nominal_per_pcs * $jumlah_barang;
+
+        Rencana_anggaran::create([
+            'bulan' => $bulanFormat,
+            'kategori_id' => $kategori,
+            'nominal_per_pcs' => $nominal_per_pcs,
+            'jumlah_barang' => $jumlah_barang,
+            'keterangan' => $keterangan,
+            'nominal_total' => $nominal_total
+        ]);
+
+        return redirect()->back()->with("success", "Rencana Anggaran telah diajukan!");
+    }
+
+    public function rencana_anggaran_delete($id){
+        $rencana_anggaran = Rencana_anggaran::find($id);
+        $rencana_anggaran->delete();
+        return redirect()->back()->with("success", "Rencana Anggaran telah dihapus!");
+    }
+
+    public function rencana_anggaran_update($id, Request $req){
+        $bulan = $req->input('bulan');
+        $temp = new DateTime($bulan.'-01');
+        $bulanFormat = $temp->format('Y/m/01');
+        $kategori = $req->input('kategori');
+        $nominal_per_pcs = $req->input('nominal_per_pcs');
+        $jumlah_barang = $req->input('jumlah_barang');
+        $keterangan = $req->input('keterangan');
+        $nominal_total = $nominal_per_pcs * $jumlah_barang;
+
+        
     }
 
 

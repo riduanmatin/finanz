@@ -12,6 +12,6 @@ class Kategori extends Model
 
 	public function transaksi()
 	{
-		return $this->hasMany('App\Transaksi');
+		return $this->hasMany(['App\Transaksi', 'App/Rencana_anggaran', 'App/Anggaran']);
 	}
 }
