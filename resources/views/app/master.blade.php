@@ -38,8 +38,8 @@
         <div class="nav-header bg-white text-center">
             <div class="brand-logo">
                 <a href="{{ url('/home') }}">
-                    <b class="logo-abbr"><img src="{{ asset('gambar/sistem/logo1.png') }}" alt=""> </b>
-                    <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo1.png') }}" alt=""></span>
+                    <b class="logo-abbr"><img src="{{ asset('gambar/sistem/logo_finanz1.png') }}" alt=""> </b>
+                    <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo_finanz1.png') }}" alt=""></span>
                     <span class="brand-title">
                         <img src="{{ asset('gambar/sistem/logo_finanz_bulet.png') }}" alt="" style="height: 42px">
                         <span class="text-white ml-2">Finan<b>Z</b></span>
@@ -125,10 +125,18 @@
                     @endif
                     <div class="media-body">
                         <h5 class="mb-0">{{ Auth::user()->name }}</h5>
-                        <p class="text-muted mb-0"><?php if (Auth::user()->level == 'admin') {
-                            echo 'Administrator';
-                            } else {
-                            echo 'Bendahara';
+                        <p class="text-muted mb-0">
+                            <?php if (Auth::user()->level == 'admin') {
+                                echo 'Administrator';
+                            } 
+                            else if (Auth::user()->level == 'bendahara') {
+                                echo 'Bendahara';    
+                            }
+                            else if(Auth::user()->level == 'kepala-sekolah') {
+                            echo 'Kepala Sekolah';
+                            }
+                            else {
+                                echo 'Ketua Yayasan';
                             } ?></p>
                     </div>
                 </div>
@@ -161,6 +169,12 @@
                     <li>
                         <a href="{{ route('laporan') }}" aria-expanded="false">
                             <i class="icon-notebook menu-icon mr-3"></i><span class="nav-text">Laporan</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('anggaran.rencana') }}" aria-expanded="false">
+                            <i class="fa fa-money menu-icon mr-3"></i><span class="nav-text">Anggaran</span>
                         </a>
                     </li>
 

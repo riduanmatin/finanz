@@ -19,10 +19,11 @@
     <div class="card">
 
       <div class="card-header pt-4">
-
-        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
-          <i class="fa fa-plus"></i> &nbsp TAMBAH TRANSAKSI
-        </button>
+        @if (Auth::user()->level == 'bendahara')
+          <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-plus"></i> &nbsp TAMBAH TRANSAKSI
+          </button>
+        @endif
         <h4>Data Transaksi</h4>
 
       </div>
@@ -99,7 +100,9 @@
                 <th rowspan="2" class="text-center">KATEGORI</th>
                 <th rowspan="2" class="text-center">KETERANGAN</th>
                 <th colspan="2" class="text-center">JENIS</th>
-                <th rowspan="2" class="text-center" width="10%">OPSI</th>
+                @if (Auth::user()->level == 'bendahara')
+                  <th rowspan="2" class="text-center" width="10%">OPSI</th>
+                @endif
               </tr>
               <tr>
                 <th class="text-center">PEMASUKAN</th>
@@ -130,108 +133,110 @@
                   {{ "-" }}
                   @endif
                 </td>
-                <td>
+                @if (Auth::user()->level == 'bendahara')
+                  <td>
 
-                  <div class="text-center">
-                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalEdit_{{ $t->id }}"><i class="fa fa-cog"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalDelete_{{ $t->id }}"><i class="fa fa-trash"></i></button>
-                  </div>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalEdit_{{ $t->id }}"><i class="fa fa-cog"></i></button>
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalDelete_{{ $t->id }}"><i class="fa fa-trash"></i></button>
+                    </div>
 
-                  <!-- Modal -->
-                  <form method="POST" action="{{ route('transaksi.update',['id' => $t->id]) }}">
-                    <div class="modal fade" id="modalEdit_{{ $t->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Transaksi</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-
-
-                            @csrf
-                            {{ method_field('PUT') }}
-
-                            <div class="form-group" style="width: 100%;margin-bottom:20px">
-                              <label>Tanggal</label>
-                              <input type="text" class="form-control datepicker2 py-0" required="required" name="tanggal" value="{{ $t->tanggal }}" style="width: 100%">
+                    <!-- Modal -->
+                    <form method="POST" action="{{ route('transaksi.update',['id' => $t->id]) }}">
+                      <div class="modal fade" id="modalEdit_{{ $t->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Edit Transaksi</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
                             </div>
+                            <div class="modal-body">
 
-                            <div class="form-group" style="width: 100%;margin-bottom:20px">
-                              <label>Jenis</label>
-                              <select class="form-control py-0" required="required" name="jenis" style="width: 100%">
-                                <option value="">Pilih</option>
-                                <option {{ ($t->jenis == "Pemasukan" ? "selected='selected'" : "") }} value="Pemasukan">Pemasukan</option>
-                                <option {{ ($t->jenis == "Pengeluaran" ? "selected='selected'" : "") }} value="Pengeluaran">Pengeluaran</option>
-                              </select>
+
+                              @csrf
+                              {{ method_field('PUT') }}
+
+                              <div class="form-group" style="width: 100%;margin-bottom:20px">
+                                <label>Tanggal</label>
+                                <input type="text" class="form-control datepicker2 py-0" required="required" name="tanggal" value="{{ $t->tanggal }}" style="width: 100%">
+                              </div>
+
+                              <div class="form-group" style="width: 100%;margin-bottom:20px">
+                                <label>Jenis</label>
+                                <select class="form-control py-0" required="required" name="jenis" style="width: 100%">
+                                  <option value="">Pilih</option>
+                                  <option {{ ($t->jenis == "Pemasukan" ? "selected='selected'" : "") }} value="Pemasukan">Pemasukan</option>
+                                  <option {{ ($t->jenis == "Pengeluaran" ? "selected='selected'" : "") }} value="Pengeluaran">Pengeluaran</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group" style="width: 100%;margin-bottom:20px">
+                                <label>Kategori</label>
+                                <select class="form-control py-0" required="required" name="kategori" style="width: 100%">
+                                  <option value="">Pilih</option>
+                                  @foreach($kategori as $k)
+                                  <option {{ ($t->kategori->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kategori }}</option>
+                                  @endforeach
+                                </select>
+                              </div>
+
+                              <div class="form-group" style="width: 100%;margin-bottom:20px">
+                                <label>Nominal</label>
+                                <input type="number" class="form-control py-0" required="required" name="nominal" value="{{ $t->nominal }}" style="width: 100%">
+                              </div>
+
+                              <div class="form-group" style="width: 100%;margin-bottom:20px">
+                                <label>Keterangan</label>
+                                <textarea class="form-control py-0" name="keterangan"  autocomplete="off" placeholder="Masukkan keterangan (Opsional) .." style="width: 100%">{{ $t->keterangan }}</textarea>
+                              </div>
+
+
                             </div>
-
-                            <div class="form-group" style="width: 100%;margin-bottom:20px">
-                              <label>Kategori</label>
-                              <select class="form-control py-0" required="required" name="kategori" style="width: 100%">
-                                <option value="">Pilih</option>
-                                @foreach($kategori as $k)
-                                <option {{ ($t->kategori->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kategori }}</option>
-                                @endforeach
-                              </select>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ti-close m-r-5 f-s-12"></i> Tutup</button>
+                              <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane m-r-5"></i> Simpan</button>
                             </div>
-
-                            <div class="form-group" style="width: 100%;margin-bottom:20px">
-                              <label>Nominal</label>
-                              <input type="number" class="form-control py-0" required="required" name="nominal" value="{{ $t->nominal }}" style="width: 100%">
-                            </div>
-
-                            <div class="form-group" style="width: 100%;margin-bottom:20px">
-                              <label>Keterangan</label>
-                              <textarea class="form-control py-0" name="keterangan"  autocomplete="off" placeholder="Masukkan keterangan (Opsional) .." style="width: 100%">{{ $t->keterangan }}</textarea>
-                            </div>
-
-
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ti-close m-r-5 f-s-12"></i> Tutup</button>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane m-r-5"></i> Simpan</button>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </form>
+                    </form>
 
 
-                  <!-- Modal -->
-                  <form method="POST" action="{{ route('transaksi.delete',['id' => $t->id]) }}">
-                    <div class="modal fade" id="modalDelete_{{ $t->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
+                    <!-- Modal -->
+                    <form method="POST" action="{{ route('transaksi.delete',['id' => $t->id]) }}">
+                      <div class="modal fade" id="modalDelete_{{ $t->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+
+
+                              @csrf
+                              {{ method_field('DELETE') }}
+
+                              <p>Apakah anda yakin ingin menghapus data ini?</p>
+
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ti-close m-r-5 f-s-12"></i> Tutup</button>
+                              <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane m-r-5"></i> Hapus</button>
+                            </div>
+
                           </div>
-                          <div class="modal-body">
-
-
-                            @csrf
-                            {{ method_field('DELETE') }}
-
-                            <p>Apakah anda yakin ingin menghapus data ini?</p>
-
-                          </div>
-
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ti-close m-r-5 f-s-12"></i> Tutup</button>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane m-r-5"></i> Hapus</button>
-                          </div>
-
                         </div>
                       </div>
-                    </div>
-                  </form>
+                    </form>
 
-                </td>
+                  </td>
+                @endif
               </tr>
               @endforeach
             </tbody>
