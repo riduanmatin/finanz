@@ -148,12 +148,13 @@
 
                     <li class="nav-label">Dashboard</li>
 
-                    <li>
-                        <a href="{{ route('home') }}" aria-expanded="false">
-                            <i class="icon-speedometer menu-icon mr-3"></i><span class="nav-text">Dashboard</span>
-                        </a>
-                    </li>
-
+                    @if(Auth::user()->level != 'kepala-sekolah')
+                        <li>
+                            <a href="{{ route('home') }}" aria-expanded="false">
+                                <i class="icon-speedometer menu-icon mr-3"></i><span class="nav-text">Dashboard</span>
+                            </a>
+                        </li>
+                    @endif
                     <li>
                         <a href="{{ route('kategori') }}" aria-expanded="false">
                             <i class="icon-grid menu-icon mr-3"></i><span class="nav-text">Data Kategori</span>
@@ -219,17 +220,13 @@
 
 
 
-        <div class="footer">
+        <div class="footer d-flex justify-content-between align-items-center">
+            <i class="px-2"><img src="{{ asset('gambar/sistem/logo_finanz1.png') }}" alt="" width="35" height="35"></i>
             <div class="copyright">
-                <p>Copyright &copy; Aplikasi Keuangan Menggunakan Laravel. by <a href="https://www.malasngoding.com"
-                        target="_blank">malasngoding.com</a> {{ date('Y') }}</p>
+                <p>&copy; {{ date('Y') }} FinanZ</p>
             </div>
         </div>
     </div>
-
-
-
-    <div></div>
 
 
     <script src="{{ asset('asset_admin/bower_components/jquery/dist/jquery.min.js') }}"></script>
