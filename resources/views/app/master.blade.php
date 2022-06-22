@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Administrator - {{ config('app.name', 'Laravel') }}</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('gambar/sistem/pavicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('gambar/sistem/logo_finanz1.png') }}">
     <link href="{{ asset('asset_admin/plugins/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('asset_admin/plugins/chartist/css/chartist.min.css') }}">
     <link rel="stylesheet"
@@ -38,8 +38,8 @@
         <div class="nav-header bg-white text-center">
             <div class="brand-logo">
                 <a href="{{ url('/home') }}">
-                    <b class="logo-abbr"><img src="{{ asset('gambar/sistem/logo_finanz1.png') }}" alt=""> </b>
-                    <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo_finanz1.png') }}" alt=""></span>
+                    <b class="logo-abbr"><img src="{{ asset('gambar/sistem/logo_finanz_bulet.png') }}" alt=""> </b>
+                    <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo_finanz_bulet.png') }}" alt=""></span>
                     <span class="brand-title">
                         <img src="{{ asset('gambar/sistem/logo_finanz_bulet.png') }}" alt="" style="height: 42px">
                         <span class="text-white ml-2">Finan<b>Z</b></span>
@@ -133,7 +133,7 @@
                                 echo 'Bendahara';    
                             }
                             else if(Auth::user()->level == 'kepala-sekolah') {
-                            echo 'Kepala Sekolah';
+                                echo 'Kepala Sekolah';
                             }
                             else {
                                 echo 'Ketua Yayasan';
@@ -148,13 +148,13 @@
 
                     <li class="nav-label">Dashboard</li>
 
-                    @if(Auth::user()->level != 'kepala-sekolah')
+                    {{-- @if(Auth::user()->level != 'kepala-sekolah') --}}
                         <li>
                             <a href="{{ route('home') }}" aria-expanded="false">
                                 <i class="icon-speedometer menu-icon mr-3"></i><span class="nav-text">Dashboard</span>
                             </a>
                         </li>
-                    @endif
+                    {{-- @endif --}}
                     <li>
                         <a href="{{ route('kategori') }}" aria-expanded="false">
                             <i class="icon-grid menu-icon mr-3"></i><span class="nav-text">Data Kategori</span>
@@ -173,11 +173,23 @@
                         </a>
                     </li>
 
-                    <li>
+                    @if (Auth::user()->level == 'ketua-yayasan' || Auth::user()->level == 'kepala-sekolah' || Auth::user()->level == 'bendahara')
+                        <li class="mega-menu mega-menu-sm">
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="fa fa-money menu-icon mr-3"></i><span class="nav-text">Anggaran</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{ route('anggaran.rencana') }}">Rencana Anggaran</a></li>
+                                <li><a href="{{ route('anggaran') }}">Status Anggaran</a></li>
+                            </ul>
+                        </li>
+                    @endif
+
+                    {{-- <li>
                         <a href="{{ route('anggaran.rencana') }}" aria-expanded="false">
                             <i class="fa fa-money menu-icon mr-3"></i><span class="nav-text">Anggaran</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     @if (Auth::user()->level == 'admin')
 
@@ -299,6 +311,22 @@
             format: 'yyyy/mm/dd',
         });
 
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(function(){
+            var url = document.location.toString();
+            if (url.match('#')) {
+                console.log(url.split('#')[1]);
+                $('a[href="#'+url.split('#')[1]+'"]').parent().addClass('active');
+                $('#'+url.split('#')[1]).addClass('active in')
+            }
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                window.location.hash = e.target.hash;
+            });
+        });
     </script>
 
 </body>

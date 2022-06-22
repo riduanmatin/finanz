@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Anggaran;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -180,7 +181,12 @@ class HomeController extends Controller
     {
         $kategori = Kategori::orderBy('kategori', 'asc')->get();
         $rencana_anggaran = Rencana_anggaran::orderBy('id', 'desc')->get();
-        return view('app.anggaran', ['kategori' => $kategori, 'rencana_anggaran' => $rencana_anggaran]);
+        $rencana_anggaran_count = Rencana_anggaran::count();
+        return view('app.rencana_anggaran', [
+            'kategori' => $kategori, 
+            'rencana_anggaran' => $rencana_anggaran,
+            'rencana_anggaran_count' => $rencana_anggaran_count
+        ]);
     }
 
     public function rencana_anggaran_aksi(Request $req){
@@ -221,9 +227,80 @@ class HomeController extends Controller
         $keterangan = $req->input('keterangan');
         $nominal_total = $nominal_per_pcs * $jumlah_barang;
 
-        
+        $rencanaAnggaranUpd = Rencana_anggaran::find($id);
+        $rencanaAnggaranUpd->bulan = $bulanFormat;
+        $rencanaAnggaranUpd->kategori_id = $kategori;
+        $rencanaAnggaranUpd->nominal_per_pcs = $nominal_per_pcs;
+        $rencanaAnggaranUpd->jumlah_barang = $jumlah_barang;
+        $rencanaAnggaranUpd->keterangan = $keterangan;
+        $rencanaAnggaranUpd->nominal_total = $nominal_total;
+        $rencanaAnggaranUpd->save();
+
+        return redirect()->back()->with("success","Rencana Anggaran Telah di Update!");
     }
 
+    public function anggaran(){
+        $kategori = Kategori::orderBy('kategori', 'asc')->get();
+        $anggaran = Anggaran::orderBy('id', 'desc')->get();
+        $anggaranTerimaCount = Anggaran::where('status', '=', 'Terima')->count();
+        $anggaranTolakCount = Anggaran::where('status', '=', 'Tolak')->count();
+        return view('app.anggaran', [
+            'kategori' => $kategori, 
+            'anggaran' => $anggaran,
+            'anggaranTerimaCount' => $anggaranTerimaCount,
+            'anggaranTolakCount' => $anggaranTolakCount
+        ]);
+    }
+
+    public function anggaran_aksi_terima($id, Request $req){
+        $rencanaAnggaran = Rencana_anggaran::find($id);
+        $kategori = $rencanaAnggaran->kategori_id;
+        $bulan = $rencanaAnggaran->bulan;
+        $nominal_per_pcs = $rencanaAnggaran->nominal_per_pcs;
+        $jumlah_barang = $rencanaAnggaran->jumlah_barang;
+        $keterangan = $rencanaAnggaran->keterangan;
+        $nominal_total = $rencanaAnggaran->nominal_total;
+        $status = "Terima";
+
+        Anggaran::create([
+            'bulan' => $bulan,
+            'kategori_id' => $kategori,
+            'nominal_per_pcs' => $nominal_per_pcs,
+            'jumlah_barang' => $jumlah_barang,
+            'keterangan' => $keterangan,
+            'nominal_total' => $nominal_total,
+            'status' => $status
+        ]);
+
+        $rencanaAnggaran->delete();
+
+        return redirect()->back()->with("success", "Rencana Anggaran Telah di Validasi!");
+    }
+    
+    public function anggaran_aksi_tolak($id, Request $req){
+        $rencanaAnggaran = Rencana_anggaran::find($id);
+        $kategori = $rencanaAnggaran->kategori_id;
+        $bulan = $rencanaAnggaran->bulan;
+        $nominal_per_pcs = $rencanaAnggaran->nominal_per_pcs;
+        $jumlah_barang = $rencanaAnggaran->jumlah_barang;
+        $keterangan = $rencanaAnggaran->keterangan;
+        $nominal_total = $rencanaAnggaran->nominal_total;
+        $status = "Tolak";
+
+        Anggaran::create([
+            'bulan' => $bulan,
+            'kategori_id' => $kategori,
+            'nominal_per_pcs' => $nominal_per_pcs,
+            'jumlah_barang' => $jumlah_barang,
+            'keterangan' => $keterangan,
+            'nominal_total' => $nominal_total,
+            'status' => $status
+        ]);
+
+        $rencanaAnggaran->delete();
+
+        return redirect()->back()->with("success", "Rencana Anggaran Telah di Tolak!");
+    }
 
     public function transaksi()
     {

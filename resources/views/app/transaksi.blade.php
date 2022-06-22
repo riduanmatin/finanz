@@ -67,7 +67,7 @@
                       @endforeach
                     </select>
                   </div>
-
+                  
                   <div class="form-group">
                     <label>Nominal</label>
                     <input type="number" class="form-control" required="required" name="nominal" autocomplete="off" placeholder="Masukkan nominal ..">

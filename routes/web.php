@@ -53,4 +53,8 @@ Route::get('/laporan/print', 'HomeController@laporan_print')->name('laporan_prin
 Route::get('/rencana-anggaran', 'HomeController@rencana_anggaran')->name('anggaran.rencana');
 Route::post('/rencana-anggaran/aksi', 'HomeController@rencana_anggaran_aksi')->name('anggaran.rencana.aksi');
 Route::put('/rencana-anggaran/update/{id}', 'HomeController@rencana_anggaran_update')->name('anggaran.rencana.update');
-// Route::post('anggaran/input', 'HomeController@anggaran_aksi')->name('anggaran.aksi');
+Route::delete('rencana-anggaran/delete/{id}', 'HomeController@rencana_anggaran_delete')->name('anggaran.rencana.delete');
+
+Route::get('/anggaran', 'HomeController@anggaran')->name('anggaran');
+Route::post('anggaran/validasi/{id}', 'HomeController@anggaran_aksi_terima')->name('anggaran.aksi.validasi');
+Route::post('anggaran/tolak/{id}', 'HomeController@anggaran_aksi_tolak')->name('anggaran.aksi.tolak');
