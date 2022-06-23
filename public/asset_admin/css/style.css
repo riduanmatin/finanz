@@ -1794,8 +1794,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #7571f9;
-  border-color: #7571f9; }
+  background-color: #FF8303;
+  border-color: #FF8303; }
   .btn-primary:hover {
     color: #fff;
     background-color: #514cf7;
@@ -9568,7 +9568,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     font-size: 15px; }
   .login-input .form-group .form-control {
     background: transparent;
-    border: 0;
+    border: 0 ;
     border-radius: 0;
     border-bottom: 1px solid #f5f5f5;
     padding-left: 0;

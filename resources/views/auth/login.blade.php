@@ -24,14 +24,15 @@
 <body>
     <style type="text/css">
         body{
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
+            background: white
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
             transition: all .1s ease;
         }
 
 
-        @keyframes gradient {
+        /* @keyframes gradient {
           0% {
             background-position: 0% 50%;
         }
@@ -40,7 +41,7 @@
         }
         100% {
             background-position: 0% 50%;
-        }
+        } */
     }
 </style>
 <div id="preloader">
@@ -53,26 +54,29 @@
 
 <div class="login-form-bg h-100 mt-5">
     <div class="container h-100">
-        <div class="row justify-content-center h-100">
-            <div class="col-xl-4">
+        <div class="d-flex flex-row-reverse justify-content-between h-100 align-items-center">
+            <div class="col-xl-4 w-40">
                 <div class="form-input-content">
-                    <div class="card login-form mb-0">
-                        <div class="card-body pt-5 pb-5">
+                    <div class=" login-form mb-0">
+                        <div class=" pt-5 pb-5">
 
                             <div class="text-center mb-5">
                                 <img src="{{ asset('gambar/sistem/logo_finanz1fix.png')}}" alt="" style="height: 100px">
+                                <style>
+                                    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+                                </style>
                                 <h3 class=" mt-2">Finan<b>Z</b></h3>
-                                <h4 class="mt-4">Sistem Informasi Keuangannn<br> Laravel</h4>
+                                {{-- <h4 class="mt-4">Sistem Informasi Keuangannn<br> Laravel</h4> --}}
                             </div>
 
-                            <h4>Login</h4>
+                            <h4 class="d-flex justify-content-center">Login</h4>
 
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
 
                                 <div class="form-group">
                                     <div class="form-group has-feedback">
-                                        <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="off">
+                                        <input style="border-radius: 18px" id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="off">
 
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -85,7 +89,7 @@
 
                                 <div class="form-group">
                                     <div class="form-group has-feedback">
-                                        <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password">
+                                        <input style="border-radius: 18px" id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password">
 
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -123,6 +127,8 @@
                     </div>
                 </div>
             </div>
+            <img src="{{ asset('gambar/background/background_login.png')}}" alt="error picture" class="w-60" style="max-width: 50%;
+            height: 90%;">
         </div>
     </div>
 </div>
