@@ -148,30 +148,31 @@
 
                     <li class="nav-label">Dashboard</li>
 
-                    {{-- @if(Auth::user()->level != 'kepala-sekolah') --}}
+                    @if(Auth::user()->level != 'kepala-sekolah' && Auth::user()->level != 'admin')
                         <li>
                             <a href="{{ route('home') }}" aria-expanded="false">
                                 <i class="icon-speedometer menu-icon mr-3"></i><span class="nav-text">Dashboard</span>
                             </a>
                         </li>
-                    {{-- @endif --}}
-                    <li>
-                        <a href="{{ route('kategori') }}" aria-expanded="false">
-                            <i class="icon-grid menu-icon mr-3"></i><span class="nav-text">Data Kategori</span>
-                        </a>
-                    </li>
+                    
+                        <li>
+                            <a href="{{ route('kategori') }}" aria-expanded="false">
+                                <i class="icon-grid menu-icon mr-3"></i><span class="nav-text">Data Kategori</span>
+                            </a>
+                        </li>
 
-                    <li>
-                        <a href="{{ route('transaksi') }}" aria-expanded="false">
-                            <i class="icon-menu menu-icon mr-3"></i><span class="nav-text">Data Transaksi</span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="{{ route('transaksi') }}" aria-expanded="false">
+                                <i class="icon-menu menu-icon mr-3"></i><span class="nav-text">Data Transaksi</span>
+                            </a>
+                        </li>
 
-                    <li>
-                        <a href="{{ route('laporan') }}" aria-expanded="false">
-                            <i class="icon-notebook menu-icon mr-3"></i><span class="nav-text">Laporan</span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="{{ route('laporan') }}" aria-expanded="false">
+                                <i class="icon-notebook menu-icon mr-3"></i><span class="nav-text">Laporan</span>
+                            </a>
+                        </li>
+                    @endif
 
                     @if (Auth::user()->level == 'ketua-yayasan' || Auth::user()->level == 'kepala-sekolah' || Auth::user()->level == 'bendahara')
                         <li class="mega-menu mega-menu-sm">
@@ -184,12 +185,6 @@
                             </ul>
                         </li>
                     @endif
-
-                    {{-- <li>
-                        <a href="{{ route('anggaran.rencana') }}" aria-expanded="false">
-                            <i class="fa fa-money menu-icon mr-3"></i><span class="nav-text">Anggaran</span>
-                        </a>
-                    </li> --}}
 
                     @if (Auth::user()->level == 'admin')
 
