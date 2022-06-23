@@ -66,11 +66,11 @@
                                     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
                                 </style>
                                 <h3 class=" mt-2">Finan<b>Z</b></h3>
-<<<<<<< HEAD
+
                                 {{-- <h4 class="mt-4">Sistem Informasi Keuangannn<br> Laravel</h4> --}}
-=======
-                                <h4 class="mt-4">Sistem Informasi Keuangan<br> Laravel</h4>
->>>>>>> 131ef3a9422787ddfd996adf198a91ccee072256
+
+                                {{-- <h4 class="mt-4">Sistem Informasi Keuangan<br> Laravel</h4> --}}
+
                             </div>
 
                             <h4 class="d-flex justify-content-center">Login</h4>
