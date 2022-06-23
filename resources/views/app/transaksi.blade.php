@@ -30,7 +30,7 @@
       <div class="card-body pt-0">
 
         <!-- Modal -->
-        <form action="{{ route('transaksi.aksi') }}" method="post">
+        <form action="{{ route('transaksi.aksi') }}" method="post" enctype="multipart/form-data">
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -43,6 +43,11 @@
                 <div class="modal-body">
 
                   @csrf
+
+                  <div class="form-group">
+                    <label>Nomor Kwitansi</label>
+                    <input type="text" class="form-control" name="no_kwitansi" autocomplete="off" placeholder="Masukkan Nomor Kwitansi (Opsional) ..">
+                  </div>
 
                   <div class="form-group">
                     <label>Tanggal</label>
@@ -67,7 +72,7 @@
                       @endforeach
                     </select>
                   </div>
-                  
+
                   <div class="form-group">
                     <label>Nominal</label>
                     <input type="number" class="form-control" required="required" name="nominal" autocomplete="off" placeholder="Masukkan nominal ..">
@@ -76,6 +81,11 @@
                   <div class="form-group">
                     <label>Keterangan</label>
                     <textarea class="form-control" name="keterangan" autocomplete="off" placeholder="Masukkan keterangan (Opsional) .."></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Foto Kwitansi</label>
+                    <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image" >
                   </div>
 
                 </div>
@@ -100,6 +110,8 @@
                 <th rowspan="2" class="text-center">KATEGORI</th>
                 <th rowspan="2" class="text-center">KETERANGAN</th>
                 <th colspan="2" class="text-center">JENIS</th>
+                <th rowspan="2" class="text-center">NO KWITANSI</th>
+                <th rowspan="2" class="text-center">FOTO KWITANSI</th>
                 @if (Auth::user()->level == 'bendahara')
                   <th rowspan="2" class="text-center" width="10%">OPSI</th>
                 @endif
@@ -117,20 +129,57 @@
               <tr>
                 <td class="text-center">{{ $no++ }}</td>
                 <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
-                <td>{{ $t->kategori->kategori }}</td>
-                <td>{{ $t->keterangan }}</td>
+                <td class="text-center">{{ $t->kategori->kategori }}</td>
+                <td class="text-center">
+                  @if($t->keterangan != "")
+                    {{ $t->keterangan }}
+                  @else
+                    -
+                  @endif
+                </td>
                 <td class="text-center">
                   @if($t->jenis == "Pemasukan")
-                  {{ "Rp.".number_format($t->nominal).",-" }}
+                    {{ "Rp.".number_format($t->nominal).",-" }}
                   @else
-                  {{ "-" }}
+                    {{ "-" }}
                   @endif
                 </td>
                 <td class="text-center">
                   @if($t->jenis == "Pengeluaran")
-                  {{ "Rp.".number_format($t->nominal).",-" }}
+                    {{ "Rp.".number_format($t->nominal).",-" }}
                   @else
-                  {{ "-" }}
+                    {{ "-" }}
+                  @endif
+                </td>
+                <td class="text-center">
+                  @if($t->no_kwitansi == "")
+                    -
+                  @else
+                    {{ $t->no_kwitansi }}
+                  @endif
+                </td>
+                <td class="text-center">
+                  @if($t->foto_kwitansi != "")
+                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#imageModal"><i class="fa fa-picture-o"></i></button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+                      
+                      <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <!-- Add image inside the body of modal -->
+                            <div class="modal-body">
+                                <img id="image" src="{{ asset('gambar/kwitansi_transaksi/'. $t->foto_kwitansi ) }}" alt="Click on button" style="width: 100%"/>
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  @else
+                    -
                   @endif
                 </td>
                 @if (Auth::user()->level == 'bendahara')
@@ -142,7 +191,7 @@
                     </div>
 
                     <!-- Modal -->
-                    <form method="POST" action="{{ route('transaksi.update',['id' => $t->id]) }}">
+                    <form method="POST" action="{{ route('transaksi.update',['id' => $t->id]) }}" enctype="multipart/form-data">
                       <div class="modal fade" id="modalEdit_{{ $t->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
@@ -157,6 +206,11 @@
 
                               @csrf
                               {{ method_field('PUT') }}
+
+                              <div class="form-group">
+                                <label>Nomor Kwitansi</label>
+                                <input type="text" class="form-control" name="no_kwitansi" autocomplete="off"  placeholder="Masukkan Nomor Kwitansi (Opsional) .." value="{{ $t->no_kwitansi }}">
+                              </div>
 
                               <div class="form-group" style="width: 100%;margin-bottom:20px">
                                 <label>Tanggal</label>
@@ -192,6 +246,10 @@
                                 <textarea class="form-control py-0" name="keterangan"  autocomplete="off" placeholder="Masukkan keterangan (Opsional) .." style="width: 100%">{{ $t->keterangan }}</textarea>
                               </div>
 
+                              <div class="form-group">
+                                <label>Foto Kwitansi</label>
+                                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image" value="{{ $t->foto_kwitansi }}">
+                              </div>
 
                             </div>
                             <div class="modal-footer">

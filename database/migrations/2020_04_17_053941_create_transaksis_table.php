@@ -20,7 +20,8 @@ class CreateTransaksisTable extends Migration
             $table->integer('kategori_id');
             $table->integer('nominal');
             $table->text('keterangan')->nullable();
-            $table->text('nomor_kwitansi');
+            $table->text('no_kwitansi')->nullable();
+            $table->string('foto_kwitansi')->nullable();
             $table->timestamps();
         });
     }
