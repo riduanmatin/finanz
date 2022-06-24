@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="header-left">
-
+                    
                 </div>
                 <div class="header-right">
                     <ul class="clearfix">
@@ -169,7 +169,7 @@
 
                         <li>
                             <a href="{{ route('laporan') }}" aria-expanded="false">
-                                <i class="icon-notebook menu-icon mr-3"></i><span class="nav-text">Laporan</span>
+                                <i class="icon-notebook menu-icon mr-3"></i><span class="nav-text">Laporan Keuangan</span>
                             </a>
                         </li>
                     @endif
@@ -184,10 +184,6 @@
                                 <li><a href="{{ route('anggaran') }}">Status Anggaran</a></li>
                             </ul>
                         </li>
-
-                        {{-- <li class="mega-menu mega-menu-sm">
-
-                        </li> --}}
                     @endif
 
                     @if (Auth::user()->level == 'admin')

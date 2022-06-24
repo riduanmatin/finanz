@@ -14,7 +14,8 @@ class LaporanExport implements FromView
     * @return \Illuminate\Support\Collection
     */
     public function view(): View
-    {
+    {	
+		
     	$kategori = Kategori::orderBy('kategori','asc')->get();
     	if($_GET['kategori'] == ""){
     		$transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])

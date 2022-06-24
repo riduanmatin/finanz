@@ -27,22 +27,22 @@
             /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
             background: white
             background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            transition: all .1s ease;
+            /* animation: gradient 15s ease infinite; */
+            /* transition: all .1s ease; */
         }
 
 
-        /* @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        } */
-    }
+        /* @keyframes gradient { */
+            /* 0% { */
+                /* background-position: 0% 50%; */
+            /* } */
+            /* 50% { */
+                /* background-position: 100% 50%; */
+            /* } */
+            /* 100% { */
+                /* background-position: 0% 50%; */
+            /* } */
+        /* }  */
 </style>
 <div id="preloader">
     <div class="loader">
@@ -66,10 +66,6 @@
                                     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
                                 </style>
                                 <h3 class=" mt-2">Finan<b>Z</b></h3>
-
-                                {{-- <h4 class="mt-4">Sistem Informasi Keuangannn<br> Laravel</h4> --}}
-
-                                {{-- <h4 class="mt-4">Sistem Informasi Keuangan<br> Laravel</h4> --}}
 
                             </div>
 
@@ -132,7 +128,7 @@
                 </div>
             </div>
             <img src="{{ asset('gambar/background/background_login.png')}}" alt="error picture" class="w-60" style="max-width: 50%;
-            height: 90%;">
+            max-height: 90%;">
         </div>
     </div>
 </div>

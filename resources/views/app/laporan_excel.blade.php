@@ -55,6 +55,8 @@
         <th rowspan="2">KATEGORI</th>
         <th rowspan="2">KETERANGAN</th>
         <th colspan="2">JENIS</th>
+        <th rowspan="2" class="text-center">NO KWITANSI</th>
+        <th rowspan="2" class="text-center">FOTO KWITANSI</th>
       </tr>
       <tr>
         <th>PEMASUKAN</th>
@@ -89,12 +91,26 @@
           {{ "-" }}
           @endif
         </td>
+        <td class="text-center">
+          @if($t->no_kwitansi == "")
+            -
+          @else
+            {{ $t->no_kwitansi }}
+          @endif
+        </td>
+        <td class="text-center">
+          @if($t->foto_kwitansi != "") 
+            <img class="my-3" id="image" src="gambar/kwitansi_transaksi/{{{ $t->foto_kwitansi }}}" alt="Click on button" style="width: 100%"/>
+          @else
+            -
+          @endif
+        </td>
       </tr>
       @endforeach
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="4">TOTAL</td>
+        <td colspan="6">TOTAL</td>
         <td>{{ "Rp.".number_format($total_pemasukan).",-" }}</td>
         <td>{{ "Rp.".number_format($total_pengeluaran).",-" }}</td>
       </tr>

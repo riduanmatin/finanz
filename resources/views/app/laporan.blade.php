@@ -173,7 +173,7 @@
                       @endif
                     </td>
                     <td class="text-center">
-                      {{-- @if($t->foto_kwitansi != "")
+                      @if($t->foto_kwitansi != "")
                         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#imageModal"><i class="fa fa-picture-o"></i></button>
     
                         <!-- Modal -->
@@ -191,10 +191,10 @@
                                 </div>
                               </div>
                           </div>
-                        </div> --}}
-                      {{-- @else --}}
+                        </div> 
+                      @else
                         -
-                      {{-- @endif --}}
+                      @endif
                     </td>
                   </tr>
                   @endforeach
