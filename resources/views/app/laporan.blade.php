@@ -11,7 +11,7 @@
     <div class="col p-md-0">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="javascript:void(0)">Laporan</a></li>
+        <li class="breadcrumb-item active"><a href="javascript:void(0)">Laporan Keuangan</a></li>
       </ol>
     </div>
   </div>
@@ -129,6 +129,8 @@
                     <th rowspan="2" class="text-center">KATEGORI</th>
                     <th rowspan="2" class="text-center">KETERANGAN</th>
                     <th colspan="2" class="text-center">JENIS</th>
+                    <th rowspan="2" class="text-center">NO KWITANSI</th>
+                    <th rowspan="2" class="text-center">FOTO KWITANSI</th>
                   </tr>
                   <tr>
                     <th class="text-center">PEMASUKAN</th>
@@ -163,12 +165,43 @@
                       {{ "-" }}
                       @endif
                     </td>
+                    <td class="text-center">
+                      @if($t->no_kwitansi == "")
+                        -
+                      @else
+                        {{ $t->no_kwitansi }}
+                      @endif
+                    </td>
+                    <td class="text-center">
+                      @if($t->foto_kwitansi != "")
+                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#imageModal"><i class="fa fa-picture-o"></i></button>
+    
+                        <!-- Modal -->
+                        <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+                          
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <!-- Add image inside the body of modal -->
+                                <div class="modal-body">
+                                    <img id="image" src="{{ asset('gambar/kwitansi_transaksi/'. $t->foto_kwitansi ) }}" alt="Click on button" style="width: 100%"/>
+                                </div>
+    
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                          </div>
+                        </div> 
+                      @else
+                        -
+                      @endif
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>
                 <tfoot class="bg-info text-white font-weight-bold">
                   <tr>
-                    <td colspan="4" class="text-bold text-right">TOTAL</td>
+                    <td colspan="6" class="text-bold text-right">TOTAL</td>
                     <td class="text-center">{{ "Rp.".number_format($total_pemasukan).",-" }}</td>
                     <td class="text-center">{{ "Rp.".number_format($total_pengeluaran).",-" }}</td>
                   </tr>

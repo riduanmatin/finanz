@@ -24,7 +24,7 @@
             <i class="fa fa-plus"></i> &nbsp TAMBAH TRANSAKSI
           </button>
         @endif
-        <h4>Data Transaksi</h4>
+        <h4>Transaksi</h4>
 
       </div>
       <div class="card-body pt-0">

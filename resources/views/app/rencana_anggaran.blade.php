@@ -5,7 +5,7 @@
 <div class="content-body">
     
   <div class="row page-titles mx-0 mt-2">
-    <h3 class="col p-md-0">Anggaran Keuangan</h3>
+    <h3 class="col p-md-0">Anggaran</h3>
     <div class="col p-md-0">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
@@ -22,7 +22,7 @@
             <i class="fa fa-plus"></i> &nbsp BUAT RENCANA ANGGARAN
           </button>
         @endif
-        <h3 class="card-title">Rencana Anggaran Keuangan</h3>
+        <h3 class="card-title">Rencana Anggaran</h3>
       </div>
       <div class="card-body pt-0">
         <!-- Modal -->

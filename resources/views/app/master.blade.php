@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="header-left">
-
+                    
                 </div>
                 <div class="header-right">
                     <ul class="clearfix">
@@ -154,24 +154,26 @@
                                 <i class="icon-speedometer menu-icon mr-3"></i><span class="nav-text">Dashboard</span>
                             </a>
                         </li>
-                    
-                        <li>
-                            <a href="{{ route('kategori') }}" aria-expanded="false">
-                                <i class="icon-grid menu-icon mr-3"></i><span class="nav-text">Data Kategori</span>
-                            </a>
-                        </li>
+                        
+                        @if(Auth::user()->level != 'ketua-yayasan')
+                            <li>
+                                <a href="{{ route('kategori') }}" aria-expanded="false">
+                                    <i class="icon-grid menu-icon mr-3"></i><span class="nav-text">Data Kategori</span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a href="{{ route('transaksi') }}" aria-expanded="false">
-                                <i class="icon-menu menu-icon mr-3"></i><span class="nav-text">Data Transaksi</span>
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('transaksi') }}" aria-expanded="false">
+                                    <i class="icon-menu menu-icon mr-3"></i><span class="nav-text">Data Transaksi</span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a href="{{ route('laporan') }}" aria-expanded="false">
-                                <i class="icon-notebook menu-icon mr-3"></i><span class="nav-text">Laporan</span>
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('laporan') }}" aria-expanded="false">
+                                    <i class="icon-notebook menu-icon mr-3"></i><span class="nav-text">Laporan Keuangan</span>
+                                </a>
+                            </li>
+                        @endif
                     @endif
 
                     @if (Auth::user()->level == 'ketua-yayasan' || Auth::user()->level == 'kepala-sekolah' || Auth::user()->level == 'bendahara')
@@ -183,6 +185,14 @@
                                 <li><a href="{{ route('anggaran.rencana') }}">Rencana Anggaran</a></li>
                                 <li><a href="{{ route('anggaran') }}">Status Anggaran</a></li>
                             </ul>
+                        </li>
+                    @endif
+
+                    @if(Auth::user()->level == 'ketua-yayasan')
+                        <li class="mega-menu mega-menu-sm">
+                            <a href="{{ route('laporan.anggaran') }}">
+                                <i class="icon-notebook menu-icon mr-3"></i><span class="nav-text">Laporan Anggaran</span>
+                            </a>
                         </li>
                     @endif
 

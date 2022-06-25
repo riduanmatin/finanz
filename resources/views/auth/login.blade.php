@@ -27,22 +27,22 @@
             /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
             background: white
             background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            transition: all .1s ease;
+            /* animation: gradient 15s ease infinite; */
+            /* transition: all .1s ease; */
         }
 
 
-        /* @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        } */
-    }
+        /* @keyframes gradient { */
+            /* 0% { */
+                /* background-position: 0% 50%; */
+            /* } */
+            /* 50% { */
+                /* background-position: 100% 50%; */
+            /* } */
+            /* 100% { */
+                /* background-position: 0% 50%; */
+            /* } */
+        /* }  */
 </style>
 <div id="preloader">
     <div class="loader">
@@ -62,8 +62,18 @@
 
                             <div class="text-center mb-5">
                                 <img src="{{ asset('gambar/sistem/logo_finanz1fix.png')}}" alt="" style="height: 100px">
+<<<<<<< HEAD
                                 <h3 class=" mt-2">Finan<b>Z</b></h3>
                                 {{-- <h4 class="mt-4">Sistem Informasi Keuangan<br> Laravel</h4> --}}
+=======
+                                <style>
+                                    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+                                </style>
+                                <h3 class="mt-2" style="
+                                    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap');
+                                    font-family: 'Montserrat', sans-serif;
+                                ">Finan<b>Z</b></h3>
+>>>>>>> 02bd17bb14a0e60562712f0e864f51b588f57744
 
                             </div>
 
@@ -126,7 +136,7 @@
                 </div>
             </div>
             <img src="{{ asset('gambar/background/background_login.png')}}" alt="error picture" class="w-60" style="max-width: 50%;
-            height: 90%;">
+            max-height: 90%;">
         </div>
     </div>
 </div>
