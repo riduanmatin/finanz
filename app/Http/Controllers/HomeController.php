@@ -416,6 +416,47 @@ class HomeController extends Controller
         return redirect()->back()->with("success","Transaksi telah dihapus!");
     }
 
+    public function laporan_anggaran(){
+        if(isset($_GET['kategori'])){
+            $kategori = Kategori::orderBy('kategori', 'asc')->get();
+            if($_GET['kategori'] == ""){
+                $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
+                ->whereDate('bulan', '<=', $_GET['sampai'])
+                ->where('status', '=', 'Terima')
+                ->get();
+            }else{
+                $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
+                ->whereDate('bulan', '<=', $_GET['sampai'])
+                ->where('kategori_id', $_GET('kategori'))
+                ->where('status', '=', 'Terima')
+                ->get();
+            }
+            return view('app.laporan_anggaran',['anggaran' => $anggaran, 'kategori' => $kategori]);
+        }else{
+            $kategori = Kategori::orderBy('kategori','asc')->get();
+            return view('app.laporan_anggaran', ['anggaran' => array(), 'kategori' => $kategori]);
+        }
+    }
+
+    public function laporan_print_anggaran(){
+        if(isset($_GET['kategori'])){
+            $kategori = Kategori::orderBy('kategori', 'asc')->get();
+            if($_GET['kategori'] == ""){
+                $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
+                ->whereDate('bulan', '<=', $_GET['sampai'])
+                ->where('status', '=', 'Terima')
+                ->get();
+            }else{
+                $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
+                ->whereDate('bulan', '<=', $_GET['sampai'])
+                ->where('kategori_id', $_GET('kategori'))
+                ->where('status', '=', 'Terima')
+                ->get();
+            }
+            return view('app.laporan_anggaran',['anggaran' => $anggaran, 'kategori' => $kategori]);
+        }
+    }
+
     public function laporan()
     {
         if(isset($_GET['kategori'])){

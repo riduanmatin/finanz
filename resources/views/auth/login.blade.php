@@ -65,7 +65,10 @@
                                 <style>
                                     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
                                 </style>
-                                <h3 class=" mt-2">Finan<b>Z</b></h3>
+                                <h3 class="mt-2" style="
+                                    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap');
+                                    font-family: 'Montserrat', sans-serif;
+                                ">Finan<b>Z</b></h3>
 
                             </div>
 
