@@ -62,13 +62,7 @@
 
                             <div class="text-center mb-5">
                                 <img src="{{ asset('gambar/sistem/logo_finanz1fix.png')}}" alt="" style="height: 100px">
-                                <style>
-                                    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
-                                </style>
                                 <h3 class=" mt-2">Finan<b>Z</b></h3>
-
-                                {{-- <h4 class="mt-4">Sistem Informasi Keuangannn<br> Laravel</h4> --}}
-
                                 {{-- <h4 class="mt-4">Sistem Informasi Keuangan<br> Laravel</h4> --}}
 
                             </div>
