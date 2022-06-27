@@ -38,8 +38,8 @@
         <div class="nav-header bg-white text-center">
             <div class="brand-logo">
                 <a href="{{ url('/home') }}">
-                    <b class="logo-abbr"><img src="{{ asset('gambar/sistem/logo_finanz_bulet.png') }}" alt=""> </b>
-                    <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo_finanz_bulet.png') }}" alt=""></span>
+                    <b class="logo-abbr"><img src="{{ asset('gambar/sistem/logo_finanz1.png') }}" alt=""> </b>
+                    <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo_finanz1.png') }}" alt=""></span>
                     <span class="brand-title">
                         <img src="{{ asset('gambar/sistem/logo_finanz_bulet.png') }}" alt="" style="height: 42px">
                         <span class="text-white ml-2">Finan<b>Z</b></span>
