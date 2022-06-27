@@ -3,8 +3,8 @@
 @section('konten')
 
 <div class="content-body">
-    
-  <div class="row page-titles mx-0 mt-2">
+
+  {{-- <div class="row page-titles mx-0 mt-2">
     <h3 class="col p-md-0">Anggaran</h3>
     <div class="col p-md-0">
       <ol class="breadcrumb">
@@ -12,17 +12,27 @@
         <li class="breadcrumb-item active"><a href="javascript:void(0)">Rencana Anggaran</a></li>
       </ol>
     </div>
-  </div>
+  </div> --}}
 
   <div class="container-fluid">
     <div class="card">
-      <div class="card-header pt-4">
-        @if (Auth::user()->level == 'kepala-sekolah')
-          <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-plus"></i> &nbsp BUAT RENCANA ANGGARAN
+      <div class="card-header pt-4 d-flex justify-content-between align-items-center">
+        <div class="header-left d-flex row align-items-center">
+            <h4 class="mt-2 mr-2">Rencana Anggaran</h4>
+            @if (Auth::user()->level == 'kepala-sekolah')
+            <button type="button" class="btn btn-finanz mx-1" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-plus"></i>
           </button>
-        @endif
-        <h3 class="card-title">Rencana Anggaran</h3>
+            @endif
+        </div>
+        <div class="header-right">
+            <div class="col p-md-0">
+                <ol class="breadcrumb bg-white">
+                  <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                  <li class="breadcrumb-item active"><a href="javascript:void(0)">Rencana Anggaran</a></li>
+                </ol>
+              </div>
+        </div>
       </div>
       <div class="card-body pt-0">
         <!-- Modal -->
@@ -42,7 +52,7 @@
                     <label>Bulan</label>
                     <input type="month" class="form-control" required="required" name="bulan"  autocomplete="off" placeholder="Masukkan bulan .." value="<?php echo date("Y/m/1") ?>">
                   </div>
-        
+
                   <div class="form-group">
                     <label>Kategori</label>
                     <select class="form-control" required="required" name="kategori">
@@ -51,8 +61,8 @@
                         <option value="{{ $k->id }}">{{ $k->kategori }}</option>
                       @endforeach
                     </select>
-                  </div>        
-                          
+                  </div>
+
                   <div class="form-group">
                     <label>Keterangan</label>
                     <textarea class="form-control" name="keterangan" autocomplete="off" placeholder="Masukkan keterangan (Opsional) .."></textarea>
@@ -82,7 +92,7 @@
           <h3>No Data Available</h3>
         @else
 
-        
+
 
           <div class="table-responsive">
             <table class="table table-bordered" id="table-datatable" style="width: 100%">
@@ -127,11 +137,11 @@
                             {{ "-" }}
                             @endif
                           </td> --}}
-                          
+
                     <td class="text-center">{{ $ra->nominal_per_pcs }}</td>
                     <td class="text-center">{{ $ra->jumlah_barang }}</td>
                     <td class="text-center">{{ $ra->nominal_total }}</td>
-                    
+
                     @if (Auth::user()->level == 'kepala-sekolah')
                       <td>
                         <div class="text-center w-100">
@@ -155,7 +165,7 @@
 
                                   <div class="form-group" style="width: 100%;margin-bottom:20px">
                                     <label>Bulan</label>
-                                    <input type="month" class="form-control" required="required" name="bulan"  autocomplete="off" placeholder="Masukkan bulan .." value="<?php echo date("Y/m/1") ?>" style="width: 95%">  
+                                    <input type="month" class="form-control" required="required" name="bulan"  autocomplete="off" placeholder="Masukkan bulan .." value="<?php echo date("Y/m/1") ?>" style="width: 95%">
                                   </div>
 
                                   <div class="form-group" style="width: 100%;margin-bottom:20px">
@@ -166,18 +176,18 @@
                                         <option {{ ($ra->kategori->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}">{{ $k->kategori }}</option>
                                       @endforeach
                                     </select>
-                                  </div>        
-                                          
+                                  </div>
+
                                   <div class="form-group" style="width: 100%; margin-bottom:20px">
                                     <label>Keterangan</label>
                                     <textarea class="form-control" name="keterangan" autocomplete="off" placeholder="Masukkan keterangan (Opsional) .." style="width: 95%">{{ $ra->keterangan }}</textarea>
                                   </div>
-                
+
                                   <div class="form-group" style="width: 100%; margin-bottom:20px">
                                     <label>Nominal Per Pcs</label>
                                     <input type="number" class="form-control" required="required" name="nominal_per_pcs" autocomplete="off" placeholder="Masukkan nominal per pcs .." value="{{ $ra->nominal_per_pcs }}" style="width: 95%">
                                   </div>
-                
+
                                   <div class="form-group" style="width: 100%; margin-bottom:20px">
                                     <label>Jumlah Barang</label>
                                     <input type="number" class="form-control" required="required" name="jumlah_barang" autocomplete="off" placeholder="Masukkan jumlah pcs .." style="width: 95%" value="{{ $ra->jumlah_barang }}">

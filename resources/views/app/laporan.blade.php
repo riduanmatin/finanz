@@ -5,7 +5,7 @@
 <div class="content-body">
 
   <div class="row page-titles mx-0 mt-2">
-   
+
    <h3 class="col p-md-0">Laporan Keuangan</h3>
 
     <div class="col p-md-0">
@@ -55,7 +55,7 @@
             </div>
             <div class="col-lg-2">
               <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Tampilkan" style="margin-top: 25px">
+                <input type="submit" class="btn btn-finanz" value="Tampilkan" style="margin-top: 25px">
               </div>
             </div>
 
@@ -175,23 +175,23 @@
                     <td class="text-center">
                       @if($t->foto_kwitansi != "")
                         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#imageModal"><i class="fa fa-picture-o"></i></button>
-    
+
                         <!-- Modal -->
                         <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-                          
+
                           <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <!-- Add image inside the body of modal -->
                                 <div class="modal-body">
                                     <img id="image" src="{{ asset('gambar/kwitansi_transaksi/'. $t->foto_kwitansi ) }}" alt="Click on button" style="width: 100%"/>
                                 </div>
-    
+
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                               </div>
                           </div>
-                        </div> 
+                        </div>
                       @else
                         -
                       @endif

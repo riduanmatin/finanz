@@ -4,7 +4,7 @@
 
 <div class="content-body">
 
-  <div class="row page-titles mx-0 mt-2">
+  {{-- <div class="row page-titles mx-0 mt-2">
     <h3 class="col p-md-0">Transaksi</h3>
     <div class="col p-md-0">
       <ol class="breadcrumb">
@@ -12,22 +12,31 @@
         <li class="breadcrumb-item active"><a href="javascript:void(0)">Transaksi</a></li>
       </ol>
     </div>
-  </div>
+  </div> --}}
 
   <div class="container-fluid">
 
     <div class="card">
 
-      <div class="card-header pt-4">
-        @if (Auth::user()->level == 'bendahara')
-          <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-plus"></i> &nbsp TAMBAH TRANSAKSI
-          </button>
-        @endif
-        <h4>Transaksi</h4>
-
+      <div class="card-header pt-4 d-flex justify-content-between align-items-center">
+        <div class="header-left d-flex row align-items-center">
+            <h4 class="mt-2 mr-2">Transaksi</h4>
+            @if (Auth::user()->level == 'bendahara')
+            <button type="button" class="btn btn-finanz mx-1" data-toggle="modal" data-target="#exampleModal">
+              <i class="fa fa-plus"></i>
+          @endif
+        </div>
+        <div class ="header-right">
+            <div class="col p-md-0">
+                <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Transaksi</a></li>
+                </ol>
+            </div>
+        </div>
       </div>
       <div class="card-body pt-0">
+
 
         <!-- Modal -->
         <form action="{{ route('transaksi.aksi') }}" method="post" enctype="multipart/form-data">
@@ -100,7 +109,7 @@
 
 
 
-        
+
         <div class="table-responsive">
           <table class="table table-bordered" id="table-datatable" style="width: 100%">
             <thead>
@@ -164,7 +173,7 @@
 
                     <!-- Modal -->
                     <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-                      
+
                       <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <!-- Add image inside the body of modal -->
