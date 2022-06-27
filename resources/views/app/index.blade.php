@@ -60,7 +60,7 @@
 
 
       {{-- anggaran --}}
-      @if(Auth::user()->level == 'ketua-yayasan')
+      @if(Auth::user()->level != 'admin')
         <div class="col-lg-3 col-sm-6">
           <div class="card bg-white">
             <div class="card-body">

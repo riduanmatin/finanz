@@ -117,7 +117,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button type="submit" class="btn btn-finanz btn-block">
                                         {{ __('LOGIN') }}
                                     </button>
 

@@ -187,7 +187,7 @@
                         </li>
                     @endif
 
-                    @if(Auth::user()->level == 'ketua-yayasan')
+                    @if(Auth::user()->level == 'kepala-sekolah')
                         <li class="mega-menu mega-menu-sm">
                             <a href="{{ route('laporan.anggaran') }}">
                                 <i class="icon-notebook menu-icon mr-3"></i><span class="nav-text">Laporan Anggaran</span>

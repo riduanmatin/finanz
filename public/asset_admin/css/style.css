@@ -1798,17 +1798,6 @@ fieldset:disabled a.btn {
     padding: 0.3rem 0.5rem;
 }
 
-.btn-finanz{
-    color: #fff;
-    background-color: #FF8303;
-    border-color: #FF8303;}
-    .btn-finanz:hover{
-        color: #fff;
-        background-color: #FF0503;
-        border-color: #FF0503;
-    }
-
-
 .btn-primary {
   color: #fff;
   background-color: #FF8303;
@@ -11125,6 +11114,17 @@ table.dataTable thead .sorting::after {
   background: #6f78b2;
   color: #fff;
   border-color: #6f78b2; }
+
+  .btn-finanz{
+    color: #fff;
+    background-color: #FF8303;
+    border-color: #FF8303;
+  }
+  .btn-finanz:hover{
+        color: #fff;
+        background-color: #FF0503;
+        border-color: #FF0503;
+  }
 
 .btn-success:active, .btn-success:focus, .btn-success:hover {
   background: #47ce47;
