@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="header-left">
-                    
+
                 </div>
                 <div class="header-right">
                     <ul class="clearfix">
@@ -118,19 +118,18 @@
             <div class="p-3 profil_admin">
                 <div class="media align-items-center mb-1 mt-3">
                     @if (Auth::user()->foto == '')
-                        <img class="mr-2" src="{{ asset('gambar/sistem/user.png') }}" height="60" width="60" alt="">
+                        <img class="circular-image mr-2" src="{{ asset('gambar/sistem/user.png') }}" height="60" width="60" alt="">
                     @else
-                        <img class="mr-2" src="{{ asset('gambar/user/' . Auth::user()->foto) }}" height="60"
-                            width="60">
+                        <img class="circular-image mr-2" src="{{ asset('gambar/user/' . Auth::user()->foto) }}">
                     @endif
                     <div class="media-body">
                         <h5 class="mb-0">{{ Auth::user()->name }}</h5>
                         <p class="text-muted mb-0">
                             <?php if (Auth::user()->level == 'admin') {
                                 echo 'Administrator';
-                            } 
+                            }
                             else if (Auth::user()->level == 'bendahara') {
-                                echo 'Bendahara';    
+                                echo 'Bendahara';
                             }
                             else if(Auth::user()->level == 'kepala-sekolah') {
                                 echo 'Kepala Sekolah';
@@ -154,7 +153,7 @@
                                 <i class="icon-speedometer menu-icon mr-3"></i><span class="nav-text">Dashboard</span>
                             </a>
                         </li>
-                        
+
                         @if(Auth::user()->level != 'ketua-yayasan')
                             <li>
                                 <a href="{{ route('kategori') }}" aria-expanded="false">

@@ -37,7 +37,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   background-image: linear-gradient(230deg, #0e4cfd, #6a8eff); }
 
 .gradient-5 {
-  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%); }
+  background-image: linear-gradient(to right, #f83600 70%, #fff 30%); }
 
 .gradient-6 {
   background-image: linear-gradient(135deg, #97ABFF 10%, #123597 100%); }
@@ -1771,7 +1771,7 @@ textarea.form-control {
   user-select: none;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
@@ -1792,13 +1792,30 @@ a.btn.disabled,
 fieldset:disabled a.btn {
   pointer-events: none; }
 
+.size-bf{
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 0.3rem 0.5rem;
+}
+
+.btn-finanz{
+    color: #fff;
+    background-color: #FF8303;
+    border-color: #FF8303;}
+    .btn-finanz:hover{
+        color: #fff;
+        background-color: #FF0503;
+        border-color: #FF0503;
+    }
+
+
 .btn-primary {
   color: #fff;
   background-color: #FF8303;
   border-color: #FF8303; }
   .btn-primary:hover {
     color: #fff;
-    background-color: #514cf7;
+    background-color: #ffffff;
     border-color: #4540f7; }
   .btn-primary:focus, .btn-primary.focus {
     box-shadow: 0 0 0 0.2rem rgba(117, 113, 249, 0.5); }
@@ -3250,6 +3267,13 @@ input[type="button"].btn-block {
     .navbar-dark .navbar-text a:hover, .navbar-dark .navbar-text a:focus {
       color: #fff; }
 
+.circular-image {
+    border: 1px solid #fff;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 50%;
+}
 .card {
   position: relative;
   display: flex;
@@ -3442,7 +3466,7 @@ input[type="button"].btn-block {
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #e9ecef;
+  background-color: #76838f;
   border-radius: 0.25rem; }
 
 .breadcrumb-item + .breadcrumb-item {
@@ -3450,8 +3474,8 @@ input[type="button"].btn-block {
   .breadcrumb-item + .breadcrumb-item::before {
     display: inline-block;
     padding-right: 0.5rem;
-    color: #f7fafc;
-    content: "/"; }
+    color: #76838f;
+    content: ">"; }
 
 .breadcrumb-item + .breadcrumb-item:hover::before {
   text-decoration: underline; }
@@ -6642,6 +6666,10 @@ button.bg-dark:focus {
   .text-xxl-center {
     text-align: center !important; } }
 
+.text-finanz{
+    color:#FF8303;
+}
+
 .text-lowercase {
   text-transform: lowercase !important; }
 
@@ -7587,12 +7615,12 @@ sub {
   position: absolute;
   left: 0;
   top: 0;
-  background: #111B27;
-  box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.15);
+  /* background: #111B27; */
+  /* box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.15); */
 
-  background: linear-gradient(#FF8303, #FDFF03,#FF0503,#ffffff );
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+  background: linear-gradient(#FF8303 , #fff );
+  /* background-size: 400% 400%; */
+  /* animation: gradient 15s ease infinite; */
 
 
 

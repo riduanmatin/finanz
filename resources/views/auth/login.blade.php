@@ -72,7 +72,10 @@
 
                             </div>
 
-                            <h4 class="d-flex justify-content-center">Login</h4>
+                            <h4 class="d-flex justify-content-center" style="
+                            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap');
+                            font-family: 'Montserrat', sans-serif;
+                            "><b>Login</b></h4>
 
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf

@@ -22,9 +22,9 @@
     <div class="card">
 
       <div class="card-header pt-4 d-flex justify-content-between align-items-center">
-        <div class="header-left d-flex row align-items-center">
-          <h4>Kategori</h4>
-          <button type="button" class="btn btn-primary mx-3" data-toggle="modal" data-target="#exampleModal">
+        <div class="header-left d-flex row align-items-center ">
+          <h4 class="mt-2 mr-2">Kategori</h4>
+          <button type="button" class="btn btn-finanz mx-1" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-plus"></i>
              {{-- &nbsp TAMBAH KATEGORI --}}
           </button>
@@ -37,7 +37,7 @@
             </ol>
           </div>
         </div>
-        
+
 
       </div>
       <div class="card-body pt-0">
@@ -91,7 +91,7 @@
               <tr>
                 <td class="text-center">{{ $no++ }}</td>
                 <td>{{ $k->kategori }}</td>
-                <td>    
+                <td>
 
                   @if($k->id != 1)
                   <div class="text-center">
