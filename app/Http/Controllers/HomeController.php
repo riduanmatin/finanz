@@ -93,6 +93,35 @@ class HomeController extends Controller
         ->where('jenis','Pengeluaran')
         ->first();
 
+        $anggaran_3_bulan = DB::table('anggaran')
+        ->select(DB::raw('SUM(nominal_total) as total'))
+        ->where('status', 'Terima')
+        ->whereMonth('bulan', '>=',$bulan)
+        ->whereMonth('bulan', '<=', $bulan+2)
+        ->first();
+
+        $bulan_2 = DB::table('anggaran')
+        ->select(DB::raw('IF((MONTH(CURDATE()) + 2) > 12, DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL -10 MONTH), "%b"), DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL 2 MONTH), "%b")) as bulan'))
+        ->first();
+
+        $total_rencana_anggaran = DB::table('rencana_anggaran')
+        ->select(DB::raw('COUNT(id) as total'))
+        ->first();
+
+        $total_anggaran = DB::table('anggaran')
+        ->select(DB::raw('COUNT(id) as total'))
+        ->first();
+
+        $total_anggaran_terima = DB::table('anggaran')
+        ->select(DB::raw('COUNT(id) as total'))
+        ->where('status', 'Terima')
+        ->first();
+
+        $total_anggaran_tolak = DB::table('anggaran')
+        ->select(DB::raw('COUNT(id) as total'))
+        ->where('status', 'Tolak')
+        ->first();
+
         return view('app.index',
             [
                 'pemasukan_hari_ini' => $pemasukan_hari_ini, 
@@ -105,6 +134,12 @@ class HomeController extends Controller
                 'seluruh_pengeluaran' => $seluruh_pengeluaran,
                 'kategori' => $kategori,
                 'transaksi' => $transaksi,
+                'anggaran_3_bulan' =>$anggaran_3_bulan,
+                'bulan_2' => $bulan_2,
+                'total_rencana_anggaran' => $total_rencana_anggaran,
+                'total_anggaran' => $total_anggaran,
+                'total_anggaran_terima' => $total_anggaran_terima,
+                'total_anggaran_tolak' => $total_anggaran_tolak
             ]
         );
     }

@@ -5,101 +5,203 @@
 <div class="content-body">
 
   <div class="container-fluid mt-3">
-
-    <div class="row">
+    <div class="d-flex row justify-content-center">
+      {{-- Total Anggaran dan Rencana Anggaran --}}
       <div class="col-lg-3 col-sm-6">
         <div class="card gradient-7">
-          <div class="card-body">
-            <h3 class="card-title text-white">Pemasukan Hari Ini</h3>
-            <div class="d-inline-block">
-              <h3 class="text-white">{{ "Rp. ".number_format($pemasukan_hari_ini->total)." ,-" }}</h3>
-              <p class="text-white mb-0">{{ date('d-m-Y') }}</p>
+          {{-- <div class="card-body"> --}}
+            <div id="carouselCount" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="card-body">
+                    <h3 class="card-title text-white">Total Rencana Anggaran</h3>
+                    <div class="d-inline-block">
+                      <h3 class="text-white">{{ $total_rencana_anggaran->total }}</h3>
+                      <p class="text-white mb-0">Buah</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="card-body">
+                    <h3 class="card-title text-white">Total Anggaran</h3>
+                    <div class="d-inline-block">
+                      <h3 class="text-white">{{ $total_anggaran->total }}</h3>
+                      <p class="text-white mb-0">Buah</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="card-body">
+                    <h3 class="card-title text-white">Anggaran yang Diterima</h3>
+                    <div class="d-inline-block">
+                      <h3 class="text-white">{{ $total_anggaran_terima->total }}</h3>
+                      <p class="text-white mb-0">Buah</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="card-body">
+                    <h3 class="card-title text-white">Anggaran yang Ditolak</h3>
+                    <div class="d-inline-block">
+                      <h3 class="text-white">{{ $total_anggaran_tolak->total }}</h3>
+                      <p class="text-white mb-0">Buah</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselCount" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselCount" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          {{-- </div> --}}
+        </div>
+      </div>
+
+
+      {{-- anggaran --}}
+      @if(Auth::user()->level == 'ketua-yayasan')
+        <div class="col-lg-3 col-sm-6">
+          <div class="card gradient-7">
+            <div class="card-body">
+              <h3 class="card-title text-white">Total Anggaran 3 Bulan</h3>
+              <div class="d-inline-block">
+                <h3 class="text-white">{{ "Rp. ".number_format($anggaran_3_bulan->total)." ,-" }}</h3>
+                <p class="text-white mb-0">{{ date('M') }} - {{ $bulan_2->bulan }}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      @endif
+      
+
+      {{-- carousel pemasukan --}}
       <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-2">
-          <div class="card-body">
-            <h3 class="card-title text-white">Pemasukan Bulan Ini</h3>
-            <div class="d-inline-block">
-              <h3 class="text-white">{{ "Rp. ".number_format($pemasukan_bulan_ini->total)." ,-" }}</h3>
-              <p class="text-white mb-0">{{ date('M') }}</p>
+        <div class="card gradient-7">
+          {{-- <div class="card-body"> --}}
+            <div id="carouselPemasukan" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="card-body">
+                    <h3 class="card-title text-white">Pemasukan Hari Ini</h3>
+                    <div class="d-inline-block">
+                      <h3 class="text-white">{{ "Rp. ".number_format($pemasukan_hari_ini->total)." ,-" }}</h3>
+                      <p class="text-white mb-0">{{ date('d-m-Y') }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="card-body">
+                    <h3 class="card-title text-white">Pemasukan Bulan Ini</h3>
+                    <div class="d-inline-block">
+                      <h3 class="text-white">{{ "Rp. ".number_format($pemasukan_bulan_ini->total)." ,-" }}</h3>
+                      <p class="text-white mb-0">{{ date('M') }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="card-body">
+                    <h3 class="card-title text-white">Pemasukan Tahun Ini</h3>
+                    <div class="d-inline-block">
+                      <h3 class="text-white">{{ "Rp. ".number_format($pemasukan_tahun_ini->total)." ,-" }}</h3>
+                      <p class="text-white mb-0">{{ date('Y') }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="card-body">
+                    <h3 class="card-title text-white">Seluruh Pemasukan</h3>
+                    <div class="d-inline-block">
+                      <h3 class="text-white">{{ "Rp. ".number_format($seluruh_pemasukan->total)." ,-" }}</h3>
+                      <p class="text-white mb-0">Semua</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselPemasukan" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselPemasukan" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
             </div>
-          </div>
+          {{-- </div> --}}
         </div>
       </div>
+      {{-- </div> --}}
+
+      {{-- carousel pengeluaran --}}
+
+      {{-- <div class="row"> --}}
       <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-3">
-          <div class="card-body">
-            <h3 class="card-title text-white">Pemasukan Tahun Ini</h3>
-            <div class="d-inline-block">
-              <h3 class="text-white">{{ "Rp. ".number_format($pemasukan_tahun_ini->total)." ,-" }}</h3>
-              <p class="text-white mb-0">{{ date('Y') }}</p>
+        <div id="carouselPengeluaran" class="card bg-white carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="card-body">
+                <h3 class="card-title text-black-50">Pengeluaran Hari Ini</h3>
+                <div class="d-inline-block">
+                  <div class="row mx-auto">
+                    <h3 class="text-warning">Rp</h3>
+                    <h3 class="text-dark"> {{ ". ".number_format($pengeluaran_hari_ini->total)." ,-" }}</h3>
+                  </div>
+                  <p class="text-black-50 mb-0">{{ date('d-m-Y') }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card-body">
+                <h3 class="card-title text-black-50">Pengeluaran Bulan Ini</h3>
+                <div class="d-inline-block">
+                  <div class="row mx-auto">
+                    <h3 class="text-warning">Rp</h3>
+                    <h3 class="text-dark"> {{ ". ".number_format($pengeluaran_bulan_ini->total)." ,-" }}</h3>
+                  </div>
+                  <p class="text-black-50 mb-0">{{ date('M') }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card-body">
+                <h3 class="card-title text-black-50">Pengeluaran Tahun Ini</h3>
+                <div class="d-inline-block">
+                  <div class="row mx-auto">
+                    <h3 class="text-warning">Rp</h3>
+                    <h3 class="text-dark"> {{ ". ".number_format($pengeluaran_tahun_ini->total)." ,-" }}</h3>
+                  </div>
+                  <p class="text-black-50 mb-0">{{ date('Y') }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card-body">
+                <h3 class="card-title text-black-50">Seluruh Pengeluaran</h3>
+                <div class="d-inline-block">
+                  <div class="row mx-auto">
+                    <h3 class="text-warning">Rp</h3>
+                    <h3 class="text-dark"> {{ ". ".number_format($seluruh_pengeluaran->total)." ,-" }}</h3>
+                  </div>
+                  <p class="text-black-50 mb-0">Semua</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-4">
-          <div class="card-body">
-            <h3 class="card-title text-white">Seluruh Pemasukan</h3>
-            <div class="d-inline-block">
-              <h3 class="text-white">{{ "Rp. ".number_format($seluruh_pemasukan->total)." ,-" }}</h3>
-              <p class="text-white mb-0">Semua</p>
-            </div>
-          </div>
+          <a class="carousel-control-prev" href="#carouselPengeluaran" role="button" data-slide="prev">
+            <span class="fa fa-chevron-left text-dark" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselPengeluaran" role="button" data-slide="next">
+            <span class="fa fa-chevron-right text-dark" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-1">
-          <div class="card-body">
-            <h3 class="card-title text-white">Pengeluaran Hari Ini</h3>
-            <div class="d-inline-block">
-              <h3 class="text-white">{{ "Rp. ".number_format($pengeluaran_hari_ini->total)." ,-" }}</h3>
-              <p class="text-white mb-0">{{ date('d-m-Y') }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-9">
-          <div class="card-body">
-            <h3 class="card-title text-white">Pengeluaran Bulan Ini</h3>
-            <div class="d-inline-block">
-              <h3 class="text-white">{{ "Rp. ".number_format($pengeluaran_bulan_ini->total)." ,-" }}</h3>
-              <p class="text-white mb-0">{{ date('M') }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-6">
-          <div class="card-body">
-            <h3 class="card-title text-white">Pengeluaran Tahun Ini</h3>
-            <div class="d-inline-block">
-              <h3 class="text-white">{{ "Rp. ".number_format($pengeluaran_tahun_ini->total)." ,-" }}</h3>
-              <p class="text-white mb-0">{{ date('Y') }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-8">
-          <div class="card-body">
-            <h3 class="card-title text-white">Seluruh Pengeluaran</h3>
-            <div class="d-inline-block">
-              <h3 class="text-white">{{ "Rp. ".number_format($seluruh_pengeluaran->total)." ,-" }}</h3>
-              <p class="text-white mb-0">Semua</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
 
     <div class="row">
 
@@ -142,6 +244,9 @@
 
      </section>
 
+     {{-- carousel grafik --}}
+
+    
 
      <section class="col-lg-12">
 
@@ -158,30 +263,24 @@
         </div>
       </div>
 
-    </section>
+      </section>
 
-    <section class="col-lg-12">
+      <section class="col-lg-12">
 
-      <div class="card card-grafik">
-        <div class="card-header pt-4">
-          <h5 class="card-title">Grafik Keuangan <b>Per Kategori</b> Bulan Ini</h5>
+        <div class="card card-grafik">
+          <div class="card-header pt-4">
+            <h5 class="card-title">Grafik Keuangan <b>Per Kategori</b> Bulan Ini</h5>
+          </div>
+          <div class="card-body">
+
+          <canvas id="grafik4"></canvas>
+
+          </div>
         </div>
-        <div class="card-body">
 
-         <canvas id="grafik4"></canvas>
-
-       </div>
-     </div>
-
-   </section>
-
-
-
- </div>
-
-
-
-</div>
+      </section>
+    </div>
+  </div>
 <!-- #/ container -->
 </div>
 
