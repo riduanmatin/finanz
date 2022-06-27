@@ -54,6 +54,8 @@ Route::get('/laporan/excel', 'HomeController@laporan_excel')->name('laporan_exce
 Route::get('/laporan/print', 'HomeController@laporan_print')->name('laporan_print');
 
 Route::get('/laporan-anggaran', 'HomeController@laporan_anggaran')->name('laporan.anggaran');
+Route::get('/laporan-anggaran/print', 'HomeController@laporan_print_anggaran')->name('laporan.anggaran.print');
+Route::get('/laporan-anggaran/excel', 'HomeController@laporan_excel_anggaran')->name('laporan.anggaran.excel');
 
 Route::get('/rencana-anggaran', 'HomeController@rencana_anggaran')->name('anggaran.rencana');
 Route::post('/rencana-anggaran/aksi', 'HomeController@rencana_anggaran_aksi')->name('anggaran.rencana.aksi');

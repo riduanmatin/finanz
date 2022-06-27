@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Anggaran;
+use App\Exports\LaporanAnggaranExport;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -425,9 +426,9 @@ class HomeController extends Controller
                 ->where('status', '=', 'Terima')
                 ->get();
             }else{
-                $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
+                $anggaran = Anggaran::where('kategori_id', $_GET['kategori'])
+                ->whereDate('bulan', '>=', $_GET['dari'])
                 ->whereDate('bulan', '<=', $_GET['sampai'])
-                ->where('kategori_id', $_GET('kategori'))
                 ->where('status', '=', 'Terima')
                 ->get();
             }
@@ -447,14 +448,18 @@ class HomeController extends Controller
                 ->where('status', '=', 'Terima')
                 ->get();
             }else{
-                $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
+                $anggaran = Anggaran::where('kategori_id', $_GET['kategori'])
+                ->whereDate('bulan', '>=', $_GET['dari'])
                 ->whereDate('bulan', '<=', $_GET['sampai'])
-                ->where('kategori_id', $_GET('kategori'))
                 ->where('status', '=', 'Terima')
                 ->get();
             }
-            return view('app.laporan_anggaran',['anggaran' => $anggaran, 'kategori' => $kategori]);
+            return view('app.laporan_anggaran_print',['anggaran' => $anggaran, 'kategori' => $kategori]);
         }
+    }
+
+    public function laporan_excel_anggaran(){
+        return Excel::download(new LaporanAnggaranExport, 'Laporan_anggaran.xlsx');
     }
 
     public function laporan()

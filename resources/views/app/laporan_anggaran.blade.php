@@ -99,8 +99,8 @@
                     <br>
                     <br>
 
-                    <a target="_BLANK" href="#" class="btn btn-outline-secondary"><i class="fa fa-file-excel-o "></i> &nbsp; CETAK EXCEL</a>
-                    <a target="_BLANK" href="#" class="btn btn-outline-secondary"><i class="fa fa-print "></i> &nbsp; CETAK PRINT</a>
+                    <a target="_BLANK" href="{{ route('laporan.anggaran.excel',['kategori' => $_GET['kategori'], 'dari' => $_GET['dari'], 'sampai' => $_GET['sampai']]) }}" class="btn btn-outline-secondary"><i class="fa fa-file-excel-o "></i> &nbsp; CETAK EXCEL</a>
+                    <a target="_BLANK" href="{{ route('laporan.anggaran.print',['kategori' => $_GET['kategori'], 'dari' => $_GET['dari'], 'sampai' => $_GET['sampai']]) }}" class="btn btn-outline-secondary"><i class="fa fa-print "></i> &nbsp; CETAK PRINT</a>
                     <br>
                     <br>
                     <br>
