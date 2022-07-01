@@ -42,7 +42,7 @@
                     <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo_finanz1.png') }}" alt=""></span>
                     <span class="brand-title">
                         <img src="{{ asset('gambar/sistem/logo_finanz1.png') }}" alt="" style="height: 42px">
-                        <span class="text-white ml-2">Finan<b>Z</b></span>
+                        <span class="text-white ml-2 title-project">Finan<b>Z</b></span>
                     </span>
                 </a>
             </div>
@@ -116,15 +116,15 @@
         <div class="nk-sidebar">
 
             <div class="p-3 profil_admin">
-                <div class="media align-items-center mb-1 mt-3">
+                <div class="media align-items-center mt-3 d-flex flex-column">
                     @if (Auth::user()->foto == '')
-                        <img class="circular-image mr-2" src="{{ asset('gambar/sistem/user.png') }}" height="60" width="60" alt="">
+                        <img class="circular-image mx-auto" src="{{ asset('gambar/sistem/user.png') }}" height="80" width="80" alt="">
                     @else
-                        <img class="circular-image mr-2" src="{{ asset('gambar/user/' . Auth::user()->foto) }}">
+                        <img class="circular-image mx-auto" src="{{ asset('gambar/user/' . Auth::user()->foto) }}" height="80" width="80">
                     @endif
-                    <div class="media-body">
-                        <h5 class="mb-0">{{ Auth::user()->name }}</h5>
-                        <p class="text-muted mb-0">
+                    <div class="media-body d-flex flex-column justify-content-center">
+                        <h5 class="mb-0 mx-auto">{{ Auth::user()->name }}</h5>
+                        <p class="text-muted mb-0 mx-auto">
                             <?php if (Auth::user()->level == 'admin') {
                                 echo 'Administrator';
                             }
@@ -244,7 +244,6 @@
         </div>
     </div>
 
-
     <script src="{{ asset('asset_admin/bower_components/jquery/dist/jquery.min.js') }}"></script>
 
     <script src="{{ asset('asset_admin/plugins/common/common.min.js') }}"></script>
@@ -320,12 +319,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
+        // $('.nav-tabs a[href="#home"]').tab('show');
         $(function(){
             var url = document.location.toString();
             if (url.match('#')) {
                 console.log(url.split('#')[1]);
                 $('a[href="#'+url.split('#')[1]+'"]').parent().addClass('active');
-                $('#'+url.split('#')[1]).addClass('active in')
+                $('#'+url.split('#')[1]).addClass('active in');
             }
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 window.location.hash = e.target.hash;

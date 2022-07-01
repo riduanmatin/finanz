@@ -24,6 +24,9 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 @import url(../plugins/animate/animate.min.css);
 @import url(../plugins/metismenu/css/metisMenu.min.css);
 @import url(../plugins/bootstrap-select/dist/css/bootstrap-select.min.css);
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap');
 .gradient-1, .dropdown-mega-menu .ext-link.link-1 a, .morris-hover, .datamaps-hoverover {
   background-image: linear-gradient(230deg, #759bff, #843cf6); }
 
@@ -90,7 +93,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --breakpoint-xl: 1200px;
   --breakpoint-xxl: 1400;
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
+}
 
 *,
 *::before,
@@ -14776,4 +14780,10 @@ div.dataTables_wrapper div.dataTables_paginate {
 
 .table-responsive > .table-bordered{
       border-top: 1px solid #f3f3f3 !important;
+}
+
+.title-project{
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  font-weight: bolder;
 }

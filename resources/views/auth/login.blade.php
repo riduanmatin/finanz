@@ -62,20 +62,12 @@
 
                             <div class="text-center mb-5">
                                 <img src="{{ asset('gambar/sistem/logo_finanz1fix.png')}}" alt="" style="height: 100px">
-                                <style>
-                                    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
-                                </style>
-                                <h3 class="mt-2" style="
-                                    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap');
-                                    font-family: 'Montserrat', sans-serif;
-                                ">Finan<b>Z</b></h3>
+                                
+                                <h3 class="mt-2 title-project">Finan<b>Z</b></h3>
 
                             </div>
 
-                            <h4 class="d-flex justify-content-center" style="
-                            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap');
-                            font-family: 'Montserrat', sans-serif;
-                            "><b>Login</b></h4>
+                            <h4 class="d-flex justify-content-center"><b>Login</b></h4>
 
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf

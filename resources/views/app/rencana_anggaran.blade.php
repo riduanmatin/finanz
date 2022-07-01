@@ -27,11 +27,19 @@
         </div>
         <div class="header-right">
             <div class="col p-md-0">
-                <ol class="breadcrumb bg-white">
-                  <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                  <li class="breadcrumb-item active"><a href="javascript:void(0)">Rencana Anggaran</a></li>
-                </ol>
+               <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Rencana Anggaran</a></li>
+              </ol>
+            </div>
+            @if($rencana_anggaran_count != 0)
+              <div class="input-group mb-3 mr-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                </div>
+                <input id="searchbar" onkeyup="searchFunction()" type="text" placeholder="Search.." name="search">
               </div>
+            @endif
         </div>
       </div>
       <div class="card-body pt-0">
@@ -138,15 +146,15 @@
                             @endif
                           </td> --}}
 
-                    <td class="text-center">{{ $ra->nominal_per_pcs }}</td>
-                    <td class="text-center">{{ $ra->jumlah_barang }}</td>
-                    <td class="text-center">{{ $ra->nominal_total }}</td>
+                    <td class="text-center">{{ "Rp.".number_format($ra->nominal_per_pcs).",-" }}</td>
+                    <td class="text-center">{{ $ra->jumlah_barang }} pcs</td>
+                    <td class="text-center">{{ "Rp.".number_format($ra->nominal_total).",-" }}</td>
 
                     @if (Auth::user()->level == 'kepala-sekolah')
                       <td>
                         <div class="text-center w-100">
-                          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalEdit_{{ $ra->id }}"><i class="fa fa-cog"></i></button>
-                          <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalDelete_{{ $ra->id }}"><i class="fa fa-trash"></i></button> `
+                          <button type="button" title="Update" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modalEdit_{{ $ra->id }}"><i class="fa fa-pencil"></i></button>
+                          <button type="button" title="Delete" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalDelete_{{ $ra->id }}"><i class="fa fa-trash"></i></button> `
                         </div>
                         <!-- Modal -->
                         <form method="POST" action="{{ route('anggaran.rencana.update',['id' => $ra->id]) }}">
@@ -310,8 +318,34 @@
   </div>
 </div>
 
-{{-- Kepala Sekolah Membuat anggaran --}}
-{{-- Ketua yayasan memvalidasi --}}
-{{-- bendahara merealisasikan anggaran --}}
+<script>
+  function searchFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchbar");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table-datatable");
+    tr = table.getElementsByTagName("tr");
+  
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      td2 = tr[i].getElementsByTagName("td")[1];
+      td3 = tr[i].getElementsByTagName("td")[3];
+      td4 = tr[i].getElementsByTagName("td")[6];
+      if (td || td2 || td3 || td4) {
+        txtValue = td.textContent || td.innerText;
+        txtValue2 = td2.textContent || td2.innerText;
+        txtValue3 = td3.textContent || td3.innerText;
+        txtValue4 = td4.textContent || td4.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1 || txtValue3.toUpperCase().indexOf(filter) > -1 || txtValue4.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
 
 @endsection

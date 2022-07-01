@@ -2,7 +2,7 @@
 
 @section('konten')
     <div class="content-body">
-        <div class="row page-titles mx-0 mt-2">
+        {{-- <div class="row page-titles mx-0 mt-2">
             
             <div class="col p-md-0 d-flex flex-column">
                 <h3>Anggaran</h3>
@@ -13,18 +13,29 @@
                     <li class="breadcrumb-item active"><a href="javascript:void(0)">Anggaran</a></li>
                 </ol>
             </div>
-        </div>
+        </div> --}}
 
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header pt-4">
+                    <div class="top d-flex row align-items-center justify-content-between">
+                        <h3 class="mt-2 mx-3">Status Anggaran</h3>
+                        <div class="top-right">
+                            <div class="col p-md-0 mt-2">
+                                <ol class="breadcrumb bg-white">
+                                    <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Anggaran</a></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
                     <ul class="nav nav-tabs card-title" id="myTab" role="tablist">
                         <li class="nav-item active">
-                            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                            <a class="nav-link active show" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
                             aria-selected="false">Anggaran Diterima</a>
                         </li>
                         <li class="nav-item active">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
                             aria-selected="false">Anggaran Ditolak</a>
                         </li>
                     </ul>
@@ -33,7 +44,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     @if($anggaranTerimaCount == 0)
                                         <h3>No Data Available</h3>
                                     @else

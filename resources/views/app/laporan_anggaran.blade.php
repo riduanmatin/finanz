@@ -1,21 +1,19 @@
 @extends('app.master')
 @section('konten')
     <div class="content-body">
-        <div class="row page-titles mx-0 mt-2">
-            <h3 class="col p-md-0">Laporan Anggaran</h3>
-
-            <div class="col p-md-0">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Laporan Anggaran</a></li>
-                </ol>
-            </div>
-        </div>
 
         <div class="container-fluid">
             <div class="card">
-                <div class="card-header pt-4">
-                    <h3 class="card-title">Filter Laporan</h3>
+                <div class="card-header pt-4 d-flex justify-content-between align-items-center">
+                    <h3 class="card-title">Laporan Anggaran</h3>
+                    <div class="header-right">
+                        <div class="col p-md-0">
+                            <ol class="breadcrumb bg-white">
+                                <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                                <li class="breadcrumb-item active"><a href="javascript:void(0)">Laporan Anggaran</a></li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -60,7 +58,7 @@
             @if(isset($_GET['kategori']))
             <div class="card">
                 <div class="card-header pt-4">
-                    <h3 class="card-title">Data Laporan Anggaran</h3>
+                    <h3 class="card-title">Laporan Anggaran</h3>
                 </div>
                 <div class="card-body">
                     <table style="width: 50%">

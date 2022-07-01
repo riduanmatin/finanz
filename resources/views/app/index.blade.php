@@ -301,8 +301,10 @@
     datasets : [
     {
       label: 'Pemasukan',
-      fillColor : "rgba(51, 240, 113, 0.61)",
-      strokeColor : "rgba(11, 246, 88, 0.61)",
+      // fillColor : "rgba(51, 240, 113, 0.61)",
+      // strokeColor : "rgba(11, 246, 88, 0.61)",
+      fillColor : "rgba(255,131,3,1)",
+      strokeColor : "rgba(255,131,3,1)",
       highlightFill: "rgba(220,220,220,0.75)",
       highlightStroke: "rgba(220,220,220,1)",
       data : [
@@ -376,8 +378,10 @@
     datasets : [
     {
       label: 'Pemasukan',
-      fillColor : "rgba(51, 240, 113, 0.61)",
-      strokeColor : "rgba(11, 246, 88, 0.61)",
+      // fillColor : "rgba(51, 240, 113, 0.61)",
+      // strokeColor : "rgba(11, 246, 88, 0.61)",
+      fillColor : "rgba(255,131,3,1)",
+      strokeColor : "rgba(255,131,3,1)",
       highlightFill: "rgba(220,220,220,0.75)",
       highlightStroke: "rgba(220,220,220,1)",
       data : [
@@ -450,8 +454,10 @@
     datasets : [
     {
       label: 'Pemasukan',
-      fillColor : "rgba(51, 240, 113, 0.61)",
-      strokeColor : "rgba(11, 246, 88, 0.61)",
+      // fillColor : "rgba(51, 240, 113, 0.61)",
+      // strokeColor : "rgba(11, 246, 88, 0.61)",
+      fillColor : "rgba(255,131,3,1)",
+      strokeColor : "rgba(255,131,3,1)",
       highlightFill: "rgba(220,220,220,0.75)",
       highlightStroke: "rgba(220,220,220,1)",
       data : [
@@ -511,8 +517,10 @@
     datasets : [
     {
       label: 'Pemasukan',
-      fillColor : "rgba(51, 240, 113, 0.61)",
-      strokeColor : "rgba(11, 246, 88, 0.61)",
+      // fillColor : "rgba(51, 240, 113, 0.61)",
+      // strokeColor : "rgba(11, 246, 88, 0.61)",
+      fillColor : "rgba(255,131,3,1)",
+      strokeColor : "rgba(255,131,3,1)",
       highlightFill: "rgba(220,220,220,0.75)",
       highlightStroke: "rgba(220,220,220,1)",
       data : [
