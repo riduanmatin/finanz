@@ -4,7 +4,7 @@
 
 <div class="content-body">
 
-  <div class="row page-titles mx-0 mt-2">
+  {{-- <div class="row page-titles mx-0 mt-2">
 
     <h3 class="col p-md-0">Pengguna</h3>
 
@@ -15,15 +15,25 @@
       </ol>
     </div>
 
-  </div>
+  </div> --}}
 
   <div class="container-fluid">
 
     <div class="card">
 
-      <div class="card-header pt-4">
-        <a href="{{ route('user.tambah') }}" class="btn btn-primary float-right"><i class="fa fa-plus"></i> &nbsp TAMBAH PENGGUNA</a>
-        <h4>Data Pengguna Sistem</h4>
+      <div class="card-header pt-4 d-flex justify-content-between align-items-center">
+        <div class="header-left d-flex row align-items-center">
+          <h4 class="mt-2 mr-2">Data Pengguna Sistem</h4>
+          <a href="{{ route('user.tambah') }}" class="btn btn-primary"><i class="fa fa-plus"></i> &nbsp TAMBAH PENGGUNA</a>
+        </div>
+        <div class="header-right">
+          <div class="col p-md-0">
+            <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+              <li class="breadcrumb-item active"><a href="javascript:void(0)">Pengguna</a></li>
+            </ol>
+          </div>
+        </div>
 
       </div>
       <div class="card-body pt-0">
