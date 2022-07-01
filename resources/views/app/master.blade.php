@@ -195,8 +195,11 @@
                     @endif
 
                     @if (Auth::user()->level == 'admin')
-
-                        <li class="mega-menu mega-menu-sm">
+                        <li>
+                            <a href="{{ route('user') }}" aria-expanded="false">
+                                <i class="icon-user menu-icon mr-3"></i><span class="nav-text">Pengguna</span></a>
+                        </li>
+                        {{-- <li class="mega-menu mega-menu-sm">
                             <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                                 <i class="icon-user menu-icon mr-3"></i><span class="nav-text">Pengguna</span>
                             </a>
@@ -204,7 +207,7 @@
                                 <li><a href="{{ route('user') }}">Data Pengguna</a></li>
                                 <li><a href="{{ route('user.tambah') }}">Tambah Pengguna Baru</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                     @endif
 
                     <li>

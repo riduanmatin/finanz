@@ -19,7 +19,7 @@
   <div class="container-fluid">
 
 
-    <div class="card">
+    <div class="card w-75 mx-auto">
 
       <div class="card-header pt-4 d-flex justify-content-between align-items-center">
       <div>

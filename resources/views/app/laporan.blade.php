@@ -72,46 +72,50 @@
             <h3 class="card-title">Laporan Keuangan</h3>
           </div>
           <div class="card-body">
-
-            <table style="width: 50%">
-              <tr>
-                <th width="25%">DARI TANGGAL</th>
-                <th width="5%" class="text-center">:</th>
-                <td>{{ date('d-m-Y',strtotime($_GET['dari'])) }}</td>
-              </tr>
-              <tr>
-                <th width="25%">SAMPAI TANGGAL</th>
-                <th width="5%" class="text-center">:</th>
-                <td>{{ date('d-m-Y',strtotime($_GET['sampai'])) }}</td>
-              </tr>
-              <tr>
-                <th width="25%">KATEGORI</th>
-                <th width="5%" class="text-center">:</th>
-                <td>
-                  @php
-                  $id_kategori = $_GET['kategori'];
-                  @endphp
-
-                  @if($id_kategori == "")
+            <div class="d-flex flex-row justify-content-between">
+              <table style="width: 50%">
+                <tr>
+                  <th width="25%">DARI TANGGAL</th>
+                  <th width="5%" class="text-center">:</th>
+                  <td>{{ date('d-m-Y',strtotime($_GET['dari'])) }}</td>
+                </tr>
+                <tr>
+                  <th width="25%">SAMPAI TANGGAL</th>
+                  <th width="5%" class="text-center">:</th>
+                  <td>{{ date('d-m-Y',strtotime($_GET['sampai'])) }}</td>
+                </tr>
+                <tr>
+                  <th width="25%">KATEGORI</th>
+                  <th width="5%" class="text-center">:</th>
+                  <td>
                     @php
-                    $kat = "SEMUA KATEGORI";
+                    $id_kategori = $_GET['kategori'];
                     @endphp
-                  @else
-                    @php
-                      $katt = DB::table('kategori')->where('id',$id_kategori)->first();
-                      $kat = $katt->kategori
-                    @endphp
-                  @endif
-
-                  {{$kat}}
-                </td>
-              </tr>
-            </table>
-
-            <br>
-            <br>
-            <a target="_BLANK" href="{{ route('laporan_excel',['kategori' => $_GET['kategori'], 'dari' => $_GET['dari'], 'sampai' => $_GET['sampai']]) }}" class="btn btn-outline-secondary"><i class="fa fa-file-excel-o "></i> &nbsp; CETAK EXCEL</a>
-            <a target="_BLANK" href="{{ route('laporan_print',['kategori' => $_GET['kategori'], 'dari' => $_GET['dari'], 'sampai' => $_GET['sampai']]) }}" class="btn btn-outline-secondary"><i class="fa fa-print "></i> &nbsp; CETAK PRINT</a>
+  
+                    @if($id_kategori == "")
+                      @php
+                      $kat = "SEMUA KATEGORI";
+                      @endphp
+                    @else
+                      @php
+                        $katt = DB::table('kategori')->where('id',$id_kategori)->first();
+                        $kat = $katt->kategori
+                      @endphp
+                    @endif
+  
+                    {{$kat}}
+                  </td>
+                </tr>
+              </table>
+  
+              <br>
+              <br>
+              <div class="d-flex flex-column">
+                <a target="_BLANK" href="{{ route('laporan_excel',['kategori' => $_GET['kategori'], 'dari' => $_GET['dari'], 'sampai' => $_GET['sampai']]) }}" class="btn btn-outline-secondary mb-2"><i class="fa fa-file-excel-o "></i> &nbsp; CETAK EXCEL</a>
+                <a target="_BLANK" href="{{ route('laporan_print',['kategori' => $_GET['kategori'], 'dari' => $_GET['dari'], 'sampai' => $_GET['sampai']]) }}" class="btn btn-outline-secondary"><i class="fa fa-print "></i> &nbsp; CETAK PRINT</a>
+              </div>
+            </div>
+            
             <br>
             <br>
             <br>

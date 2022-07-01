@@ -37,7 +37,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
                 </div>
-                <input id="searchbar" onkeyup="searchFunction()" type="text" placeholder="Search.." name="search">
+                <input id="searchbar" onkeyup="searchFunction()" type="text" placeholder="Cari.." name="search">
               </div>
             @endif
         </div>
