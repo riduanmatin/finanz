@@ -34,7 +34,6 @@
     </div>
 
     <div id="main-wrapper">
-
         <div class="nav-header bg-white text-center">
             <div class="brand-logo">
                 <a href="{{ url('/home') }}">
