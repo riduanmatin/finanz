@@ -16,12 +16,12 @@
     <tr>
       <td width="30%">DARI TANGGAL</td>
       <td width="5%" class="text-center">:</td>
-      <td>{{ date('d-m-Y',strtotime($_GET['dari'])) }}</td>
+      <td>{{ date('d M Y',strtotime($_GET['dari'])) }}</td>
     </tr>
     <tr>
       <td width="30%">SAMPAI TANGGAL</td>
       <td width="5%" class="text-center">:</td>
-      <td>{{ date('d-m-Y',strtotime($_GET['sampai'])) }}</td>
+      <td>{{ date('d M Y',strtotime($_GET['sampai'])) }}</td>
     </tr>
     <tr>
       <td width="30%">KATEGORI</td>
@@ -74,7 +74,7 @@
       @foreach($transaksi as $t)
       <tr>
         <td class="text-center">{{ $no++ }}</td>
-        <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+        <td class="text-center">{{ date('d M Y', strtotime($t->tanggal )) }}</td>
         <td>{{ $t->kategori->kategori }}</td>
         <td>{{ $t->keterangan }}</td>
         <td class="text-center">

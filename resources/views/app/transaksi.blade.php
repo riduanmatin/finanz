@@ -22,7 +22,7 @@
         <div class="header-left d-flex row align-items-center">
             <h4 class="mt-2 mr-2">Transaksi</h4>
             @if (Auth::user()->level == 'bendahara')
-            <button type="button" class="btn btn-finanz mx-1" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" title="Tambahkan Transaksi" class="btn btn-finanz mx-1" data-toggle="modal" data-target="#exampleModal">
               <i class="fa fa-plus"></i>
           @endif
         </div>
@@ -64,7 +64,7 @@
 
                   <div class="form-group">
                     <label>Nomor Kwitansi</label>
-                    <input type="text" class="form-control" name="no_kwitansi" autocomplete="off" placeholder="Masukkan Nomor Kwitansi (Opsional) ..">
+                    <input type="text" style="text-transform: uppercase" class="form-control" name="no_kwitansi" autocomplete="off" placeholder="Masukkan Nomor Kwitansi (Opsional) ..">
                   </div>
 
                   <div class="form-group">
@@ -116,9 +116,6 @@
           </div>
         </form>
 
-
-
-
         <div class="table-responsive">
           <table class="table table-bordered" id="table-datatable" style="width: 100%">
             <thead>
@@ -127,7 +124,7 @@
                 <th rowspan="2" class="text-center" width="11%">TANGGAL</th>
                 <th rowspan="2" class="text-center">KATEGORI</th>
                 <th rowspan="2" class="text-center">KETERANGAN</th>
-                <th colspan="2" class="text-center">JENIS</th>
+                <th rowspan="2" class="text-center">JENIS</th>
                 <th rowspan="2" class="text-center">NO KWITANSI</th>
                 <th rowspan="2" class="text-center">FOTO KWITANSI</th>
                 @if (Auth::user()->level == 'bendahara')
@@ -146,7 +143,7 @@
               @foreach($transaksi as $t)
               <tr>
                 <td class="text-center">{{ $no++ }}</td>
-                <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                <td class="text-center">{{ date('d M Y', strtotime($t->tanggal )) }}</td>
                 <td class="text-center">{{ $t->kategori->kategori }}</td>
                 <td class="text-center">
                   @if($t->keterangan != "")
@@ -227,7 +224,7 @@
 
                               <div class="form-group">
                                 <label>Nomor Kwitansi</label>
-                                <input type="text" class="form-control" name="no_kwitansi" autocomplete="off"  placeholder="Masukkan Nomor Kwitansi (Opsional) .." value="{{ $t->no_kwitansi }}">
+                                <input type="text" class="form-control" name="no_kwitansi" style="text-transform: uppercase" autocomplete="off"  placeholder="Masukkan Nomor Kwitansi (Opsional) .." value="{{ $t->no_kwitansi }}">
                               </div>
 
                               <div class="form-group" style="width: 100%;margin-bottom:20px">
@@ -360,6 +357,8 @@
       }
     }
   }
+
+  
 </script>
 
 @endsection

@@ -24,7 +24,7 @@
       <div class="card-header pt-4 d-flex justify-content-between align-items-center">
         <div class="header-left d-flex row align-items-center ">
           <h4 class="mt-2 mr-2">Kategori</h4>
-          <button type="button" class="btn btn-finanz mx-1" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" title="Tambahkan Kategori" class="btn btn-finanz mx-1" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-plus"></i>
              {{-- &nbsp TAMBAH KATEGORI --}}
           </button>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ti-close m-r-5 f-s-12"></i> Tutup</button>
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane m-r-5"></i> Simpan</button>
+                  <button type="submit" class="btn btn-finanz"><i class="fa fa-paper-plane m-r-5"></i> Simpan</button>
                 </div>
               </div>
             </div>
@@ -129,7 +129,7 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ti-close m-r-5 f-s-12"></i> Tutup</button>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane m-r-5"></i> Simpan</button>
+                            <button type="submit" class="btn btn-finanz"><i class="fa fa-paper-plane m-r-5"></i> Simpan</button>
                           </div>
                         </div>
                       </div>
@@ -158,7 +158,7 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ti-close m-r-5 f-s-12"></i> Batal</button>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane m-r-5"></i> Ya, Hapus</button>
+                            <button type="submit" class="btn btn-finanz"><i class="fa fa-paper-plane m-r-5"></i> Ya, Hapus</button>
                           </div>
                         </div>
                       </div>

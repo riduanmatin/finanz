@@ -117,9 +117,9 @@
             <div class="p-3 profil_admin">
                 <div class="media align-items-center mt-3 d-flex flex-column">
                     @if (Auth::user()->foto == '')
-                        <img class="circular-image mx-auto" src="{{ asset('gambar/sistem/user.png') }}" height="80" width="80" alt="">
+                        <img class="circular-image mx-auto" src="{{ asset('gambar/sistem/user.png') }}" height="60" width="60" alt="">
                     @else
-                        <img class="circular-image mx-auto" src="{{ asset('gambar/user/' . Auth::user()->foto) }}" height="80" width="80">
+                        <img class="circular-image mx-auto" src="{{ asset('gambar/user/' . Auth::user()->foto) }}" height="60" width="60">
                     @endif
                     <div class="media-body d-flex flex-column justify-content-center">
                         <h5 class="mb-0 mx-auto">{{ Auth::user()->name }}</h5>

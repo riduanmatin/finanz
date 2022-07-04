@@ -20,7 +20,7 @@
         <div class="header-left d-flex row align-items-center">
             <h4 class="mt-2 mr-2">Rencana Anggaran</h4>
             @if (Auth::user()->level == 'kepala-sekolah')
-            <button type="button" class="btn btn-finanz mx-1" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" title="Tambahkan Rencana Anggaran" class="btn btn-finanz mx-1" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-plus"></i>
           </button>
             @endif

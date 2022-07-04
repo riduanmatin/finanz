@@ -22,6 +22,7 @@ class CreateTransaksisTable extends Migration
             $table->text('keterangan')->nullable();
             $table->text('no_kwitansi')->nullable();
             $table->string('foto_kwitansi')->nullable();
+            $table->string('anggaran_id')->nullable();
             $table->timestamps();
         });
     }

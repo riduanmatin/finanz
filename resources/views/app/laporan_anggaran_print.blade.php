@@ -15,12 +15,12 @@
         <tr>
             <td width="30%">DARI TANGGAL</td>
             <td width="5%" class="text-center">:</td>
-            <td>{{ date('d-m-Y',strtotime($_GET['dari'])) }}</td>
+            <td>{{ date('d M Y',strtotime($_GET['dari'])) }}</td>
         </tr>
         <tr>
             <td width="30%">SAMPAI TANGGAL</td>
             <td width="5%" class="text-center">:</td>
-            <td>{{ date('d-m-Y',strtotime($_GET['sampai'])) }}</td>
+            <td>{{ date('d M Y',strtotime($_GET['sampai'])) }}</td>
         </tr>
         <tr>
             <td width="30%">KATEGORI</td>
@@ -66,7 +66,7 @@
             @foreach($anggaran as $a)
                 <tr>
                     <td class="text-center">{{ $no++ }}</td>
-                    <td class="text-center">{{ date('M Y', strtotime($a->bulan )) }}</td>
+                    <td class="text-center">{{ date('F Y', strtotime($a->bulan )) }}</td>
                     <td class="text-center">{{ $a->kategori->kategori }}</td>
                     <td class="text-center">{{ $a->keterangan }}</td>
                     <td class="text-center">{{ "Rp.".number_format($a->nominal_per_pcs).",-" }}</td>

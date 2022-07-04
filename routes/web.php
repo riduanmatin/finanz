@@ -65,3 +65,4 @@ Route::delete('rencana-anggaran/delete/{id}', 'HomeController@rencana_anggaran_d
 Route::get('/anggaran', 'HomeController@anggaran')->name('anggaran');
 Route::post('anggaran/validasi/{id}', 'HomeController@anggaran_aksi_terima')->name('anggaran.aksi.validasi');
 Route::post('anggaran/tolak/{id}', 'HomeController@anggaran_aksi_tolak')->name('anggaran.aksi.tolak');
+Route::post('anggaran/realisasi/{id}', 'HomeController@anggaran_aksi_realisasi')->name('anggaran.aksi.realisasi');

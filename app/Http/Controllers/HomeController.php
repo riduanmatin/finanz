@@ -100,7 +100,7 @@ class HomeController extends Controller
         ->whereMonth('bulan', '<=', $bulan+2)
         ->first();
 
-        $bulan_2 = DB::table('anggaran')
+        $bulan_2 = DB::table('transaksi')
         ->select(DB::raw('IF((MONTH(CURDATE()) + 2) > 12, DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL -10 MONTH), "%b"), DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL 2 MONTH), "%b")) as bulan'))
         ->first();
 
@@ -277,14 +277,18 @@ class HomeController extends Controller
 
     public function anggaran(){
         $kategori = Kategori::orderBy('kategori', 'asc')->get();
-        $anggaran = Anggaran::orderBy('id', 'desc')->get();
+        $anggaran = Anggaran::orderBy('bulan', 'asc')->get();
         $anggaranTerimaCount = Anggaran::where('status', '=', 'Terima')->count();
         $anggaranTolakCount = Anggaran::where('status', '=', 'Tolak')->count();
+        $transaksi = Transaksi::where('anggaran_id', '!=', '')->get();
+        $transaksiCount = Transaksi::where('anggaran_id', '!=', '')->count();
         return view('app.anggaran', [
             'kategori' => $kategori, 
             'anggaran' => $anggaran,
+            'transaksi' => $transaksi,
             'anggaranTerimaCount' => $anggaranTerimaCount,
-            'anggaranTolakCount' => $anggaranTolakCount
+            'anggaranTolakCount' => $anggaranTolakCount,
+            'transaksiCount' => $transaksiCount,
         ]);
     }
 
@@ -338,6 +342,46 @@ class HomeController extends Controller
         return redirect()->back()->with("success", "Rencana Anggaran Telah di Tolak!");
     }
 
+    public function anggaran_aksi_realisasi($id, Request $req){
+        $anggaran = Anggaran::find($id);
+
+        $this->validate($req, [
+            'foto' => 'image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $tanggal = $req->input('tanggal');
+        $jenis = "Pengeluaran";
+        $kategori = $anggaran->kategori_id;
+        $nominal = $anggaran->nominal_total;
+        $keterangan = $anggaran->keterangan;
+        $no_kwitansi = strtoupper($req->input('no_kwitansi'));
+        $anggaran_id = $anggaran->id;
+        $file = $req->file('image');
+        if($file != ""){
+            $filename = time()."_".$file->getClientOriginalName();
+            $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
+        }
+        else{
+            $filename = "";
+        }
+
+        Transaksi::create([
+            'tanggal' => $tanggal,
+            'jenis' => $jenis,
+            'kategori_id' => $kategori,
+            'nominal' => $nominal,
+            'keterangan' => $keterangan,
+            'no_kwitansi' => $no_kwitansi,
+            'foto_kwitansi' => $filename,
+            'anggaran_id' => $anggaran_id
+        ]);
+
+        $anggaran->status = "Realisasi";
+        $anggaran->save();
+
+        return redirect()->back()->with("success", "Anggaran telah Terealisasi!");
+    }
+
     public function transaksi()
     {
         $kategori = Kategori::orderBy('kategori','asc')->get();
@@ -356,7 +400,7 @@ class HomeController extends Controller
         $kategori = $req->input('kategori');
         $nominal = $req->input('nominal');
         $keterangan = $req->input('keterangan');
-        $no_kwitansi = $req->input('no_kwitansi');
+        $no_kwitansi = strtoupper($req->input('no_kwitansi'));
         $file = $req->file('image');
         if($file != ""){
             $filename = time()."_".$file->getClientOriginalName();
@@ -390,7 +434,7 @@ class HomeController extends Controller
             $kategori = $req->input('kategori');
             $nominal = $req->input('nominal');
             $keterangan = $req->input('keterangan');
-            $no_kwitansi = $req->input('no_kwitansi');
+            $no_kwitansi = strtoupper($req->input('no_kwitansi'));
             $file = $req->file('image');
             
             if($file != ""){
@@ -441,8 +485,6 @@ class HomeController extends Controller
 
             return redirect()->back()->with("success","Transaksi telah diupdate!");
         }
-
-        
     }
 
     public function transaksi_delete($id)

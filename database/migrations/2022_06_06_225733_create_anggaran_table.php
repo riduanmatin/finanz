@@ -20,7 +20,7 @@ class CreateAnggaranTable extends Migration
             $table->integer('nominal_per_pcs');
             $table->integer('jumlah_barang');
             $table->text('keterangan')->nullable();
-            $table->enum('status', ['Tolak', 'Terima']);
+            $table->enum('status', ['Tolak', 'Terima', 'Realisasi']);
             $table->integer('nominal_total');
             $table->timestamps();
         });

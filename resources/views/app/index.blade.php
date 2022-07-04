@@ -491,7 +491,7 @@
         $pemasukan_perhari = DB::table('transaksi')
         ->select(DB::raw('SUM(nominal) as total'))
         ->where('jenis','Pengeluaran')
-        ->whereDate('tanggal',$tgl)        ->first();
+        ->whereDate('tanggal',$tgl)->first();
         $total = $pemasukan_perhari->total;
         if($pemasukan_perhari->total == ""){
           echo "0,";
