@@ -14,7 +14,7 @@
               <div class="card-body">
                 <h3 class="card-title text-black-50">Total Rencana Anggaran</h3>
                 <div class="d-inline-block">
-                  <h3 class="text-warning">{{ $total_rencana_anggaran->total }}</h3>
+                  <h4 class="text-warning">{{ $total_rencana_anggaran->total }}</h4>
                   <p class="text-black-50 mb-0">Buah</p>
                 </div>
               </div>
@@ -23,7 +23,7 @@
               <div class="card-body">
                 <h3 class="card-title text-black-50">Total Anggaran</h3>
                 <div class="d-inline-block">
-                  <h3 class="text-warning">{{ $total_anggaran->total }}</h3>
+                  <h4 class="text-warning">{{ $total_anggaran->total }}</h4>
                   <p class="text-black-50 mb-0">Buah</p>
                 </div>
               </div>
@@ -32,7 +32,8 @@
               <div class="card-body">
                 <h3 class="card-title text-black-50">Anggaran yang Diterima</h3>
                 <div class="d-inline-block">
-                  <h3 class="text-warning">{{ $total_anggaran_terima->total }}</h3>
+                  {{-- <h3 class="text-warning">{{ $total_anggaran_terima->total }}</h3> --}}
+                  <h4 class="text-warning">{{ $total_anggaran_terima->total }}</h4>
                   <p class="text-black-50 mb-0">Buah</p>
                 </div>
               </div>
@@ -41,7 +42,7 @@
               <div class="card-body">
                 <h3 class="card-title text-black-50">Anggaran yang Ditolak</h3>
                 <div class="d-inline-block">
-                  <h3 class="text-warning">{{ $total_anggaran_tolak->total }}</h3>
+                  <h4 class="text-warning">{{ $total_anggaran_tolak->total }}</h4>
                   <p class="text-black-50 mb-0">Buah</p>
                 </div>
               </div>
@@ -67,8 +68,10 @@
               <h3 class="card-title text-black-50">Total Anggaran 3 Bulan</h3>
               <div class="d-inline-block">
                 <div class="row mx-auto">
-                  <h3 class="text-warning">Rp</h3>
-                  <h3 class="text-dark"> {{ ". ".number_format($anggaran_3_bulan->total)." ,-" }}</h3>
+                  {{-- <h3 class="text-warning">Rp</h3>
+                  <h3 class="text-dark"> {{ ". ".number_format($anggaran_3_bulan->total)." ,-" }}</h3> --}}
+                  <h4 class="text-warning">Rp</h4>
+                  <h4 class="text-dark">{{ ". ".number_format($anggaran_3_bulan->total)." ,-" }}</h4>
                 </div>
                 <p class="text-black-50 mb-0">{{ date('M') }} - {{ $bulan_2->bulan }}</p>
               </div>
@@ -87,8 +90,8 @@
                 <h3 class="card-title text-black-50">Pemasukan Hari Ini</h3>
                 <div class="d-inline-block">
                   <div class="row mx-auto">
-                    <h3 class="text-warning">Rp</h3>
-                    <h3 class="text-dark"> {{ ". ".number_format($pemasukan_hari_ini->total)." ,-" }}</h3>
+                    <h4 class="text-warning">Rp</h4>
+                    <h4 class="text-dark"> {{ ". ".number_format($pemasukan_hari_ini->total)." ,-" }}</h4>
                   </div>
                   <p class="text-black-50 mb-0">{{ date('d-m-Y') }}</p>
                 </div>
@@ -99,8 +102,8 @@
                 <h3 class="card-title text-black-50">Pemasukan Bulan Ini</h3>
                 <div class="d-inline-block">
                   <div class="row mx-auto">
-                    <h3 class="text-warning">Rp</h3>
-                    <h3 class="text-dark"> {{ ". ".number_format($pemasukan_bulan_ini->total)." ,-" }}</h3>
+                    <h4 class="text-warning">Rp</h4>
+                    <h4 class="text-dark"> {{ ". ".number_format($pemasukan_bulan_ini->total)." ,-" }}</h4>
                   </div>
                   <p class="text-black-50 mb-0">{{ date('M') }}</p>
                 </div>
@@ -111,8 +114,8 @@
                 <h3 class="card-title text-black-50">Pemasukan Tahun Ini</h3>
                 <div class="d-inline-block">
                   <div class="row mx-auto">
-                    <h3 class="text-warning">Rp</h3>
-                    <h3 class="text-dark"> {{ ". ".number_format($pemasukan_tahun_ini->total)." ,-" }}</h3>
+                    <h4 class="text-warning">Rp</h4>
+                    <h4 class="text-dark"> {{ ". ".number_format($pemasukan_tahun_ini->total)." ,-" }}</h4>
                   </div>
                   <p class="text-black-50 mb-0">{{ date('Y') }}</p>
                 </div>
@@ -123,8 +126,8 @@
                 <h3 class="card-title text-black-50">Seluruh Pemasukan</h3>
                 <div class="d-inline-block">
                   <div class="row mx-auto">
-                    <h3 class="text-warning">Rp</h3>
-                    <h3 class="text-dark"> {{ ". ".number_format($seluruh_pemasukan->total)." ,-" }}</h3>
+                    <h4 class="text-warning">Rp</h4>
+                    <h4 class="text-dark"> {{ ". ".number_format($seluruh_pemasukan->total)." ,-" }}</h4>
                   </div>
                   <p class="text-black-50 mb-0">Semua</p>
                 </div>
@@ -154,8 +157,8 @@
                 <h3 class="card-title text-black-50">Pengeluaran Hari Ini</h3>
                 <div class="d-inline-block">
                   <div class="row mx-auto">
-                    <h3 class="text-warning">Rp</h3>
-                    <h3 class="text-dark"> {{ ". ".number_format($pengeluaran_hari_ini->total)." ,-" }}</h3>
+                    <h4 class="text-warning">Rp</h4>
+                    <h4 class="text-dark"> {{ ". ".number_format($pengeluaran_hari_ini->total)." ,-" }}</h4>
                   </div>
                   <p class="text-black-50 mb-0">{{ date('d-m-Y') }}</p>
                 </div>
@@ -166,8 +169,8 @@
                 <h3 class="card-title text-black-50">Pengeluaran Bulan Ini</h3>
                 <div class="d-inline-block">
                   <div class="row mx-auto">
-                    <h3 class="text-warning">Rp</h3>
-                    <h3 class="text-dark"> {{ ". ".number_format($pengeluaran_bulan_ini->total)." ,-" }}</h3>
+                    <h4 class="text-warning">Rp</h4>
+                    <h4 class="text-dark"> {{ ". ".number_format($pengeluaran_bulan_ini->total)." ,-" }}</h4>
                   </div>
                   <p class="text-black-50 mb-0">{{ date('M') }}</p>
                 </div>
@@ -178,8 +181,8 @@
                 <h3 class="card-title text-black-50">Pengeluaran Tahun Ini</h3>
                 <div class="d-inline-block">
                   <div class="row mx-auto">
-                    <h3 class="text-warning">Rp</h3>
-                    <h3 class="text-dark"> {{ ". ".number_format($pengeluaran_tahun_ini->total)." ,-" }}</h3>
+                    <h4 class="text-warning">Rp</h4>
+                    <h4 class="text-dark"> {{ ". ".number_format($pengeluaran_tahun_ini->total)." ,-" }}</h4>
                   </div>
                   <p class="text-black-50 mb-0">{{ date('Y') }}</p>
                 </div>
@@ -190,8 +193,8 @@
                 <h3 class="card-title text-black-50">Seluruh Pengeluaran</h3>
                 <div class="d-inline-block">
                   <div class="row mx-auto">
-                    <h3 class="text-warning">Rp</h3>
-                    <h3 class="text-dark"> {{ ". ".number_format($seluruh_pengeluaran->total)." ,-" }}</h3>
+                    <h4 class="text-warning">Rp</h4>
+                    <h4 class="text-dark"> {{ ". ".number_format($seluruh_pengeluaran->total)." ,-" }}</h4>
                   </div>
                   <p class="text-black-50 mb-0">Semua</p>
                 </div>
