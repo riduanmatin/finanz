@@ -163,13 +163,13 @@
                                     <i class="icon-grid menu-icon mr-3"></i><span class="nav-text">Data Kategori</span>
                                 </a>
                             </li>
-
+                        @endif
                             <li>
                                 <a href="{{ route('transaksi') }}" aria-expanded="false">
                                     <i class="icon-menu menu-icon mr-3"></i><span class="nav-text">Data Transaksi</span>
                                 </a>
                             </li>
-
+                        @if(Auth::user()->level != 'ketua-yayasan')               
                             <li>
                                 <a href="{{ route('laporan') }}" aria-expanded="false">
                                     <i class="icon-notebook menu-icon mr-3"></i><span class="nav-text">Laporan Keuangan</span>
