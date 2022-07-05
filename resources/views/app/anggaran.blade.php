@@ -192,11 +192,11 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            @php
-                                                                $no = 1;
-                                                            @endphp
-                                                            @foreach($transaksi as $t)
+                                                        @php
+                                                            $no = 1;
+                                                        @endphp
+                                                        @foreach($transaksi as $t)
+                                                            <tr>
                                                                 <td class="text-center">{{ $no++ }}</td>
                                                                 <td class="text-center">{{ date('d M Y', strtotime($t->tanggal )) }}</td>
                                                                 <td class="text-center">{{ $t->kategori->kategori }}</td>
@@ -251,8 +251,8 @@
                                                                       -
                                                                     @endif
                                                                 </td>
-                                                            @endforeach
-                                                        </tr>
+                                                            </tr>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>

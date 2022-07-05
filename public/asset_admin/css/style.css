@@ -7711,7 +7711,7 @@ sub {
 [data-sidebar-style="mini"] .nav-header .logo-abbr {
   display: block; }
 
-[data-sidebar-style="compact"] .nav-header .brand-title {
+[data-sidebar-style="compact"] .nav-header .brand-title .profil{
   display: none; }
 
 [data-sidebar-style="compact"] .nav-header .logo-compact {
