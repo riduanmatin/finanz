@@ -124,7 +124,7 @@
                 <th rowspan="2" class="text-center" width="11%">TANGGAL</th>
                 <th rowspan="2" class="text-center">KATEGORI</th>
                 <th rowspan="2" class="text-center">KETERANGAN</th>
-                <th rowspan="2" class="text-center">JENIS</th>
+                <th colspan="2" class="text-center">JENIS</th>
                 <th rowspan="2" class="text-center">NO KWITANSI</th>
                 <th rowspan="2" class="text-center">FOTO KWITANSI</th>
                 @if (Auth::user()->level == 'bendahara')
