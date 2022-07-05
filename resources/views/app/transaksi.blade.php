@@ -147,7 +147,17 @@
                 <td class="text-center">{{ $t->kategori->kategori }}</td>
                 <td class="text-center">
                   @if($t->keterangan != "")
-                    {{ $t->keterangan }}
+                    @if($t->anggaran_id != "")
+                      {{ $t->keterangan }} <br>
+                      <b>Detail Keterangan :</b><br>
+                      <?php 
+                          $anggaranReal = DB::table('anggaran')->where('id', '=', $t->anggaran_id)->first();
+                          echo "Harga Satuan Barang : " . "Rp.".number_format($anggaranReal->nominal_per_pcs).",-" . "<br>";
+                          echo "Jumlah Barang : " . $anggaranReal->jumlah_barang." pcs";
+                      ?>
+                    @else
+                      {{ $t->keterangan }}
+                    @endif
                   @else
                     -
                   @endif
