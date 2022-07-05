@@ -160,13 +160,13 @@
                         @if(Auth::user()->level != 'ketua-yayasan')
                             <li>
                                 <a href="{{ route('kategori') }}" aria-expanded="false">
-                                    <i class="icon-grid menu-icon mr-3"></i><span class="nav-text">Data Kategori</span>
+                                    <i class="icon-grid menu-icon mr-3"></i><span class="nav-text">Kategori</span>
                                 </a>
                             </li>
                         @endif
                             <li>
                                 <a href="{{ route('transaksi') }}" aria-expanded="false">
-                                    <i class="icon-menu menu-icon mr-3"></i><span class="nav-text">Data Transaksi</span>
+                                    <i class="icon-menu menu-icon mr-3"></i><span class="nav-text">Transaksi</span>
                                 </a>
                             </li>
                         @if(Auth::user()->level != 'ketua-yayasan')               
