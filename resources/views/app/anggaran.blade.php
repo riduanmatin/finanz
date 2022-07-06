@@ -74,7 +74,7 @@
                                                             <td class="text-center">{{ $a->status }}</td>
                                                             @if (Auth::user()->level == 'bendahara')
                                                                 <td class="text-center">
-                                                                    @if($a->status != "Realisasi")
+                                                                    @if($a->status == "Realisasi")
                                                                         -
                                                                     @else
                                                                         <button type="button" title="Realisasikan Anggaran" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit_{{ $a->id }}">
