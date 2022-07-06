@@ -324,6 +324,49 @@
               @endforeach
             </tbody>
           </table>
+          
+          <div class="d-flex justify-content-end align-items-center">
+            <?php
+              $link_limit = 7;
+            ?>
+            @if($transaksi->lastpage() > 1)
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item {{ ($transaksi->currentPage() == 1) ? ' disabled' : '' }}" title="Halaman Pertama">
+                    <a class="page-link" href="{{ $transaksi->url(1) }}" aria-label="Previous" >
+                      <i class="fa fa-fast-backward" aria-hidden="true"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  @for($i = 1; $i <= $transaksi->lastPage(); $i++)
+                    <?php
+                      $half_total_links = floor($link_limit / 2);
+                      $from = $transaksi->currentPage() - $half_total_links;
+                      $to = $transaksi->currentPage() + $half_total_links;
+                      if($transaksi->currentPage() < $half_total_links){
+                        $to += $half_total_links - $transaksi->currentPage();
+                      }
+                      if($transaksi->lastPage() - $transaksi->currentPage() < $half_total_links){
+                        $from -= $half_total_links - ($transaksi->lastPage() - $transaksi->currentPage()) - 1;
+                      }
+                    ?>
+                    @if($from < $i && $i < $to)
+                      <li class="page-item {{ ($transaksi->currentPage() == $i) ? ' active' : '' }}" title="Halaman {{ $i }}">
+                        <a class="page-link" href="{{ $transaksi->url($i) }}">{{ $i }}</a>
+                      </li>
+                    @endif
+                  @endfor
+                  <li class="page-item {{ ($transaksi->currentPage() == $transaksi->lastPage()) ? ' disabled' : '' }}" title="Halaman Terakhir">
+                    <a class="page-link" href="{{ $transaksi->url($transaksi->lastPage()) }}" aria-label="Next" >
+                      <i class="fa fa-fast-forward" aria-hidden="true"></i>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            @endif
+            {{-- {{ $transaksi->links() }} --}}
+          </div>
         </div>
 
 

@@ -278,9 +278,11 @@ class HomeController extends Controller
     public function anggaran(){
         $kategori = Kategori::orderBy('kategori', 'asc')->get();
         $anggaran = Anggaran::orderBy('bulan', 'asc')->get();
+        $anggaranTerima = Anggaran::orderBy('bulan', 'asc')->where('status', '!=', 'Tolak')->paginate(30);
+        $anggaranTolak = Anggaran::orderBy('bulan', 'asc')->where('status', '=', 'Tolak')->paginate(30);
         $anggaranTerimaCount = Anggaran::where('status', '=', 'Terima')->count();
         $anggaranTolakCount = Anggaran::where('status', '=', 'Tolak')->count();
-        $transaksi = Transaksi::where('anggaran_id', '!=', '')->get();
+        $transaksi = Transaksi::where('anggaran_id', '!=', '')->paginate(30);
         $transaksiCount = Transaksi::where('anggaran_id', '!=', '')->count();
         return view('app.anggaran', [
             'kategori' => $kategori, 
@@ -289,6 +291,8 @@ class HomeController extends Controller
             'anggaranTerimaCount' => $anggaranTerimaCount,
             'anggaranTolakCount' => $anggaranTolakCount,
             'transaksiCount' => $transaksiCount,
+            'anggaranTerima' => $anggaranTerima,
+            'anggaranTolak' => $anggaranTolak
         ]);
     }
 
@@ -385,7 +389,7 @@ class HomeController extends Controller
     public function transaksi()
     {
         $kategori = Kategori::orderBy('kategori','asc')->get();
-        $transaksi = Transaksi::orderBy('id','desc')->get();
+        $transaksi = Transaksi::orderBy('id','desc')->paginate(30);
         return view('app.transaksi',['transaksi' => $transaksi, 'kategori' => $kategori]);
     }
 
