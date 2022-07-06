@@ -68,12 +68,21 @@
               <h3 class="card-title text-black-50">Total Anggaran 3 Bulan</h3>
               <div class="d-inline-block">
                 <div class="row mx-auto">
+                  @if($total_anggaran->total == 0)
+                    <h4 class="text-warning">Rp</h4>
+                    <h4 class="text-dark">{{ ". ".number_format(0)." ,-" }}</h4>
+                  @else
                   {{-- <h3 class="text-warning">Rp</h3>
                   <h3 class="text-dark"> {{ ". ".number_format($anggaran_3_bulan->total)." ,-" }}</h3> --}}
-                  <h4 class="text-warning">Rp</h4>
-                  <h4 class="text-dark">{{ ". ".number_format($anggaran_3_bulan->total)." ,-" }}</h4>
+                    <h4 class="text-warning">Rp</h4>
+                    <h4 class="text-dark">{{ ". ".number_format($anggaran_3_bulan->total)." ,-" }}</h4>
+                  @endif
                 </div>
-                <p class="text-black-50 mb-0">{{ date('M') }} - {{ $bulan_2->bulan }}</p>
+                @if($total_anggaran->total == 0)
+                  <p class="text-black-50 mb-0">{{ date('M') }}</p>
+                @else
+                  <p class="text-black-50 mb-0">{{ date('M') }} - {{ $bulan_2->bulan }}</p>
+                @endif
               </div>
             </div>
           </div>

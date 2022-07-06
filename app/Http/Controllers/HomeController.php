@@ -390,7 +390,12 @@ class HomeController extends Controller
     {
         $kategori = Kategori::orderBy('kategori','asc')->get();
         $transaksi = Transaksi::orderBy('id','desc')->paginate(30);
-        return view('app.transaksi',['transaksi' => $transaksi, 'kategori' => $kategori]);
+        $transaksiCount = Transaksi::count();
+        return view('app.transaksi',[
+            'transaksi' => $transaksi,
+            'kategori' => $kategori,
+            'transaksiCount' => $transaksiCount
+        ]);
     }
 
     public function transaksi_aksi(Request $req)
