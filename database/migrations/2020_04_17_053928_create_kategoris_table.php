@@ -16,6 +16,7 @@ class CreateKategorisTable extends Migration
         Schema::create('kategori', function (Blueprint $table) {
             $table->id();
             $table->string('kategori');
+            $table->enum('jenis',['Operasional','Investasi', 'Pendanaan', 'null']);
             $table->timestamps();
         });
     }

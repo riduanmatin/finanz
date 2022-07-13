@@ -60,6 +60,15 @@
                     <label>Nama Kategori</label>
                     <input type="text" name="nama" required="required" class="form-control" placeholder="Nama Kategori ..">
                   </div>
+                  <div class="form-group">
+                    <label>Jenis Kategori</label>
+                    <select class="form-control" name="jenis" required="required">
+                      <option value="" >Pilih</option>
+                      <option value="Operasional">Operasional</option>
+                      <option value="Investasi">Investasi</option>
+                      <option value="Pendanaan">Pendanaan</option>
+                    </select>
+                  </div>
 
                 </div>
                 <div class="modal-footer">
@@ -80,6 +89,7 @@
               <tr>
                 <th width="1%">NO</th>
                 <th>NAMA KATEGORI</th>
+                <th class="text-center" width="15%">JENIS KATEGORI</th>
                 <th class="text-center" width="10%">OPSI</th>
               </tr>
             </thead>
@@ -91,6 +101,7 @@
               <tr>
                 <td class="text-center">{{ $no++ }}</td>
                 <td>{{ $k->kategori }}</td>
+                <td class="text-center">{{ $k->jenis }}</td>
                 <td>
 
                   @if($k->id != 1)
@@ -124,6 +135,15 @@
                               <label>Nama Kategori</label>
                               <input type="hidden" name="id" value="{{ $k->id }}">
                               <input type="text" name="nama" required="required" class="form-control" placeholder="Nama Kategori .." value="{{ $k->kategori }}" style="width:100%">
+                            </div>
+                            <div class="form-group" style="width:100%">
+                              <label>Jenis Kategori</label>
+                              <select class="form-control" name="jenis" required="required">
+                                <option value="" >Pilih</option>
+                                <option {{ ($k->jenis == "Operasional" ? "selected='selected'" : "") }} value="Operasional">Operasional</option>
+                                <option {{ ($k->jenis == "Investasi" ? "selected='selected'" : "") }} value="Investasi">Investasi</option>
+                                <option {{ ($k->jenis == "Pendanaan" ? "selected='selected'" : "") }} value="Pendanaan">Pendanaan</option>
+                              </select>
                             </div>
 
                           </div>

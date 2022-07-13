@@ -109,10 +109,23 @@
       @endforeach
     </tbody>
     <tfoot>
-      <tr>
+      {{-- <tr>
         <td colspan="6">TOTAL</td>
         <td>{{ "Rp.".number_format($total_pemasukan).",-" }}</td>
         <td>{{ "Rp.".number_format($total_pengeluaran).",-" }}</td>
+      </tr> --}}
+      <tr>
+        <td colspan="6">TOTAL PEMASUKAN</td>
+        <td colspan="2" >{{ "Rp.".number_format($total_pemasukan).",-" }}</td>
+        
+      </tr>
+      <tr>
+        <td colspan="6">TOTAL PENGELUARAN</td>
+        <td colspan="2">{{ "Rp.".number_format($total_pengeluaran).",-" }}</td>
+      </tr>
+      <tr>
+        <td colspan="6">TOTAL LABA BERSIH</td>
+        <td colspan="2">{{ "Rp.".number_format(($total_pemasukan - $total_pengeluaran)).",-" }}</td>
       </tr>
     </tfoot>
   </table>

@@ -8,7 +8,7 @@ class Kategori extends Model
 {
     protected $table = "kategori";
 
-	protected $fillable = ["kategori"];
+	protected $fillable = ["kategori", "jenis"];
 
 	public function transaksi()
 	{

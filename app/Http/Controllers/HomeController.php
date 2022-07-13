@@ -153,15 +153,21 @@ class HomeController extends Controller
     public function kategori_aksi(Request $req)
     {
         $nama = $req->input('nama');
-        Kategori::create(['kategori' => $nama]);
+        $jenis = $req->input('jenis');
+        Kategori::create([
+            'kategori' => $nama,
+            'jenis' => $jenis
+        ]);
         return redirect('kategori')->with('success','Kategori telah disimpan');
     }
 
     public function kategori_update($id, Request $req)
     {
         $nama = $req->input('nama');
+        $jenis = $req->input('jenis');
         $kategori = Kategori::find($id);
         $kategori->kategori = $nama;
+        $kategori->jenis = $jenis;
         $kategori->save();
         return redirect('kategori')->with('success','Kategori telah diupdate');
     }

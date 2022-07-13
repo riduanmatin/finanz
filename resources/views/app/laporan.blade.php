@@ -201,9 +201,17 @@
                 </tbody>
                 <tfoot class="bg-info text-white font-weight-bold">
                   <tr>
-                    <td colspan="6" class="text-bold text-right">TOTAL</td>
-                    <td class="text-center">{{ "Rp.".number_format($total_pemasukan).",-" }}</td>
-                    <td class="text-center">{{ "Rp.".number_format($total_pengeluaran).",-" }}</td>
+                    <td colspan="6" class="text-bold text-center">TOTAL PEMASUKAN</td>
+                    <td colspan="2" class="text-center">{{ "Rp.".number_format($total_pemasukan).",-" }}</td>
+                    
+                  </tr>
+                  <tr>
+                    <td colspan="6" class="text-bold text-center">TOTAL PENGELUARAN</td>
+                    <td colspan="2" class="text-center">{{ "Rp.".number_format($total_pengeluaran).",-" }}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="6" class="text-bold text-center">TOTAL LABA BERSIH</td>
+                    <td colspan="2" class="text-center">{{ "Rp.".number_format(($total_pemasukan - $total_pengeluaran)).",-" }}</td>
                   </tr>
                 </tfoot>
               </table>

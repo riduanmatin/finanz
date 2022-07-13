@@ -176,6 +176,17 @@
                                 </a>
                             </li>
                         @endif
+                        {{-- <li>
+                            <a href="">
+                                <i class="icon-notebook menu-icon mr-3"></i><span class="nav-text">Laporan Neraca</span>
+                            </a>
+                        </li> --}}
+
+                        <li>
+                            <a href="">
+                                <i class="fa fa-book menu-icon mr-3" aria-hidden="true"></i><span class="nav-text">Laporan Arus Kas</span>
+                            </a>
+                        </li>
                     @endif
 
                     @if (Auth::user()->level == 'ketua-yayasan' || Auth::user()->level == 'kepala-sekolah' || Auth::user()->level == 'bendahara')
