@@ -183,8 +183,8 @@
                         </li> --}}
 
                         <li>
-                            <a href="">
-                                <i class="fa fa-book menu-icon mr-3" aria-hidden="true"></i><span class="nav-text">Laporan Arus Kas</span>
+                            <a href="{{ route('laporan.arus.kas') }}" aria-expanded="false">
+                                <i class="fa fa-book menu-icon mr-3"></i><span class="nav-text">Laporan Arus Kas</span>
                             </a>
                         </li>
                     @endif

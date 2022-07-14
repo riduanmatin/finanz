@@ -57,6 +57,10 @@ Route::get('/laporan-anggaran', 'HomeController@laporan_anggaran')->name('lapora
 Route::get('/laporan-anggaran/print', 'HomeController@laporan_print_anggaran')->name('laporan.anggaran.print');
 Route::get('/laporan-anggaran/excel', 'HomeController@laporan_excel_anggaran')->name('laporan.anggaran.excel');
 
+Route::get('/laporan-arus-kas', 'HomeController@laporan_arus_kas')->name('laporan.arus.kas');
+Route::get('/laporan-arus-kas/print', 'HomeController@laporan_arus_kas_print')->name('laporan.arus.kas.print');
+Route::get('/laporan-arus-kas/excel', 'HomeController@laporan_arus_kas_excel')->name('laporan.arus.kas.excel');
+
 Route::get('/rencana-anggaran', 'HomeController@rencana_anggaran')->name('anggaran.rencana');
 Route::post('/rencana-anggaran/aksi', 'HomeController@rencana_anggaran_aksi')->name('anggaran.rencana.aksi');
 Route::put('/rencana-anggaran/update/{id}', 'HomeController@rencana_anggaran_update')->name('anggaran.rencana.update');

@@ -9,6 +9,8 @@
 <body>
 
   <center>
+    {{-- <h4>YAYASAN AR RAHMAN AL HAKIM</h4>
+    <br> --}}
     <h4>LAPORAN KEUANGAN</h4>
   </center>
 
@@ -102,7 +104,7 @@
         </td>
         <td class="text-center">
           @if($t->foto_kwitansi != "")
-            <img class="my-3" id="image" src="{{ asset('gambar/kwitansi_transaksi/'. $t->foto_kwitansi ) }}" alt="Click on button" style="width: 100%"/>
+            <img class="my-3" id="image" src="{{ asset('gambar/kwitansi_transaksi/'. $t->foto_kwitansi ) }}" alt="gambar kwitansi" style="width: 100%"/>
           @else
             -
           @endif
