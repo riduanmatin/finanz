@@ -418,6 +418,7 @@ class HomeController extends Controller
         $keterangan = $req->input('keterangan');
         $no_kwitansi = strtoupper($req->input('no_kwitansi'));
         $file = $req->file('image');
+        
         if($file != ""){
             $filename = time()."_".$file->getClientOriginalName();
             $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
@@ -452,7 +453,7 @@ class HomeController extends Controller
             $keterangan = $req->input('keterangan');
             $no_kwitansi = strtoupper($req->input('no_kwitansi'));
             $file = $req->file('image');
-            
+
             if($file != ""){
                 $filename = time()."_".$file->getClientOriginalName();
                 $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
@@ -481,7 +482,7 @@ class HomeController extends Controller
             $keterangan = $req->input('keterangan');
             $no_kwitansi = $req->input('no_kwitansi');
             $file = $req->file('image');
-            
+
             if($file != ""){
                 $filename = time()."_".$file->getClientOriginalName();
                 $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
