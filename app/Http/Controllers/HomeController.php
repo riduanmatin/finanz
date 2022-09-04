@@ -145,48 +145,48 @@ class HomeController extends Controller
         );
     }
 
-    public function kategori()
-    {
-        $kategori = Kategori::orderBy('kategori','asc')->get();
-        return view('app.kategori',['kategori' => $kategori]);
-    }
+    // public function kategori()
+    // {
+    //     $kategori = Kategori::orderBy('kategori','asc')->get();
+    //     return view('app.kategori',['kategori' => $kategori]);
+    // }
 
-    public function kategori_aksi(Request $req)
-    {
-        $nama = $req->input('nama');
-        $jenis = $req->input('jenis');
-        Kategori::create([
-            'kategori' => $nama,
-            'jenis' => $jenis
-        ]);
-        return redirect('kategori')->with('success','Kategori telah disimpan');
-    }
+    // public function kategori_aksi(Request $req)
+    // {
+    //     $nama = $req->input('nama');
+    //     $jenis = $req->input('jenis');
+    //     Kategori::create([
+    //         'kategori' => $nama,
+    //         'jenis' => $jenis
+    //     ]);
+    //     return redirect('kategori')->with('success','Kategori telah disimpan');
+    // }
 
-    public function kategori_update($id, Request $req)
-    {
-        $nama = $req->input('nama');
-        $jenis = $req->input('jenis');
-        $kategori = Kategori::find($id);
-        $kategori->kategori = $nama;
-        $kategori->jenis = $jenis;
-        $kategori->save();
-        return redirect('kategori')->with('success','Kategori telah diupdate');
-    }
+    // public function kategori_update($id, Request $req)
+    // {
+    //     $nama = $req->input('nama');
+    //     $jenis = $req->input('jenis');
+    //     $kategori = Kategori::find($id);
+    //     $kategori->kategori = $nama;
+    //     $kategori->jenis = $jenis;
+    //     $kategori->save();
+    //     return redirect('kategori')->with('success','Kategori telah diupdate');
+    // }
 
-    public function kategori_delete($id)
-    {
-        $kategori = Kategori::find($id);
-        $kategori->delete();
+    // public function kategori_delete($id)
+    // {
+    //     $kategori = Kategori::find($id);
+    //     $kategori->delete();
 
-        $tt = Transaksi::where('kategori_id',$id)->get();
+    //     $tt = Transaksi::where('kategori_id',$id)->get();
 
-        if($tt->count() > 0){
-            $transaksi = Transaksi::where('kategori_id',$id)->first();
-            $transaksi->kategori_id = "1";
-            $transaksi->save();
-        }
-        return redirect('kategori')->with('success','Kategori telah dihapus');
-    }
+    //     if($tt->count() > 0){
+    //         $transaksi = Transaksi::where('kategori_id',$id)->first();
+    //         $transaksi->kategori_id = "1";
+    //         $transaksi->save();
+    //     }
+    //     return redirect('kategori')->with('success','Kategori telah dihapus');
+    // }
 
     public function password()
     {
@@ -220,711 +220,711 @@ class HomeController extends Controller
 
     }
 
-    public function rencana_anggaran()
-    {
-        $kategori = Kategori::orderBy('kategori', 'asc')->get();
-        $rencana_anggaran = Rencana_anggaran::orderBy('id', 'desc')->get();
-        $rencana_anggaran_count = Rencana_anggaran::count();
-        return view('app.rencana_anggaran', [
-            'kategori' => $kategori, 
-            'rencana_anggaran' => $rencana_anggaran,
-            'rencana_anggaran_count' => $rencana_anggaran_count
-        ]);
-    }
+    // public function rencana_anggaran()
+    // {
+    //     $kategori = Kategori::orderBy('kategori', 'asc')->get();
+    //     $rencana_anggaran = Rencana_anggaran::orderBy('id', 'desc')->get();
+    //     $rencana_anggaran_count = Rencana_anggaran::count();
+    //     return view('app.rencana_anggaran', [
+    //         'kategori' => $kategori, 
+    //         'rencana_anggaran' => $rencana_anggaran,
+    //         'rencana_anggaran_count' => $rencana_anggaran_count
+    //     ]);
+    // }
 
-    public function rencana_anggaran_aksi(Request $req){
-        $bulan = $req->input('bulan');
-        $temp = new DateTime($bulan.'-01');
-        $bulanFormat = $temp->format('Y/m/01');
-        $kategori = $req->input('kategori');
-        $nominal_per_pcs = $req->input('nominal_per_pcs');
-        $jumlah_barang = $req->input('jumlah_barang');
-        $keterangan = $req->input('keterangan');
-        $nominal_total = $nominal_per_pcs * $jumlah_barang;
+    // public function rencana_anggaran_aksi(Request $req){
+    //     $bulan = $req->input('bulan');
+    //     $temp = new DateTime($bulan.'-01');
+    //     $bulanFormat = $temp->format('Y/m/01');
+    //     $kategori = $req->input('kategori');
+    //     $nominal_per_pcs = $req->input('nominal_per_pcs');
+    //     $jumlah_barang = $req->input('jumlah_barang');
+    //     $keterangan = $req->input('keterangan');
+    //     $nominal_total = $nominal_per_pcs * $jumlah_barang;
 
-        Rencana_anggaran::create([
-            'bulan' => $bulanFormat,
-            'kategori_id' => $kategori,
-            'nominal_per_pcs' => $nominal_per_pcs,
-            'jumlah_barang' => $jumlah_barang,
-            'keterangan' => $keterangan,
-            'nominal_total' => $nominal_total
-        ]);
+    //     Rencana_anggaran::create([
+    //         'bulan' => $bulanFormat,
+    //         'kategori_id' => $kategori,
+    //         'nominal_per_pcs' => $nominal_per_pcs,
+    //         'jumlah_barang' => $jumlah_barang,
+    //         'keterangan' => $keterangan,
+    //         'nominal_total' => $nominal_total
+    //     ]);
 
-        return redirect()->back()->with("success", "Rencana Anggaran telah diajukan!");
-    }
+    //     return redirect()->back()->with("success", "Rencana Anggaran telah diajukan!");
+    // }
 
-    public function rencana_anggaran_delete($id){
-        $rencana_anggaran = Rencana_anggaran::find($id);
-        $rencana_anggaran->delete();
-        return redirect()->back()->with("success", "Rencana Anggaran telah dihapus!");
-    }
+    // public function rencana_anggaran_delete($id){
+    //     $rencana_anggaran = Rencana_anggaran::find($id);
+    //     $rencana_anggaran->delete();
+    //     return redirect()->back()->with("success", "Rencana Anggaran telah dihapus!");
+    // }
 
-    public function rencana_anggaran_update($id, Request $req){
-        $bulan = $req->input('bulan');
-        $temp = new DateTime($bulan.'-01');
-        $bulanFormat = $temp->format('Y/m/01');
-        $kategori = $req->input('kategori');
-        $nominal_per_pcs = $req->input('nominal_per_pcs');
-        $jumlah_barang = $req->input('jumlah_barang');
-        $keterangan = $req->input('keterangan');
-        $nominal_total = $nominal_per_pcs * $jumlah_barang;
+    // public function rencana_anggaran_update($id, Request $req){
+    //     $bulan = $req->input('bulan');
+    //     $temp = new DateTime($bulan.'-01');
+    //     $bulanFormat = $temp->format('Y/m/01');
+    //     $kategori = $req->input('kategori');
+    //     $nominal_per_pcs = $req->input('nominal_per_pcs');
+    //     $jumlah_barang = $req->input('jumlah_barang');
+    //     $keterangan = $req->input('keterangan');
+    //     $nominal_total = $nominal_per_pcs * $jumlah_barang;
 
-        $rencanaAnggaranUpd = Rencana_anggaran::find($id);
-        $rencanaAnggaranUpd->bulan = $bulanFormat;
-        $rencanaAnggaranUpd->kategori_id = $kategori;
-        $rencanaAnggaranUpd->nominal_per_pcs = $nominal_per_pcs;
-        $rencanaAnggaranUpd->jumlah_barang = $jumlah_barang;
-        $rencanaAnggaranUpd->keterangan = $keterangan;
-        $rencanaAnggaranUpd->nominal_total = $nominal_total;
-        $rencanaAnggaranUpd->save();
+    //     $rencanaAnggaranUpd = Rencana_anggaran::find($id);
+    //     $rencanaAnggaranUpd->bulan = $bulanFormat;
+    //     $rencanaAnggaranUpd->kategori_id = $kategori;
+    //     $rencanaAnggaranUpd->nominal_per_pcs = $nominal_per_pcs;
+    //     $rencanaAnggaranUpd->jumlah_barang = $jumlah_barang;
+    //     $rencanaAnggaranUpd->keterangan = $keterangan;
+    //     $rencanaAnggaranUpd->nominal_total = $nominal_total;
+    //     $rencanaAnggaranUpd->save();
 
-        return redirect()->back()->with("success","Rencana Anggaran Telah di Update!");
-    }
+    //     return redirect()->back()->with("success","Rencana Anggaran Telah di Update!");
+    // }
 
-    public function anggaran(){
-        $kategori = Kategori::orderBy('kategori', 'asc')->get();
-        $anggaran = Anggaran::orderBy('bulan', 'asc')->get();
-        $anggaranTerima = Anggaran::orderBy('bulan', 'asc')->where('status', '!=', 'Tolak')->paginate(30);
-        $anggaranTolak = Anggaran::orderBy('bulan', 'asc')->where('status', '=', 'Tolak')->paginate(30);
-        $anggaranTerimaCount = Anggaran::where('status', '=', 'Terima')->count();
-        $anggaranTolakCount = Anggaran::where('status', '=', 'Tolak')->count();
-        $transaksi = Transaksi::where('anggaran_id', '!=', '')->paginate(30);
-        $transaksiCount = Transaksi::where('anggaran_id', '!=', '')->count();
-        return view('app.anggaran', [
-            'kategori' => $kategori, 
-            'anggaran' => $anggaran,
-            'transaksi' => $transaksi,
-            'anggaranTerimaCount' => $anggaranTerimaCount,
-            'anggaranTolakCount' => $anggaranTolakCount,
-            'transaksiCount' => $transaksiCount,
-            'anggaranTerima' => $anggaranTerima,
-            'anggaranTolak' => $anggaranTolak
-        ]);
-    }
+    // public function anggaran(){
+    //     $kategori = Kategori::orderBy('kategori', 'asc')->get();
+    //     $anggaran = Anggaran::orderBy('bulan', 'asc')->get();
+    //     $anggaranTerima = Anggaran::orderBy('bulan', 'asc')->where('status', '!=', 'Tolak')->paginate(30);
+    //     $anggaranTolak = Anggaran::orderBy('bulan', 'asc')->where('status', '=', 'Tolak')->paginate(30);
+    //     $anggaranTerimaCount = Anggaran::where('status', '=', 'Terima')->count();
+    //     $anggaranTolakCount = Anggaran::where('status', '=', 'Tolak')->count();
+    //     $transaksi = Transaksi::where('anggaran_id', '!=', '')->paginate(30);
+    //     $transaksiCount = Transaksi::where('anggaran_id', '!=', '')->count();
+    //     return view('app.anggaran', [
+    //         'kategori' => $kategori, 
+    //         'anggaran' => $anggaran,
+    //         'transaksi' => $transaksi,
+    //         'anggaranTerimaCount' => $anggaranTerimaCount,
+    //         'anggaranTolakCount' => $anggaranTolakCount,
+    //         'transaksiCount' => $transaksiCount,
+    //         'anggaranTerima' => $anggaranTerima,
+    //         'anggaranTolak' => $anggaranTolak
+    //     ]);
+    // }
 
-    public function anggaran_aksi_terima($id, Request $req){
-        $rencanaAnggaran = Rencana_anggaran::find($id);
-        $kategori = $rencanaAnggaran->kategori_id;
-        $bulan = $rencanaAnggaran->bulan;
-        $nominal_per_pcs = $rencanaAnggaran->nominal_per_pcs;
-        $jumlah_barang = $rencanaAnggaran->jumlah_barang;
-        $keterangan = $rencanaAnggaran->keterangan;
-        $nominal_total = $rencanaAnggaran->nominal_total;
-        $status = "Terima";
+    // public function anggaran_aksi_terima($id, Request $req){
+    //     $rencanaAnggaran = Rencana_anggaran::find($id);
+    //     $kategori = $rencanaAnggaran->kategori_id;
+    //     $bulan = $rencanaAnggaran->bulan;
+    //     $nominal_per_pcs = $rencanaAnggaran->nominal_per_pcs;
+    //     $jumlah_barang = $rencanaAnggaran->jumlah_barang;
+    //     $keterangan = $rencanaAnggaran->keterangan;
+    //     $nominal_total = $rencanaAnggaran->nominal_total;
+    //     $status = "Terima";
 
-        Anggaran::create([
-            'bulan' => $bulan,
-            'kategori_id' => $kategori,
-            'nominal_per_pcs' => $nominal_per_pcs,
-            'jumlah_barang' => $jumlah_barang,
-            'keterangan' => $keterangan,
-            'nominal_total' => $nominal_total,
-            'status' => $status
-        ]);
+    //     Anggaran::create([
+    //         'bulan' => $bulan,
+    //         'kategori_id' => $kategori,
+    //         'nominal_per_pcs' => $nominal_per_pcs,
+    //         'jumlah_barang' => $jumlah_barang,
+    //         'keterangan' => $keterangan,
+    //         'nominal_total' => $nominal_total,
+    //         'status' => $status
+    //     ]);
 
-        $rencanaAnggaran->delete();
+    //     $rencanaAnggaran->delete();
 
-        return redirect()->back()->with("success", "Rencana Anggaran Telah di Validasi!");
-    }
+    //     return redirect()->back()->with("success", "Rencana Anggaran Telah di Validasi!");
+    // }
     
-    public function anggaran_aksi_tolak($id, Request $req){
-        $rencanaAnggaran = Rencana_anggaran::find($id);
-        $kategori = $rencanaAnggaran->kategori_id;
-        $bulan = $rencanaAnggaran->bulan;
-        $nominal_per_pcs = $rencanaAnggaran->nominal_per_pcs;
-        $jumlah_barang = $rencanaAnggaran->jumlah_barang;
-        $keterangan = $rencanaAnggaran->keterangan;
-        $nominal_total = $rencanaAnggaran->nominal_total;
-        $status = "Tolak";
+    // public function anggaran_aksi_tolak($id, Request $req){
+    //     $rencanaAnggaran = Rencana_anggaran::find($id);
+    //     $kategori = $rencanaAnggaran->kategori_id;
+    //     $bulan = $rencanaAnggaran->bulan;
+    //     $nominal_per_pcs = $rencanaAnggaran->nominal_per_pcs;
+    //     $jumlah_barang = $rencanaAnggaran->jumlah_barang;
+    //     $keterangan = $rencanaAnggaran->keterangan;
+    //     $nominal_total = $rencanaAnggaran->nominal_total;
+    //     $status = "Tolak";
 
-        Anggaran::create([
-            'bulan' => $bulan,
-            'kategori_id' => $kategori,
-            'nominal_per_pcs' => $nominal_per_pcs,
-            'jumlah_barang' => $jumlah_barang,
-            'keterangan' => $keterangan,
-            'nominal_total' => $nominal_total,
-            'status' => $status
-        ]);
+    //     Anggaran::create([
+    //         'bulan' => $bulan,
+    //         'kategori_id' => $kategori,
+    //         'nominal_per_pcs' => $nominal_per_pcs,
+    //         'jumlah_barang' => $jumlah_barang,
+    //         'keterangan' => $keterangan,
+    //         'nominal_total' => $nominal_total,
+    //         'status' => $status
+    //     ]);
 
-        $rencanaAnggaran->delete();
+    //     $rencanaAnggaran->delete();
 
-        return redirect()->back()->with("success", "Rencana Anggaran Telah di Tolak!");
-    }
+    //     return redirect()->back()->with("success", "Rencana Anggaran Telah di Tolak!");
+    // }
 
-    public function anggaran_aksi_realisasi($id, Request $req){
-        $anggaran = Anggaran::find($id);
+    // public function anggaran_aksi_realisasi($id, Request $req){
+    //     $anggaran = Anggaran::find($id);
 
-        $this->validate($req, [
-            'foto' => 'image|mimes:jpeg,png,jpg|max:2048'
-        ]);
+    //     $this->validate($req, [
+    //         'foto' => 'image|mimes:jpeg,png,jpg|max:2048'
+    //     ]);
 
-        $tanggal = $req->input('tanggal');
-        $jenis = "Pengeluaran";
-        $kategori = $anggaran->kategori_id;
-        $nominal = $anggaran->nominal_total;
-        $keterangan = $anggaran->keterangan;
-        $no_kwitansi = strtoupper($req->input('no_kwitansi'));
-        $anggaran_id = $anggaran->id;
-        $file = $req->file('image');
-        if($file != ""){
-            $filename = time()."_".$file->getClientOriginalName();
-            $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
-        }
-        else{
-            $filename = "";
-        }
+    //     $tanggal = $req->input('tanggal');
+    //     $jenis = "Pengeluaran";
+    //     $kategori = $anggaran->kategori_id;
+    //     $nominal = $anggaran->nominal_total;
+    //     $keterangan = $anggaran->keterangan;
+    //     $no_kwitansi = strtoupper($req->input('no_kwitansi'));
+    //     $anggaran_id = $anggaran->id;
+    //     $file = $req->file('image');
+    //     if($file != ""){
+    //         $filename = time()."_".$file->getClientOriginalName();
+    //         $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
+    //     }
+    //     else{
+    //         $filename = "";
+    //     }
 
-        Transaksi::create([
-            'tanggal' => $tanggal,
-            'jenis' => $jenis,
-            'kategori_id' => $kategori,
-            'nominal' => $nominal,
-            'keterangan' => $keterangan,
-            'no_kwitansi' => $no_kwitansi,
-            'foto_kwitansi' => $filename,
-            'anggaran_id' => $anggaran_id
-        ]);
+    //     Transaksi::create([
+    //         'tanggal' => $tanggal,
+    //         'jenis' => $jenis,
+    //         'kategori_id' => $kategori,
+    //         'nominal' => $nominal,
+    //         'keterangan' => $keterangan,
+    //         'no_kwitansi' => $no_kwitansi,
+    //         'foto_kwitansi' => $filename,
+    //         'anggaran_id' => $anggaran_id
+    //     ]);
 
-        $anggaran->status = "Realisasi";
-        $anggaran->save();
+    //     $anggaran->status = "Realisasi";
+    //     $anggaran->save();
 
-        return redirect()->back()->with("success", "Anggaran telah Terealisasi!");
-    }
+    //     return redirect()->back()->with("success", "Anggaran telah Terealisasi!");
+    // }
 
-    public function transaksi()
-    {
-        $kategori = Kategori::orderBy('kategori','asc')->get();
-        $transaksi = Transaksi::orderBy('id','desc')->paginate(30);
-        $transaksiCount = Transaksi::count();
-        return view('app.transaksi',[
-            'transaksi' => $transaksi,
-            'kategori' => $kategori,
-            'transaksiCount' => $transaksiCount
-        ]);
-    }
+    // public function transaksi()
+    // {
+    //     $kategori = Kategori::orderBy('kategori','asc')->get();
+    //     $transaksi = Transaksi::orderBy('id','desc')->paginate(30);
+    //     $transaksiCount = Transaksi::count();
+    //     return view('app.transaksi',[
+    //         'transaksi' => $transaksi,
+    //         'kategori' => $kategori,
+    //         'transaksiCount' => $transaksiCount
+    //     ]);
+    // }
 
-    public function transaksi_aksi(Request $req)
-    {   
-        $this->validate($req, [
-            'foto' => 'image|mimes:jpeg,png,jpg|max:2048'
-        ]);
+    // public function transaksi_aksi(Request $req)
+    // {   
+    //     $this->validate($req, [
+    //         'foto' => 'image|mimes:jpeg,png,jpg|max:2048'
+    //     ]);
 
-        $tanggal = $req->input('tanggal');
-        $jenis = $req->input('jenis');
-        $kategori = $req->input('kategori');
-        $nominal = $req->input('nominal');
-        $keterangan = $req->input('keterangan');
-        $no_kwitansi = strtoupper($req->input('no_kwitansi'));
-        $file = $req->file('image');
+    //     $tanggal = $req->input('tanggal');
+    //     $jenis = $req->input('jenis');
+    //     $kategori = $req->input('kategori');
+    //     $nominal = $req->input('nominal');
+    //     $keterangan = $req->input('keterangan');
+    //     $no_kwitansi = strtoupper($req->input('no_kwitansi'));
+    //     $file = $req->file('image');
         
-        if($file != ""){
-            $filename = time()."_".$file->getClientOriginalName();
-            $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
-        }
-        else{
-            $filename = "";
-        }
+    //     if($file != ""){
+    //         $filename = time()."_".$file->getClientOriginalName();
+    //         $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
+    //     }
+    //     else{
+    //         $filename = "";
+    //     }
 
-        Transaksi::create([
-            'tanggal' => $tanggal,
-            'jenis' => $jenis,
-            'kategori_id' => $kategori,
-            'nominal' => $nominal,
-            'keterangan' => $keterangan,
-            'no_kwitansi' => $no_kwitansi,
-            'foto_kwitansi' => $filename
-        ]);
+    //     Transaksi::create([
+    //         'tanggal' => $tanggal,
+    //         'jenis' => $jenis,
+    //         'kategori_id' => $kategori,
+    //         'nominal' => $nominal,
+    //         'keterangan' => $keterangan,
+    //         'no_kwitansi' => $no_kwitansi,
+    //         'foto_kwitansi' => $filename
+    //     ]);
 
-        return redirect()->back()->with("success","Transaksi telah disimpan!");
-    }
+    //     return redirect()->back()->with("success","Transaksi telah disimpan!");
+    // }
 
 
-    public function transaksi_update($id, Request $req)
-    {   
-        $transaksi = Transaksi::find($id);
+    // public function transaksi_update($id, Request $req)
+    // {   
+    //     $transaksi = Transaksi::find($id);
 
-        if($transaksi->foto_kwitansi == ""){
-            $tanggal = $req->input('tanggal');
-            $jenis = $req->input('jenis');
-            $kategori = $req->input('kategori');
-            $nominal = $req->input('nominal');
-            $keterangan = $req->input('keterangan');
-            $no_kwitansi = strtoupper($req->input('no_kwitansi'));
-            $file = $req->file('image');
+    //     if($transaksi->foto_kwitansi == ""){
+    //         $tanggal = $req->input('tanggal');
+    //         $jenis = $req->input('jenis');
+    //         $kategori = $req->input('kategori');
+    //         $nominal = $req->input('nominal');
+    //         $keterangan = $req->input('keterangan');
+    //         $no_kwitansi = strtoupper($req->input('no_kwitansi'));
+    //         $file = $req->file('image');
 
-            if($file != ""){
-                $filename = time()."_".$file->getClientOriginalName();
-                $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
-            }
-            else{
-                $filename = "";
-            }
+    //         if($file != ""){
+    //             $filename = time()."_".$file->getClientOriginalName();
+    //             $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
+    //         }
+    //         else{
+    //             $filename = "";
+    //         }
             
-            $transaksi->tanggal = $tanggal;
-            $transaksi->jenis = $jenis;
-            $transaksi->kategori_id = $kategori;
-            $transaksi->nominal = $nominal;
-            $transaksi->keterangan = $keterangan;
-            $transaksi->no_kwitansi = $no_kwitansi;
-            $transaksi->foto_kwitansi = $filename;
-            $transaksi->save();
+    //         $transaksi->tanggal = $tanggal;
+    //         $transaksi->jenis = $jenis;
+    //         $transaksi->kategori_id = $kategori;
+    //         $transaksi->nominal = $nominal;
+    //         $transaksi->keterangan = $keterangan;
+    //         $transaksi->no_kwitansi = $no_kwitansi;
+    //         $transaksi->foto_kwitansi = $filename;
+    //         $transaksi->save();
 
-            return redirect()->back()->with("success","Transaksi telah diupdate!");
-        }
-        else{
-            $temp = $transaksi->foto_kwitansi;
-            $tanggal = $req->input('tanggal');
-            $jenis = $req->input('jenis');
-            $kategori = $req->input('kategori');
-            $nominal = $req->input('nominal');
-            $keterangan = $req->input('keterangan');
-            $no_kwitansi = $req->input('no_kwitansi');
-            $file = $req->file('image');
+    //         return redirect()->back()->with("success","Transaksi telah diupdate!");
+    //     }
+    //     else{
+    //         $temp = $transaksi->foto_kwitansi;
+    //         $tanggal = $req->input('tanggal');
+    //         $jenis = $req->input('jenis');
+    //         $kategori = $req->input('kategori');
+    //         $nominal = $req->input('nominal');
+    //         $keterangan = $req->input('keterangan');
+    //         $no_kwitansi = $req->input('no_kwitansi');
+    //         $file = $req->file('image');
 
-            if($file != ""){
-                $filename = time()."_".$file->getClientOriginalName();
-                $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
-            }
-            else{
-                $filename = $temp;
-            }
+    //         if($file != ""){
+    //             $filename = time()."_".$file->getClientOriginalName();
+    //             $file->move(public_path('gambar/kwitansi_transaksi'), $filename);
+    //         }
+    //         else{
+    //             $filename = $temp;
+    //         }
             
-            $transaksi->tanggal = $tanggal;
-            $transaksi->jenis = $jenis;
-            $transaksi->kategori_id = $kategori;
-            $transaksi->nominal = $nominal;
-            $transaksi->keterangan = $keterangan;
-            $transaksi->no_kwitansi = $no_kwitansi;
-            $transaksi->foto_kwitansi = $filename;
-            $transaksi->save();
+    //         $transaksi->tanggal = $tanggal;
+    //         $transaksi->jenis = $jenis;
+    //         $transaksi->kategori_id = $kategori;
+    //         $transaksi->nominal = $nominal;
+    //         $transaksi->keterangan = $keterangan;
+    //         $transaksi->no_kwitansi = $no_kwitansi;
+    //         $transaksi->foto_kwitansi = $filename;
+    //         $transaksi->save();
 
-            return redirect()->back()->with("success","Transaksi telah diupdate!");
-        }
-    }
+    //         return redirect()->back()->with("success","Transaksi telah diupdate!");
+    //     }
+    // }
 
-    public function transaksi_delete($id)
-    {
-        $transaksi = Transaksi::find($id);
-        $transaksi->delete();
-        return redirect()->back()->with("success","Transaksi telah dihapus!");
-    }
+    // public function transaksi_delete($id)
+    // {
+    //     $transaksi = Transaksi::find($id);
+    //     $transaksi->delete();
+    //     return redirect()->back()->with("success","Transaksi telah dihapus!");
+    // }
 
-    public function laporan_anggaran(){
-        if(isset($_GET['kategori'])){
-            $kategori = Kategori::orderBy('kategori', 'asc')->get();
-            if($_GET['kategori'] == ""){
-                $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
-                ->whereDate('bulan', '<=', $_GET['sampai'])
-                ->where('status', '=', 'Realisasi')
-                ->get();
-            }else{
-                $anggaran = Anggaran::where('kategori_id', $_GET['kategori'])
-                ->whereDate('bulan', '>=', $_GET['dari'])
-                ->whereDate('bulan', '<=', $_GET['sampai'])
-                ->where('status', '=', 'Realisasi')
-                ->get();
-            }
-            return view('app.laporan_anggaran',['anggaran' => $anggaran, 'kategori' => $kategori]);
-        }else{
-            $kategori = Kategori::orderBy('kategori','asc')->get();
-            return view('app.laporan_anggaran', ['anggaran' => array(), 'kategori' => $kategori]);
-        }
-    }
+    // public function laporan_anggaran(){
+    //     if(isset($_GET['kategori'])){
+    //         $kategori = Kategori::orderBy('kategori', 'asc')->get();
+    //         if($_GET['kategori'] == ""){
+    //             $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
+    //             ->whereDate('bulan', '<=', $_GET['sampai'])
+    //             ->where('status', '=', 'Realisasi')
+    //             ->get();
+    //         }else{
+    //             $anggaran = Anggaran::where('kategori_id', $_GET['kategori'])
+    //             ->whereDate('bulan', '>=', $_GET['dari'])
+    //             ->whereDate('bulan', '<=', $_GET['sampai'])
+    //             ->where('status', '=', 'Realisasi')
+    //             ->get();
+    //         }
+    //         return view('app.laporan_anggaran',['anggaran' => $anggaran, 'kategori' => $kategori]);
+    //     }else{
+    //         $kategori = Kategori::orderBy('kategori','asc')->get();
+    //         return view('app.laporan_anggaran', ['anggaran' => array(), 'kategori' => $kategori]);
+    //     }
+    // }
 
-    public function laporan_print_anggaran(){
-        if(isset($_GET['kategori'])){
-            $kategori = Kategori::orderBy('kategori', 'asc')->get();
-            if($_GET['kategori'] == ""){
-                $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
-                ->whereDate('bulan', '<=', $_GET['sampai'])
-                ->where('status', '=', 'Realisasi')
-                ->get();
-            }else{
-                $anggaran = Anggaran::where('kategori_id', $_GET['kategori'])
-                ->whereDate('bulan', '>=', $_GET['dari'])
-                ->whereDate('bulan', '<=', $_GET['sampai'])
-                ->where('status', '=', 'Realisasi')
-                ->get();
-            }
-            return view('app.laporan_anggaran_print',['anggaran' => $anggaran, 'kategori' => $kategori]);
-        }
-    }
+    // public function laporan_print_anggaran(){
+    //     if(isset($_GET['kategori'])){
+    //         $kategori = Kategori::orderBy('kategori', 'asc')->get();
+    //         if($_GET['kategori'] == ""){
+    //             $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
+    //             ->whereDate('bulan', '<=', $_GET['sampai'])
+    //             ->where('status', '=', 'Realisasi')
+    //             ->get();
+    //         }else{
+    //             $anggaran = Anggaran::where('kategori_id', $_GET['kategori'])
+    //             ->whereDate('bulan', '>=', $_GET['dari'])
+    //             ->whereDate('bulan', '<=', $_GET['sampai'])
+    //             ->where('status', '=', 'Realisasi')
+    //             ->get();
+    //         }
+    //         return view('app.laporan_anggaran_print',['anggaran' => $anggaran, 'kategori' => $kategori]);
+    //     }
+    // }
 
-    public function laporan_excel_anggaran(){
-        return Excel::download(new LaporanAnggaranExport, 'Laporan_anggaran.xlsx');
-    }
+    // public function laporan_excel_anggaran(){
+    //     return Excel::download(new LaporanAnggaranExport, 'Laporan_anggaran.xlsx');
+    // }
 
-    public function laporan_arus_kas(){
-        if(isset($_GET['tahun'])){
-            $arus_pengeluaran_operasi = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('CONCAT("Beban ", kategori.kategori) as "nama", SUM(transaksi.nominal) as "nominal"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pengeluaran')
-                    ->where('kategori.jenis', '=', 'Operasional')
-                    ->groupBy('kategori.kategori')
-                    ->get();
-            $arus_pengeluaran_operasi_total = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pengeluaran')
-                    ->where('kategori.jenis', '=', 'Operasional')
-                    ->first();
-            $arus_pemasukan_operasi = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Operasional')
-                    ->groupBy('kategori.kategori')
-                    ->get();
-            $arus_pemasukan_operasi_total = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Operasional')
-                    ->first();
+    // public function laporan_arus_kas(){
+    //     if(isset($_GET['tahun'])){
+    //         $arus_pengeluaran_operasi = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('CONCAT("Beban ", kategori.kategori) as "nama", SUM(transaksi.nominal) as "nominal"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pengeluaran')
+    //                 ->where('kategori.jenis', '=', 'Operasional')
+    //                 ->groupBy('kategori.kategori')
+    //                 ->get();
+    //         $arus_pengeluaran_operasi_total = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pengeluaran')
+    //                 ->where('kategori.jenis', '=', 'Operasional')
+    //                 ->first();
+    //         $arus_pemasukan_operasi = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Operasional')
+    //                 ->groupBy('kategori.kategori')
+    //                 ->get();
+    //         $arus_pemasukan_operasi_total = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Operasional')
+    //                 ->first();
             
-            $total_arus_kas_operasional = $arus_pemasukan_operasi_total->total - $arus_pengeluaran_operasi_total->total;
+    //         $total_arus_kas_operasional = $arus_pemasukan_operasi_total->total - $arus_pengeluaran_operasi_total->total;
 
-            $arus_pemasukan_investasi = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Investasi')
-                    ->groupBy('kategori.kategori')
-                    ->get();
-            $arus_pengeluaran_investasi = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pengeluaran')
-                    ->where('kategori.jenis', '=', 'Investasi')
-                    ->groupBy('kategori.kategori')
-                    ->get();
-            $arus_pengeluaran_investasi_total = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pengeluaran')
-                    ->where('kategori.jenis', '=', 'Investasi')
-                    ->first();
-            $arus_pemasukan_investasi_total = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Investasi')
-                    ->first();
-            $total_arus_kas_investasi = $arus_pemasukan_investasi_total->total - $arus_pengeluaran_investasi_total->total;
+    //         $arus_pemasukan_investasi = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Investasi')
+    //                 ->groupBy('kategori.kategori')
+    //                 ->get();
+    //         $arus_pengeluaran_investasi = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pengeluaran')
+    //                 ->where('kategori.jenis', '=', 'Investasi')
+    //                 ->groupBy('kategori.kategori')
+    //                 ->get();
+    //         $arus_pengeluaran_investasi_total = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pengeluaran')
+    //                 ->where('kategori.jenis', '=', 'Investasi')
+    //                 ->first();
+    //         $arus_pemasukan_investasi_total = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Investasi')
+    //                 ->first();
+    //         $total_arus_kas_investasi = $arus_pemasukan_investasi_total->total - $arus_pengeluaran_investasi_total->total;
 
-            $arus_pemasukan_pendanaan = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Pendanaan')
-                    ->groupBy('kategori.kategori')
-                    ->get();
-            $arus_pemasukan_pendanaan_total = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Pendanaan')
-                    ->first();
-
-            
-
-            $total_saldo_kas = $total_arus_kas_operasional + $total_arus_kas_investasi + $arus_pemasukan_pendanaan_total->total;
-            // dd(count($arus_pengeluaran_investasi));
-            
-            return view('app.laporan_arus_kas',[
-                'arus_pengeluaran_operasi' => $arus_pengeluaran_operasi,
-                'arus_pemasukan_operasi' => $arus_pemasukan_operasi,
-                'arus_pengeluaran_operasi_total' => $arus_pengeluaran_operasi_total,
-                'arus_pemasukan_operasi_total' => $arus_pemasukan_operasi_total,
-                'total_arus_kas_operasional' => $total_arus_kas_operasional,
-                'arus_pengeluaran_investasi' => $arus_pengeluaran_investasi,
-                'arus_pemasukan_investasi' => $arus_pemasukan_investasi,
-                'total_arus_kas_investasi' => $total_arus_kas_investasi,
-                'total_saldo_kas' => $total_saldo_kas,
-                'arus_pemasukan_pendanaan' => $arus_pemasukan_pendanaan,
-                'arus_pemasukan_pendanaan_total' => $arus_pemasukan_pendanaan_total
-            ]);
-        }else{
-            // $kategori = Kategori::orderBy('kategori','asc')->get();
-            // $transaksi = Transaksi::orderBy('id','desc')->get();
-            return view('app.laporan_arus_kas',['transaksi' => array()]);
-        }
-    }
-
-    public function laporan_arus_kas_print(){
-        if(isset($_GET['tahun'])){
-            $arus_pengeluaran_operasi = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('CONCAT("Beban ", kategori.kategori) as "nama", SUM(transaksi.nominal) as "nominal"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pengeluaran')
-                    ->where('kategori.jenis', '=', 'Operasional')
-                    ->groupBy('kategori.kategori')
-                    ->get();
-            $arus_pengeluaran_operasi_total = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pengeluaran')
-                    ->where('kategori.jenis', '=', 'Operasional')
-                    ->first();
-            $arus_pemasukan_operasi = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Operasional')
-                    ->groupBy('kategori.kategori')
-                    ->get();
-            $arus_pemasukan_operasi_total = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Operasional')
-                    ->first();
-            
-            $total_arus_kas_operasional = $arus_pemasukan_operasi_total->total - $arus_pengeluaran_operasi_total->total;
-
-            $arus_pemasukan_investasi = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Investasi')
-                    ->groupBy('kategori.kategori')
-                    ->get();
-            $arus_pengeluaran_investasi = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pengeluaran')
-                    ->where('kategori.jenis', '=', 'Investasi')
-                    ->groupBy('kategori.kategori')
-                    ->get();
-            $arus_pengeluaran_investasi_total = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pengeluaran')
-                    ->where('kategori.jenis', '=', 'Investasi')
-                    ->first();
-            $arus_pemasukan_investasi_total = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Investasi')
-                    ->first();
-            $total_arus_kas_investasi = $arus_pemasukan_investasi_total->total - $arus_pengeluaran_investasi_total->total;
-
-            $arus_pemasukan_pendanaan = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Pendanaan')
-                    ->groupBy('kategori.kategori')
-                    ->get();
-            $arus_pemasukan_pendanaan_total = DB::table('transaksi')
-                    ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
-                    ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
-                    ->whereYear('tanggal', '=', $_GET['tahun'])
-                    ->where('transaksi.jenis', '=', 'Pemasukan')
-                    ->where('kategori.jenis', '=', 'Pendanaan')
-                    ->first();
+    //         $arus_pemasukan_pendanaan = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Pendanaan')
+    //                 ->groupBy('kategori.kategori')
+    //                 ->get();
+    //         $arus_pemasukan_pendanaan_total = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Pendanaan')
+    //                 ->first();
 
             
 
-            $total_saldo_kas = $total_arus_kas_operasional + $total_arus_kas_investasi + $arus_pemasukan_pendanaan_total->total;
-            // dd(count($arus_pengeluaran_investasi));
+    //         $total_saldo_kas = $total_arus_kas_operasional + $total_arus_kas_investasi + $arus_pemasukan_pendanaan_total->total;
+    //         // dd(count($arus_pengeluaran_investasi));
             
-            return view('app.laporan_arus_kas_print',[
-                'arus_pengeluaran_operasi' => $arus_pengeluaran_operasi,
-                'arus_pemasukan_operasi' => $arus_pemasukan_operasi,
-                'arus_pengeluaran_operasi_total' => $arus_pengeluaran_operasi_total,
-                'arus_pemasukan_operasi_total' => $arus_pemasukan_operasi_total,
-                'total_arus_kas_operasional' => $total_arus_kas_operasional,
-                'arus_pengeluaran_investasi' => $arus_pengeluaran_investasi,
-                'arus_pemasukan_investasi' => $arus_pemasukan_investasi,
-                'total_arus_kas_investasi' => $total_arus_kas_investasi,
-                'total_saldo_kas' => $total_saldo_kas,
-                'arus_pemasukan_pendanaan' => $arus_pemasukan_pendanaan,
-                'arus_pemasukan_pendanaan_total' => $arus_pemasukan_pendanaan_total
-            ]);
-        }
-    }
+    //         return view('app.laporan_arus_kas',[
+    //             'arus_pengeluaran_operasi' => $arus_pengeluaran_operasi,
+    //             'arus_pemasukan_operasi' => $arus_pemasukan_operasi,
+    //             'arus_pengeluaran_operasi_total' => $arus_pengeluaran_operasi_total,
+    //             'arus_pemasukan_operasi_total' => $arus_pemasukan_operasi_total,
+    //             'total_arus_kas_operasional' => $total_arus_kas_operasional,
+    //             'arus_pengeluaran_investasi' => $arus_pengeluaran_investasi,
+    //             'arus_pemasukan_investasi' => $arus_pemasukan_investasi,
+    //             'total_arus_kas_investasi' => $total_arus_kas_investasi,
+    //             'total_saldo_kas' => $total_saldo_kas,
+    //             'arus_pemasukan_pendanaan' => $arus_pemasukan_pendanaan,
+    //             'arus_pemasukan_pendanaan_total' => $arus_pemasukan_pendanaan_total
+    //         ]);
+    //     }else{
+    //         // $kategori = Kategori::orderBy('kategori','asc')->get();
+    //         // $transaksi = Transaksi::orderBy('id','desc')->get();
+    //         return view('app.laporan_arus_kas',['transaksi' => array()]);
+    //     }
+    // }
 
-    public function laporan_arus_kas_excel(){
-        return Excel::download(new LaporanArusKasExport, 'Laporan_arus_kas_'.$_GET['tahun'].'.xlsx');
-    }
+    // public function laporan_arus_kas_print(){
+    //     if(isset($_GET['tahun'])){
+    //         $arus_pengeluaran_operasi = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('CONCAT("Beban ", kategori.kategori) as "nama", SUM(transaksi.nominal) as "nominal"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pengeluaran')
+    //                 ->where('kategori.jenis', '=', 'Operasional')
+    //                 ->groupBy('kategori.kategori')
+    //                 ->get();
+    //         $arus_pengeluaran_operasi_total = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pengeluaran')
+    //                 ->where('kategori.jenis', '=', 'Operasional')
+    //                 ->first();
+    //         $arus_pemasukan_operasi = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Operasional')
+    //                 ->groupBy('kategori.kategori')
+    //                 ->get();
+    //         $arus_pemasukan_operasi_total = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Operasional')
+    //                 ->first();
+            
+    //         $total_arus_kas_operasional = $arus_pemasukan_operasi_total->total - $arus_pengeluaran_operasi_total->total;
 
-    public function laporan()
-    {
-        if(isset($_GET['kategori'])){
-            $kategori = Kategori::orderBy('kategori','asc')->get();
-            if($_GET['kategori'] == ""){
-                $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])
-                ->whereDate('tanggal','<=',$_GET['sampai'])
-                ->get();
-            }else{
-                $transaksi = Transaksi::where('kategori_id',$_GET['kategori'])
-                ->whereDate('tanggal','>=',$_GET['dari'])
-                ->whereDate('tanggal','<=',$_GET['sampai'])
-                ->get();
-            }
-            // $transaksi = Transaksi::orderBy('id','desc')->get();
-            return view('app.laporan',['transaksi' => $transaksi, 'kategori' => $kategori]);
-        }else{
-            $kategori = Kategori::orderBy('kategori','asc')->get();
-            // $transaksi = Transaksi::orderBy('id','desc')->get();
-            return view('app.laporan',['transaksi' => array(), 'kategori' => $kategori]);
-        }
-    }
+    //         $arus_pemasukan_investasi = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Investasi')
+    //                 ->groupBy('kategori.kategori')
+    //                 ->get();
+    //         $arus_pengeluaran_investasi = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pengeluaran')
+    //                 ->where('kategori.jenis', '=', 'Investasi')
+    //                 ->groupBy('kategori.kategori')
+    //                 ->get();
+    //         $arus_pengeluaran_investasi_total = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pengeluaran')
+    //                 ->where('kategori.jenis', '=', 'Investasi')
+    //                 ->first();
+    //         $arus_pemasukan_investasi_total = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Investasi')
+    //                 ->first();
+    //         $total_arus_kas_investasi = $arus_pemasukan_investasi_total->total - $arus_pengeluaran_investasi_total->total;
 
-    public function laporan_print()
-    {       
-        if(isset($_GET['kategori'])){
-            $kategori = Kategori::orderBy('kategori','asc')->get();
-            if($_GET['kategori'] == ""){
-                $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])
-                ->whereDate('tanggal','<=',$_GET['sampai'])
-                ->get();
-            }else{
-                $transaksi = Transaksi::where('kategori_id',$_GET['kategori'])
-                ->whereDate('tanggal','>=',$_GET['dari'])
-                ->whereDate('tanggal','<=',$_GET['sampai'])
-                ->get();
-            }
-            // $transaksi = Transaksi::orderBy('id','desc')->get();
-            return view('app.laporan_print',['transaksi' => $transaksi, 'kategori' => $kategori]);
-        }
-    }
+    //         $arus_pemasukan_pendanaan = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('kategori.kategori as "nama", SUM(transaksi.nominal) as "nominal"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Pendanaan')
+    //                 ->groupBy('kategori.kategori')
+    //                 ->get();
+    //         $arus_pemasukan_pendanaan_total = DB::table('transaksi')
+    //                 ->join('kategori', 'transaksi.kategori_id', '=', 'kategori.id')
+    //                 ->select(DB::raw('SUM(transaksi.nominal) as "total"'))
+    //                 ->whereYear('tanggal', '=', $_GET['tahun'])
+    //                 ->where('transaksi.jenis', '=', 'Pemasukan')
+    //                 ->where('kategori.jenis', '=', 'Pendanaan')
+    //                 ->first();
 
-    public function laporan_excel()
-    {
-        return Excel::download(new LaporanExport, 'Laporan.xlsx');
-    }
+            
 
-    public function user()
-    {
-        $user = User::all();
-        return view('app.user',['user' => $user]);
-    }
+    //         $total_saldo_kas = $total_arus_kas_operasional + $total_arus_kas_investasi + $arus_pemasukan_pendanaan_total->total;
+    //         // dd(count($arus_pengeluaran_investasi));
+            
+    //         return view('app.laporan_arus_kas_print',[
+    //             'arus_pengeluaran_operasi' => $arus_pengeluaran_operasi,
+    //             'arus_pemasukan_operasi' => $arus_pemasukan_operasi,
+    //             'arus_pengeluaran_operasi_total' => $arus_pengeluaran_operasi_total,
+    //             'arus_pemasukan_operasi_total' => $arus_pemasukan_operasi_total,
+    //             'total_arus_kas_operasional' => $total_arus_kas_operasional,
+    //             'arus_pengeluaran_investasi' => $arus_pengeluaran_investasi,
+    //             'arus_pemasukan_investasi' => $arus_pemasukan_investasi,
+    //             'total_arus_kas_investasi' => $total_arus_kas_investasi,
+    //             'total_saldo_kas' => $total_saldo_kas,
+    //             'arus_pemasukan_pendanaan' => $arus_pemasukan_pendanaan,
+    //             'arus_pemasukan_pendanaan_total' => $arus_pemasukan_pendanaan_total
+    //         ]);
+    //     }
+    // }
 
-    public function user_add()
-    {
-        return view('app.user_tambah');
-    }
+    // public function laporan_arus_kas_excel(){
+    //     return Excel::download(new LaporanArusKasExport, 'Laporan_arus_kas_'.$_GET['tahun'].'.xlsx');
+    // }
 
-    public function user_aksi(Request $request)
-    {
-        $this->validate($request, [
-            'nama' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:5',
-            'level' => 'required',
-            'foto' => 'image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+    // public function laporan()
+    // {
+    //     if(isset($_GET['kategori'])){
+    //         $kategori = Kategori::orderBy('kategori','asc')->get();
+    //         if($_GET['kategori'] == ""){
+    //             $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])
+    //             ->whereDate('tanggal','<=',$_GET['sampai'])
+    //             ->get();
+    //         }else{
+    //             $transaksi = Transaksi::where('kategori_id',$_GET['kategori'])
+    //             ->whereDate('tanggal','>=',$_GET['dari'])
+    //             ->whereDate('tanggal','<=',$_GET['sampai'])
+    //             ->get();
+    //         }
+    //         // $transaksi = Transaksi::orderBy('id','desc')->get();
+    //         return view('app.laporan',['transaksi' => $transaksi, 'kategori' => $kategori]);
+    //     }else{
+    //         $kategori = Kategori::orderBy('kategori','asc')->get();
+    //         // $transaksi = Transaksi::orderBy('id','desc')->get();
+    //         return view('app.laporan',['transaksi' => array(), 'kategori' => $kategori]);
+    //     }
+    // }
 
-        // menyimpan data file yang diupload ke variabel $file
-        $file = $request->file('foto');
+    // public function laporan_print()
+    // {       
+    //     if(isset($_GET['kategori'])){
+    //         $kategori = Kategori::orderBy('kategori','asc')->get();
+    //         if($_GET['kategori'] == ""){
+    //             $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])
+    //             ->whereDate('tanggal','<=',$_GET['sampai'])
+    //             ->get();
+    //         }else{
+    //             $transaksi = Transaksi::where('kategori_id',$_GET['kategori'])
+    //             ->whereDate('tanggal','>=',$_GET['dari'])
+    //             ->whereDate('tanggal','<=',$_GET['sampai'])
+    //             ->get();
+    //         }
+    //         // $transaksi = Transaksi::orderBy('id','desc')->get();
+    //         return view('app.laporan_print',['transaksi' => $transaksi, 'kategori' => $kategori]);
+    //     }
+    // }
+
+    // public function laporan_excel()
+    // {
+    //     return Excel::download(new LaporanExport, 'Laporan.xlsx');
+    // }
+
+    // public function user()
+    // {
+    //     $user = User::all();
+    //     return view('app.user',['user' => $user]);
+    // }
+
+    // public function user_add()
+    // {
+    //     return view('app.user_tambah');
+    // }
+
+    // public function user_aksi(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'nama' => 'required',
+    //         'email' => 'required|email',
+    //         'password' => 'required|min:5',
+    //         'level' => 'required',
+    //         'foto' => 'image|mimes:jpeg,png,jpg|max:2048',
+    //     ]);
+
+    //     // menyimpan data file yang diupload ke variabel $file
+    //     $file = $request->file('foto');
         
-        // cek jika gambar kosong
-        if($file != ""){
-            // menambahkan waktu sebagai pembuat unik nnama file gambar
-            $nama_file = time()."_".$file->getClientOriginalName();
+    //     // cek jika gambar kosong
+    //     if($file != ""){
+    //         // menambahkan waktu sebagai pembuat unik nnama file gambar
+    //         $nama_file = time()."_".$file->getClientOriginalName();
 
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'gambar/user';
-            $file->move($tujuan_upload,$nama_file);
-        }else{
-            $nama_file = "";
-        }
+    //         // isi dengan nama folder tempat kemana file diupload
+    //         $tujuan_upload = 'gambar/user';
+    //         $file->move($tujuan_upload,$nama_file);
+    //     }else{
+    //         $nama_file = "";
+    //     }
  
  
-        User::create([
-            'name' => $request->nama,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'level' => $request->level,
-            'foto' => $nama_file
-        ]);
+    //     User::create([
+    //         'name' => $request->nama,
+    //         'email' => $request->email,
+    //         'password' => bcrypt($request->password),
+    //         'level' => $request->level,
+    //         'foto' => $nama_file
+    //     ]);
 
-        return redirect(route('user'))->with('success','User telah disimpan');
-    }
+    //     return redirect(route('user'))->with('success','User telah disimpan');
+    // }
 
-    public function user_edit($id)
-    {
-        $user = User::find($id);
-        return view('app.user_edit', ['user' => $user]);
-    }
+    // public function user_edit($id)
+    // {
+    //     $user = User::find($id);
+    //     return view('app.user_edit', ['user' => $user]);
+    // }
 
-     public function user_update($id, Request $req)
-    {
-         $this->validate($req, [
-            'nama' => 'required',
-            'email' => 'required|email',
-            'level' => 'required',
-            'foto' => 'image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+    //  public function user_update($id, Request $req)
+    // {
+    //      $this->validate($req, [
+    //         'nama' => 'required',
+    //         'email' => 'required|email',
+    //         'level' => 'required',
+    //         'foto' => 'image|mimes:jpeg,png,jpg|max:2048',
+    //     ]);
 
-        $name = $req->input('nama');
-        $email = $req->input('email');
-        $password = $req->input('password');
-        $level = $req->input('level');
+    //     $name = $req->input('nama');
+    //     $email = $req->input('email');
+    //     $password = $req->input('password');
+    //     $level = $req->input('level');
         
 
-        $user = User::find($id);
-        $user->name = $name;
-        $user->email = $email;
-        if($password != ""){
-            $user->password = bcrypt($password);
-        }
+    //     $user = User::find($id);
+    //     $user->name = $name;
+    //     $user->email = $email;
+    //     if($password != ""){
+    //         $user->password = bcrypt($password);
+    //     }
 
-        // menyimpan data file yang diupload ke variabel $file
-        $file = $req->file('foto');
+    //     // menyimpan data file yang diupload ke variabel $file
+    //     $file = $req->file('foto');
         
-        // cek jika gambar tidak kosong
-        if($file != ""){
-            // menambahkan waktu sebagai pembuat unik nnama file gambar
-            $nama_file = time()."_".$file->getClientOriginalName();
+    //     // cek jika gambar tidak kosong
+    //     if($file != ""){
+    //         // menambahkan waktu sebagai pembuat unik nnama file gambar
+    //         $nama_file = time()."_".$file->getClientOriginalName();
 
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'gambar/user';
-            $file->move($tujuan_upload,$nama_file);
+    //         // isi dengan nama folder tempat kemana file diupload
+    //         $tujuan_upload = 'gambar/user';
+    //         $file->move($tujuan_upload,$nama_file);
 
-            // hapus file gambar lama
-            File::delete('gambar/user/'.$user->foto);
+    //         // hapus file gambar lama
+    //         File::delete('gambar/user/'.$user->foto);
 
-            $user->foto = $nama_file;
-        }
-        $user->level = $level;
-        $user->save();
+    //         $user->foto = $nama_file;
+    //     }
+    //     $user->level = $level;
+    //     $user->save();
 
-        return redirect(route('user'))->with("success","User telah diupdate!");
-    }
+    //     return redirect(route('user'))->with("success","User telah diupdate!");
+    // }
 
-    public function user_delete($id)
-    {
-        $user = User::find($id);
-        // hapus file gambar lama
-        File::delete('gambar/user/'.$user->foto);
-        $user->delete();
+    // public function user_delete($id)
+    // {
+    //     $user = User::find($id);
+    //     // hapus file gambar lama
+    //     File::delete('gambar/user/'.$user->foto);
+    //     $user->delete();
 
-        return redirect(route('user'))->with("success","User telah dihapus!");
-    }
+    //     return redirect(route('user'))->with("success","User telah dihapus!");
+    // }
 }
