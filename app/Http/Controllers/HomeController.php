@@ -517,13 +517,13 @@ class HomeController extends Controller
             if($_GET['kategori'] == ""){
                 $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
                 ->whereDate('bulan', '<=', $_GET['sampai'])
-                ->where('status', '=', 'Terima')
+                ->where('status', '=', 'Realisasi')
                 ->get();
             }else{
                 $anggaran = Anggaran::where('kategori_id', $_GET['kategori'])
                 ->whereDate('bulan', '>=', $_GET['dari'])
                 ->whereDate('bulan', '<=', $_GET['sampai'])
-                ->where('status', '=', 'Terima')
+                ->where('status', '=', 'Realisasi')
                 ->get();
             }
             return view('app.laporan_anggaran',['anggaran' => $anggaran, 'kategori' => $kategori]);
@@ -539,13 +539,13 @@ class HomeController extends Controller
             if($_GET['kategori'] == ""){
                 $anggaran = Anggaran::whereDate('bulan', '>=', $_GET['dari'])
                 ->whereDate('bulan', '<=', $_GET['sampai'])
-                ->where('status', '=', 'Terima')
+                ->where('status', '=', 'Realisasi')
                 ->get();
             }else{
                 $anggaran = Anggaran::where('kategori_id', $_GET['kategori'])
                 ->whereDate('bulan', '>=', $_GET['dari'])
                 ->whereDate('bulan', '<=', $_GET['sampai'])
-                ->where('status', '=', 'Terima')
+                ->where('status', '=', 'Realisasi')
                 ->get();
             }
             return view('app.laporan_anggaran_print',['anggaran' => $anggaran, 'kategori' => $kategori]);

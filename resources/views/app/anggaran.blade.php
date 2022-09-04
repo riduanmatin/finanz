@@ -63,6 +63,7 @@
                                                         $no = 1;
                                                     @endphp
                                                     @foreach($anggaranTerima as $a)
+                                                    @if( $a->status != "Realisasi")
                                                         <tr>
                                                             <td class="text-center">{{ $no++ }}</td>
                                                             <td class="text-center">{{ date('F Y', strtotime($a->bulan )) }}</td>
@@ -74,9 +75,7 @@
                                                             <td class="text-center">{{ $a->status }}</td>
                                                             @if (Auth::user()->level == 'bendahara')
                                                                 <td class="text-center">
-                                                                    @if($a->status == "Realisasi")
-                                                                        -
-                                                                    @else
+                                                                    @if($a->status != "Realisasi")
                                                                         <button type="button" title="Realisasikan Anggaran" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit_{{ $a->id }}">
                                                                             <i class="fa fa-exchange"></i>
                                                                         </button>
@@ -127,6 +126,7 @@
                                                                 </td>
                                                             @endif
                                                         </tr>
+                                                    @endif
                                                     @endforeach
                                                 </tbody>
                                             </table>

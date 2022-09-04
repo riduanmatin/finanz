@@ -168,7 +168,18 @@
                   @endif
                 </td>
                 <td class="text-center">{{ $u->email }}</td>
-                <td class="text-center">{{ $u->level }}</td>
+                <td class="text-center">
+                  @if($u->level == "admin")
+                    Admin
+                  @elseif($u->level == "bendahara")
+                    Bendahara
+                  @elseif($u->level == "ketua-yayasan")
+                    Ketua Yayasan
+                  @elseif($u->level == "kepala-sekolah")
+                    Kepala Sekolah
+                  @endif
+                  {{-- {{ $u->level }} --}}
+                </td>
                 <td>    
 
                   <div class="text-center">
@@ -179,7 +190,7 @@
                       <i class="fa fa-cog"></i>
                     </a> --}}
 
-                  @if($u->id != 1)
+                  @if($u->level != "admin")
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus_user_{{ $u->id }}">
                       <i class="fa fa-trash"></i>
                     </button>
