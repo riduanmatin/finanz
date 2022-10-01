@@ -32,7 +32,7 @@
         <div class="header-right">
           <div class="col p-md-0">
             <ol class="breadcrumb bg-white">
-              <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="javascript:void(0)">Dasbor</a></li>
               <li class="breadcrumb-item active"><a href="javascript:void(0)">Kategori</a></li>
             </ol>
           </div>

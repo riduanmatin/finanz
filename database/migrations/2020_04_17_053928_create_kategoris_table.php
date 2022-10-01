@@ -13,10 +13,16 @@ class CreateKategorisTable extends Migration
      */
     public function up()
     {
+        // Schema::create('kategori', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('kategori');
+        //     $table->enum('jenis',['Operasional','Investasi', 'Pendanaan', 'null']);
+        //     $table->timestamps();
+        // });
         Schema::create('kategori', function (Blueprint $table) {
             $table->id();
+            $table->integer('jenisKategori_id');
             $table->string('kategori');
-            $table->enum('jenis',['Operasional','Investasi', 'Pendanaan', 'null']);
             $table->timestamps();
         });
     }

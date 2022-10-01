@@ -13,15 +13,24 @@ class CreateTransaksisTable extends Migration
      */
     public function up()
     {
+        // Schema::create('transaksi', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->date('tanggal');
+        //     $table->enum('jenis',['Pemasukan','Pengeluaran']);
+        //     $table->integer('kategori_id');
+        //     $table->integer('nominal');
+        //     $table->text('keterangan')->nullable();
+        //     $table->text('no_kwitansi')->nullable();
+        //     $table->string('foto_kwitansi')->nullable();
+        //     $table->string('anggaran_id')->nullable();
+        //     $table->timestamps();
+        // });
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal');
-            $table->enum('jenis',['Pemasukan','Pengeluaran']);
+            $table->enum('jenisTransaksi',['Pemasukan','Pengeluaran']);
             $table->integer('kategori_id');
-            $table->integer('nominal');
-            $table->text('keterangan')->nullable();
-            $table->text('no_kwitansi')->nullable();
-            $table->string('foto_kwitansi')->nullable();
+            $table->integer('user_id');
             $table->string('anggaran_id')->nullable();
             $table->timestamps();
         });

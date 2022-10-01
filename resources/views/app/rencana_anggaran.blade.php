@@ -28,7 +28,7 @@
         <div class="header-right">
             <div class="col p-md-0">
                <ol class="breadcrumb bg-white">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Dasbor</a></li>
                 <li class="breadcrumb-item active"><a href="javascript:void(0)">Rencana Anggaran</a></li>
               </ol>
             </div>
@@ -97,7 +97,7 @@
         {{-- End Modal --}}
 
         @if($rencana_anggaran_count == 0)
-          <h3>No Data Available</h3>
+          <h3>Tidak terdapat data</h3>
         @else
 
 

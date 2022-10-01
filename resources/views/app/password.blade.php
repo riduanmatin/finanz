@@ -28,7 +28,7 @@
       <div class="header-right">
         <div class="col p-md-0">
             <ol class="breadcrumb bg-white">
-              <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="javascript:void(0)">Dasbor</a></li>
               <li class="breadcrumb-item active"><a href="javascript:void(0)">Pengaturan Password</a></li>
             </ol>
           </div>
@@ -53,7 +53,7 @@
           {{ csrf_field() }}
 
           <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
-            <label for="new-password" class="col-md-4 control-label">Password Sekarang</label>
+            <label for="new-password" class="col-md-4 control-label">Sandi Sekarang</label>
 
             <div class="col-md-4">
               <input id="current-password" type="password" placeholder="********" class="form-control" name="current-password">
@@ -67,7 +67,7 @@
           </div>
 
           <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
-            <label for="new-password" class="col-md-4 control-label">Password Baru</label>
+            <label for="new-password" class="col-md-4 control-label">Sandi Baru</label>
 
             <div class="col-md-4">
               <input id="new-password" type="password" placeholder="********" class="form-control" name="new-password">
@@ -81,7 +81,7 @@
           </div>
 
           <div class="form-group">
-            <label for="new-password-confirm" class="col-md-4 control-label">Konfirmasi Password Baru</label>
+            <label for="new-password-confirm" class="col-md-4 control-label">Konfirmasi Sandi Baru</label>
 
             <div class="col-md-4">
               <input id="new-password-confirm" type="password" placeholder="********" class="form-control" name="new-password_confirmation">

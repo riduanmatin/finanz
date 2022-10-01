@@ -67,6 +67,7 @@
 
                             </div>
 
+                            {{-- <h4 class="d-flex justify-content-center"><b>Masuk</b></h4> --}}
                             <h4 class="d-flex justify-content-center"><b>Login</b></h4>
 
                             <form method="POST" action="{{ route('login') }}">
@@ -74,7 +75,7 @@
 
                                 <div class="form-group">
                                     <div class="form-group has-feedback">
-                                        <input style="border-radius: 18px" id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="off">
+                                        <input style="border-radius: 18px" id="email" type="email" placeholder="email@email.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="off">
 
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -103,13 +104,15 @@
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                         <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
+                                            {{-- {{ __('Tetap Masuk') }} --}}
+                                            {{__('Keep Sign In')}}
                                         </label>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-finanz btn-block">
+                                        {{-- {{ __('MASUK') }} --}}
                                         {{ __('LOGIN') }}
                                     </button>
 

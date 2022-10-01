@@ -13,15 +13,22 @@ class CreateAnggaranTable extends Migration
      */
     public function up()
     {
+        // Schema::create('anggaran', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->date('bulan');
+        //     $table->integer('kategori_id');
+        //     $table->integer('nominal_per_pcs');
+        //     $table->integer('jumlah_barang');
+        //     $table->text('keterangan')->nullable();
+        //     $table->enum('status', ['Tolak', 'Terima', 'Realisasi']);
+        //     $table->integer('nominal_total');
+        //     $table->timestamps();
+        // });
         Schema::create('anggaran', function (Blueprint $table) {
             $table->id();
             $table->date('bulan');
             $table->integer('kategori_id');
-            $table->integer('nominal_per_pcs');
-            $table->integer('jumlah_barang');
-            $table->text('keterangan')->nullable();
-            $table->enum('status', ['Tolak', 'Terima', 'Realisasi']);
-            $table->integer('nominal_total');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

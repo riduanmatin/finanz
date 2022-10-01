@@ -10,7 +10,7 @@
                         <div class="top-right">
                             <div class="col p-md-0 mt-2">
                                 <ol class="breadcrumb bg-white">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0)">Dasbor</a></li>
                                     <li class="breadcrumb-item active"><a href="javascript:void(0)">Anggaran</a></li>
                                 </ol>
                             </div>
@@ -37,7 +37,7 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade active show" id="terima" role="tabpanel" aria-labelledby="home-tab">
                                     @if($anggaranTerimaCount == 0)
-                                        <h3>No Data Available</h3>
+                                        <h3>Tidak terdapat data</h3>
                                     @else
 
                                     

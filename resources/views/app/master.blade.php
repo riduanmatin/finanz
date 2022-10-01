@@ -148,12 +148,12 @@
 
                 <ul class="metismenu" id="menu">
 
-                    <li class="nav-label">Dashboard</li>
+                    <li class="nav-label">Dasbor</li>
 
                     @if(Auth::user()->level != 'kepala-sekolah' && Auth::user()->level != 'admin')
                         <li>
                             <a href="{{ route('home') }}" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon mr-3"></i><span class="nav-text">Dashboard</span>
+                                <i class="icon-speedometer menu-icon mr-3"></i><span class="nav-text">Dasbor</span>
                             </a>
                         </li>
 
@@ -229,7 +229,7 @@
                     <li>
                         <a href="{{ route('logout') }}" aria-expanded="false"
                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                            <i class="icon-logout menu-icon mr-3"></i><span class="nav-text">Log Out</span>
+                            <i class="icon-logout menu-icon mr-3"></i><span class="nav-text">Keluar</span>
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -294,7 +294,6 @@
     @if (session('success'))
         <script>
             toastr.success('{{ session('success') }}');
-
         </script>
     @endif
 
